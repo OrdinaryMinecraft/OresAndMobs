@@ -1,0 +1,89 @@
+itemGroup.ordinaryores=Ordinary Ores
+
+tile.malachiteore.name=Малахитовая Руда
+tile.malachiteblock.name=Малахитовый Блок
+tile.malachitetiles.name=Малахитовая плитка
+tile.malachitepillar.name=Малахитовая колонна
+tile.greentorch.name=Зеленый Факел
+tile.greenglowstone.name=Зеленый Светокамень
+item.malachite.name=Малахит
+item.malachitehoe.name=Малахитовая Мотыга
+item.malachiteaxe.name=Малахитовый Топор
+item.malachitepickaxe.name=Малахитовая Кирка
+item.malachitespade.name=Малахитовая Лопата
+item.malachitesword.name=Малахитовый Меч
+item.malachitehelmet.name=Малахитовый Шлем
+item.malachiteplate.name=Малахитовый Нагрудник
+item.malachitepants.name=Малахитовые Штаны
+item.malachiteboots.name=Малахитовые Ботинки
+
+tile.rubyore.name=Рубиновая Руда
+tile.rubyblock.name=Рубиновый Блок
+tile.redtorch.name=Рубиновый Факел
+tile.redglowstone.name=Рубиновый Светокамень
+item.ruby.name=Рубин
+item.rubyhoe.name=Рубиновая Мотыга
+item.rubyaxe.name=Рубиновый Топор
+item.rubypickaxe.name=Рубиновая Кирка
+item.rubyspade.name=Рубиновая Лопата
+item.rubysword.name=Рубиновый Меч
+item.rubyhelmet.name=Рубиновый Шлем
+item.rubyplate.name=Рубиновый Нагрудник
+item.rubypants.name=Рубиновые Штаны
+item.rubyboots.name=Рубиновые Ботинки
+
+tile.sapphireore.name=Сапфировая Руда
+tile.sapphireblock.name=Сапфировый Блок
+tile.bluetorch.name=Синий Факел
+tile.blueglowstone.name=Синий Светокамень
+item.sapphire.name=Сапфир
+item.sapphirehoe.name=Сапфировая Мотыга
+item.sapphireaxe.name=Сапфировый Топор
+item.sapphirepickaxe.name=Сапфировая Кирка
+item.sapphirespade.name=Сапфировая Лопата
+item.sapphiresword.name=Сапфировый Меч
+item.sapphirehelmet.name=Сапфировый Шлем
+item.sapphireplate.name=Сапфировый Нагрудник
+item.sapphirepants.name=Сапфировые Штаны
+item.sapphireboots.name=Сапфировые Ботинки
+
+tile.magicore.name=Волшебная руда
+item.magicorenugget.name=Самородок волшебной руды
+item.magicoreingot.name=Слиток волшебной руды
+item.magicoreblank.name=Заготовка из волшебной руды
+item.magicorelamella.name=Пластины из волшебной руды
+item.magicorehoe.name=Мотыга из волшебной руды
+item.magicoreaxe.name=Топор из волшебной руды
+item.magicorepickaxe.name=Кирка из волшебной руды
+item.magicorespade.name=Лопата из волшебной руды
+item.magicoresword.name=Меч из волшебной руды
+item.magicorehelmet.name=Шлем из волшебной руды
+item.magicoreplate.name=Нагрудник из волшебной руды
+item.magicorepants.name=Штаны из волшебной руды
+item.magicoreboots.name=Ботинки из волшебной руды
+
+item.infernohelmet.name=Адский шлем
+item.infernoplate.name=Адский нагрудник
+item.infernopants.name=Адские штаны
+item.infernoboots.name=Адские ботинки
+
+item.rootoflife.name=Корень Жизни
+item.iceheart.name=Сердце Льда
+item.infernoingot.name=Адский слиток
+item.enderdust.name=Пыль эндера
+item.endercloth.name=Эндер-ткань
+
+item.invisibilitycloak.name=Плащ-невидимка
+item.vampiresword.name=Меч-вампир
+item.icesword.name=Меч Льда
+item.invulnerabilitychest.name=Нагрудник Неуязвимости
+
+entity.Herobrine.name=Herobrine
+entity.Super Slime.name=Король слизней
+entity.Forest Guard.name=Лесной страж
+entity.Stealth Creeper.name=Крипер-невидимка
+entity.Living Block.name=Живой блок
+entity.Inferno Golem.name=Адский голем
+entity.Sprout.name=Росток
+entity.Ice Elemental.name=Ледяной элементаль
+entity.Ender Creeper.name=Эндеркрипер

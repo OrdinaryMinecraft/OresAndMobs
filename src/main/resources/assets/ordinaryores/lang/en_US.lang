@@ -1,0 +1,89 @@
+itemGroup.ordinaryores=Ordinary Ores
+
+tile.malachiteore.name=Malachite Ore
+tile.malachiteblock.name=Malachite Block
+tile.malachitetiles.name=Malachite Tiles
+tile.malachitepillar.name=Malachite Pillar
+tile.greentorch.name=Green Torch
+tile.greenglowstone.name=Green Glowstone
+item.malachite.name=Malachite
+item.malachitehoe.name=Malachite Hoe
+item.malachiteaxe.name=Malachite Axe
+item.malachitepickaxe.name=Malachite Pickaxe
+item.malachitespade.name=Malachite Shovel
+item.malachitesword.name=Malachite Sword
+item.malachitehelmet.name=Malachite Helmet
+item.malachiteplate.name=Malachite Plate
+item.malachitepants.name=Malachite Pants
+item.malachiteboots.name=Malachite Boots
+
+tile.rubyore.name=Ruby Ore
+tile.rubyblock.name=Ruby Block
+tile.redtorch.name=Ruby Torch
+tile.redglowstone.name=Ruby Glowstone
+item.ruby.name=Ruby
+item.rubyhoe.name=Ruby Hoe
+item.rubyaxe.name=Ruby Axe
+item.rubypickaxe.name=Ruby Pickaxe
+item.rubyspade.name=Ruby Shovel
+item.rubysword.name=Ruby Sword
+item.rubyhelmet.name=Ruby Helmet
+item.rubyplate.name=Ruby Plate
+item.rubypants.name=Ruby Pants
+item.rubyboots.name=Ruby Boots
+
+tile.sapphireore.name=Sapphire Ore
+tile.sapphireblock.name=Sapphire Block
+tile.bluetorch.name=Green Torch
+tile.blueglowstone.name=Green Glowstone
+item.sapphire.name=Sapphire
+item.sapphirehoe.name=Sapphire Hoe
+item.sapphireaxe.name=Sapphire Axe
+item.sapphirepickaxe.name=Sapphire Pickaxe
+item.sapphirespade.name=Sapphire Shovel
+item.sapphiresword.name=Sapphire Sword
+item.sapphirehelmet.name=Sapphire Helmet
+item.sapphireplate.name=Sapphire Plate
+item.sapphirepants.name=Sapphire Pants
+item.sapphireboots.name=Sapphire Boots
+
+tile.magicore.name=Magic Ore
+item.magicorenugget.name=Magic Ore Nugget
+item.magicoreingot.name=Magic Ore Ingot
+item.magicoreblank.name=Magic Ore Blank
+item.magicorelamella.name=Magic Ore Lamella
+item.magicorehoe.name=Magic Ore Hoe
+item.magicoreaxe.name=Magic Ore Axe
+item.magicorepickaxe.name=Magic Ore Pickaxe
+item.magicorespade.name=Magic Ore Shovel
+item.magicoresword.name=Magic Ore Sword
+item.magicorehelmet.name=Magic Ore Helmet
+item.magicoreplate.name=Magic Ore Plate
+item.magicorepants.name=Magic Ore Pants
+item.magicoreboots.name=Magic Ore Boots
+
+item.infernohelmet.name=Inferno Helmet
+item.infernoplate.name=Inferno Plate
+item.infernopants.name=Inferno Pants
+item.infernoboots.name=Inferno Boots
+
+item.rootoflife.name=Root of Life
+item.iceheart.name=Ice Heart
+item.infernoingot.name=Inferno Ingot
+item.enderdust.name=Ender Dust
+item.endercloth.name=Ender Cloth
+
+item.invisibilitycloak.name=Invisibility Cloak
+item.vampiresword.name=Vampire Sword
+item.icesword.name=Ice Sword
+item.invulnerabilitychest.name=Chestplate Of Invulnerability
+
+entity.Herobrine.name=Herobrine
+entity.Super Slime.name=Super Slime
+entity.Forest Guard.name=Forest Guard
+entity.Stealth Creeper.name=Stealth Creeper
+entity.Living Block.name=Living Block
+entity.Inferno Golem.name=Inferno Golem
+entity.Sprout.name=Sprout
+entity.Ice Elemental.name=Ice Elemental
+entity.Ender Creeper.name=Ender Creeper

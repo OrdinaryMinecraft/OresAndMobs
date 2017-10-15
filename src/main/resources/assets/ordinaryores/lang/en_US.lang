@@ -72,6 +72,8 @@ item.iceheart.name=Ice Heart
 item.infernoingot.name=Inferno Ingot
 item.enderdust.name=Ender Dust
 item.endercloth.name=Ender Cloth
+item.spidergland.name=Spider Gland
+item.vampiretooth.name=Vampire Tooth
 
 item.invisibilitycloak.name=Invisibility Cloak
 item.vampiresword.name=Vampire Sword
@@ -87,3 +89,8 @@ entity.Inferno Golem.name=Inferno Golem
 entity.Sprout.name=Sprout
 entity.Ice Elemental.name=Ice Elemental
 entity.Ender Creeper.name=Ender Creeper
+entity.Ender Skeleton.name=Ender Skeleton
+entity.Undead Spider.name=Undead Spider
+entity.Undead Spiderling.name=Undead Spiderling
+entity.Ghoul.name=Ghoul
+entity.Ghost.name=Ghost

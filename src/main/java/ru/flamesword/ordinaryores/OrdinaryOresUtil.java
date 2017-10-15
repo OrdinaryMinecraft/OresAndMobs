@@ -24,7 +24,7 @@ public class OrdinaryOresUtil {
 		{
 			world.setBlock(x, y, z, Blocks.fire);
 			flag = true;
-		}*/
+		}
 		if (block == Blocks.grass || block == Blocks.mycelium || block == Blocks.farmland)
 		{
 			world.setBlock(x, y, z, Blocks.dirt);
@@ -42,7 +42,7 @@ public class OrdinaryOresUtil {
 				world.setBlockMetadataWithNotify(x, y, z, 0, 3);
 				flag = true;
 			}
-		}
+		}*/
 		if (block1 == Blocks.snow_layer)
 		{
 			world.setBlockToAir(x, y+1, z);
@@ -53,6 +53,7 @@ public class OrdinaryOresUtil {
 		{
 			world.playAuxSFX(2004, x, y, z, 0);
 			world.playAuxSFX(2004, x, y, z, 0);
+			world.playAuxSFX(1004, x, y, z, 0);
 			//for (int i = 0; i < 2; i++) world.spawnParticle("flame", x+rand.nextFloat()*(1), y+0.2, z+rand.nextFloat()*(1), 0, 0, 0);
 		}
 		

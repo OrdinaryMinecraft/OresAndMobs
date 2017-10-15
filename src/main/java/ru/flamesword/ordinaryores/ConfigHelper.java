@@ -15,6 +15,10 @@ public class ConfigHelper {
 	public static int stealthCreeperSpawnRate;
 	public static int infernoGolemSpawnRate;
 	public static int enderCreeperSpawnRate;
+	public static int undeadSpiderSpawnRate;
+	public static int enderSkeletonSpawnRate;
+	public static int ghoulSpawnRate;
+	public static int ghostSpawnRate;
 	//public static boolean addMobsToDungeons;
 	public static boolean addLootToDungeons;
 	public static boolean addMalachiteArmor;
@@ -44,9 +48,12 @@ public class ConfigHelper {
 			forestGuardSpawnRate = config.get("Spawning", "forestGuardSpawnRate", 10).getInt(10);
 			iceElementalSpawnRate = config.get("Spawning", "iceElementalSpawnRate", 10).getInt(10);
 			superSlimeSpawnRate = config.get("Spawning", "superSlimeSpawnRate", 3).getInt(3);
-			stealthCreeperSpawnRate = config.get("Spawning", "stealthCreeperSpawnRate", 5).getInt(5);
 			infernoGolemSpawnRate = config.get("Spawning", "infernoGolemSpawnRate", 10).getInt(10);
 			enderCreeperSpawnRate = config.get("Spawning", "enderCreeperSpawnRate", 10).getInt(10);
+			undeadSpiderSpawnRate = config.get("Spawning", "undeadSpiderSpawnRate", 5).getInt(5);
+			enderSkeletonSpawnRate = config.get("Spawning", "enderSkeletonSpawnRate", 5).getInt(5);
+			ghoulSpawnRate = config.get("Spawning", "ghoulSpawnRate", 5).getInt(5);
+			ghostSpawnRate = config.get("Spawning", "ghostSpawnRate", 5).getInt(5);
 			//addMobsToDungeons = config.get("General", "addMobsToDungeons", true).getBoolean(true);
 			addLootToDungeons = config.get("General", "addLootToDungeons", true).getBoolean(true);
 			addMalachiteArmor = config.get("General", "addMalachiteArmor", false).getBoolean(false);

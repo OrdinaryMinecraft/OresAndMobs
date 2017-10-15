@@ -35,19 +35,19 @@ import ru.flamesword.ordinaryores.OrdinaryOresBase;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
 
-public class EntityIceElemental extends EntityMob {
+public class EntityGhost extends EntityMob {
 	
 	private boolean field_146076_bu = false;
 	private final EntityAIBreakDoor field_146075_bs = new EntityAIBreakDoor(this);
 
-	public EntityIceElemental(World par1World) {
+	public EntityGhost(World par1World) {
 		super(par1World);
         this.getNavigator().setBreakDoors(true);
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityPlayer.class, 1.0D, false));
         this.tasks.addTask(5, new EntityAIMoveTowardsRestriction(this, 1.0D));
+        this.tasks.addTask(6, new EntityAIMoveThroughVillage(this, 1.0D, false));
         this.tasks.addTask(7, new EntityAIWander(this, 1.0D));
-        this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         this.tasks.addTask(8, new EntityAILookIdle(this));
         this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
@@ -61,7 +61,7 @@ public class EntityIceElemental extends EntityMob {
 	protected void applyEntityAttributes() {
 		super.applyEntityAttributes();
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(6D);
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(40D);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(30D);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(.35D);
 	}
 	
@@ -173,17 +173,11 @@ public class EntityIceElemental extends EntityMob {
         }
     }
     
-    
-    //c �����
-	
 	@Override
 	public void onLivingUpdate() {
 		super.onLivingUpdate();
-		/*if (this.isBurning()) {
-			this.extinguish();
-		}*/
 		if(FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) {
-			this.worldObj.spawnParticle("cloud", this.posX, this.posY+0.7, this.posZ, 0, 0, 0);
+			this.worldObj.spawnParticle("largesmoke", this.posX, this.posY+0.7, this.posZ, 0, 0, 0);
 		}
 	}
 	
@@ -208,7 +202,7 @@ public class EntityIceElemental extends EntityMob {
 	
 	@Override
 	public ItemStack getHeldItem() {
-		return null;
+		return new ItemStack (Items.iron_sword, 1);
 	}
 	
 	@Override
@@ -259,11 +253,11 @@ public class EntityIceElemental extends EntityMob {
         
 		if (entity instanceof EntityPlayer) {
 			EntityPlayer player = (EntityPlayer)entity;
-			player.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 100, 1));
+			player.addPotionEffect(new PotionEffect(Potion.blindness.id, 100, 0));
 		}
 		if (entity instanceof EntityMob) {
 			EntityMob mob = (EntityMob)entity;
-			mob.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 100, 1));
+			mob.addPotionEffect(new PotionEffect(Potion.blindness.id, 100, 0));
 		}
 		return flag;
 	}
@@ -281,14 +275,13 @@ public class EntityIceElemental extends EntityMob {
 	
 	@Override
 	public void dropFewItems(boolean hitRecently, int looting) {
-		dropItem(Item.getItemFromBlock(Blocks.ice), rand.nextInt(2));
-		dropItem(Item.getItemFromBlock(Blocks.packed_ice), rand.nextInt(2));
-		dropItem(Items.snowball, rand.nextInt(4)+1);
+		dropItem(Items.gunpowder, rand.nextInt(2)+1);
+		dropItem(Items.gold_nugget, rand.nextInt(2));
 	}
 	
 	@Override
 	public void dropRareDrop(int looting) {
-		dropItem(OrdinaryOresBase.iceheart, 1);
+		dropItem(Items.gold_ingot, 1);
 	}
 	
 	@Override
@@ -297,7 +290,7 @@ public class EntityIceElemental extends EntityMob {
 	}
 
 	public String getBanlistName() {
-		return "Ice Elemental";
+		return "Ghost";
 	}
 
 }

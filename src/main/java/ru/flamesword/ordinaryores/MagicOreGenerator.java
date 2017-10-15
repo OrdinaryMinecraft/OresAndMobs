@@ -21,7 +21,7 @@ public class MagicOreGenerator implements IWorldGenerator {
 					}
 		}*/
 		
-        if (world.provider.dimensionId == 0)
+        if (world.provider.isSurfaceWorld())
         {
         		this.generateSurface(world, random, chunkX << 4, chunkZ << 4);
         }
@@ -35,7 +35,7 @@ public class MagicOreGenerator implements IWorldGenerator {
     public void generateSurface(World world, Random par2Random, int chunkX, int chunkZ)
     {
       if ((BiomeDictionary.isBiomeOfType(world.getBiomeGenForCoords(chunkX + 8, chunkZ + 8), Type.MOUNTAIN)) ||
-    		  (world.getBiomeGenForCoords(chunkX + 8, chunkZ + 8).biomeName.equals("Forested Hills"))) //для ExtrabiomesXL, Forested Hills - горный биом, который не помечен как MOUNTAIN
+    		  (world.getBiomeGenForCoords(chunkX + 8, chunkZ + 8).biomeName.equals("Forested Hills"))) //пїЅпїЅпїЅ ExtrabiomesXL, Forested Hills - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ MOUNTAIN
       {
         int rarity = 7;
         int veinSize = 3;
@@ -54,11 +54,11 @@ public class MagicOreGenerator implements IWorldGenerator {
             int maxVeinSize, int chancesToSpawn, int minY, int maxY)
     {
             int maxPossY = minY + (maxY - 1);
-            assert maxY > minY : "Максимальная Y должна быть больше минимальной";
-            assert maxX > 0 && maxX <= 16 : "addOreSpawn: Максимальная X должна быть больше 0 и меньше 16";
-            assert minY > 0 : "addOreSpawn: Минимальная Y должна быть больше 0";
-            assert maxY < 256 && maxY > 0 : "addOreSpawn: Максимальная Y должна быть меньше 256 и больше 0";
-            assert maxZ > 0 && maxZ <= 16 : "addOreSpawn: Максимальная Z должна быть больше 0 и меньше 16";
+            assert maxY > minY : "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Y пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ";
+            assert maxX > 0 && maxX <= 16 : "addOreSpawn: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ X пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ 0 пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ 16";
+            assert minY > 0 : "addOreSpawn: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Y пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ 0";
+            assert maxY < 256 && maxY > 0 : "addOreSpawn: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Y пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ 256 пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ 0";
+            assert maxZ > 0 && maxZ <= 16 : "addOreSpawn: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Z пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ 0 пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ 16";
 
             int diffBtwnMinMaxY = maxY - minY;
             for (int x = 0; x < chancesToSpawn; x++)

@@ -72,6 +72,8 @@ item.iceheart.name=Сердце Льда
 item.infernoingot.name=Адский слиток
 item.enderdust.name=Пыль эндера
 item.endercloth.name=Эндер-ткань
+item.spidergland.name=Железа паука
+item.vampiretooth.name=Зуб вампира
 
 item.invisibilitycloak.name=Плащ-невидимка
 item.vampiresword.name=Меч-вампир
@@ -87,3 +89,8 @@ entity.Inferno Golem.name=Адский голем
 entity.Sprout.name=Росток
 entity.Ice Elemental.name=Ледяной элементаль
 entity.Ender Creeper.name=Эндеркрипер
+entity.Ender Skeleton.name=Эндерскелет
+entity.Undead Spider.name=Паук-нежить
+entity.Undead Spiderling.name=Паучонок-нежить
+entity.Ghoul.name=Упырь
+entity.Ghost.name=Призрак

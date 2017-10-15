@@ -6,15 +6,15 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import ru.flamesword.ordinaryores.entities.EntityIceElemental;
 
-public class RenderIceElemental extends RenderBiped {
+public class RenderGhost extends RenderBiped {
 
-	public RenderIceElemental() {
+	public RenderGhost() {
 		super(new ModelZombie(), 0.5F, 1.0F);
 	}
 	
 	@Override
 	protected ResourceLocation getEntityTexture(Entity entity) {
-			return new ResourceLocation("ordinaryores", "textures/entity/ice_elemental.png");
+			return new ResourceLocation("ordinaryores", "textures/entity/ghost.png");
 	}
 
 }

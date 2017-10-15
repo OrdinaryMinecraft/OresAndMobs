@@ -36,7 +36,10 @@ import ru.flamesword.ordinaryores.blocks.BlockRubyOre;
 import ru.flamesword.ordinaryores.blocks.BlockSapphireBlock;
 import ru.flamesword.ordinaryores.blocks.BlockSapphireOre;
 import ru.flamesword.ordinaryores.entities.EntityEnderCreeper;
+import ru.flamesword.ordinaryores.entities.EntityEnderSkeleton;
 import ru.flamesword.ordinaryores.entities.EntityForestGuard;
+import ru.flamesword.ordinaryores.entities.EntityGhost;
+import ru.flamesword.ordinaryores.entities.EntityGhoul;
 import ru.flamesword.ordinaryores.entities.EntityHerobrine;
 import ru.flamesword.ordinaryores.entities.EntityIceElemental;
 import ru.flamesword.ordinaryores.entities.EntityInfernoGolem;
@@ -44,6 +47,8 @@ import ru.flamesword.ordinaryores.entities.EntityLivingBlock;
 import ru.flamesword.ordinaryores.entities.EntitySprout;
 import ru.flamesword.ordinaryores.entities.EntityStealthCreeper;
 import ru.flamesword.ordinaryores.entities.EntitySuperSlime;
+import ru.flamesword.ordinaryores.entities.EntityUndeadSpider;
+import ru.flamesword.ordinaryores.entities.EntityUndeadSpiderling;
 import ru.flamesword.ordinaryores.items.InfernoArmor;
 import ru.flamesword.ordinaryores.items.ItemChestplateOfInvulnerability;
 import ru.flamesword.ordinaryores.items.ItemEnderCloth;
@@ -80,7 +85,9 @@ import ru.flamesword.ordinaryores.items.ItemSapphireHoe;
 import ru.flamesword.ordinaryores.items.ItemSapphirePickaxe;
 import ru.flamesword.ordinaryores.items.ItemSapphireSpade;
 import ru.flamesword.ordinaryores.items.ItemSapphireSword;
+import ru.flamesword.ordinaryores.items.ItemSpiderGland;
 import ru.flamesword.ordinaryores.items.ItemVampireSword;
+import ru.flamesword.ordinaryores.items.ItemVampireTooth;
 import ru.flamesword.ordinaryores.items.MagicOreArmor;
 import ru.flamesword.ordinaryores.items.MalachiteArmor;
 import ru.flamesword.ordinaryores.items.RubyArmor;
@@ -94,7 +101,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-@Mod (modid = "ordinaryores", name = "Ordinary Ores", version = "1.3.6-beta")
+@Mod (modid = "ordinaryores", name = "Ordinary Ores", version = "1.4")
 
 public class OrdinaryOresBase {
 	
@@ -181,6 +188,8 @@ public class OrdinaryOresBase {
 	public static Item iceheart;
 	public static Item enderdust;
 	public static Item endercloth;
+	public static Item spidergland;
+	public static Item vampiretooth;
 	
 	public static Item invisibilitycloak;
 	public static Item vampiresword;
@@ -209,13 +218,13 @@ public class OrdinaryOresBase {
 	@EventHandler
 	public void preLoad(FMLPreInitializationEvent event)
 	{
-        //всякая хрень
+        //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		FMLCommonHandler.instance().bus().register(eventHandler);
 		MinecraftForge.EVENT_BUS.register(eventHandler);
 		//MinecraftForge.EVENT_BUS.register(new OrdinaryOresEventHandler());
 		ConfigHelper.setupConfig(new Configuration(event.getSuggestedConfigurationFile()));
 		
-		//сущности 
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 
 		proxy.registerRenderers();
 		
 		EntityRegistry.registerGlobalEntityID(EntityHerobrine.class, "Herobrine", EntityRegistry.findGlobalUniqueEntityId(), 0x191970, 0x00FFFF);
@@ -227,16 +236,24 @@ public class OrdinaryOresBase {
 		EntityRegistry.registerGlobalEntityID(EntitySprout.class, "Sprout", EntityRegistry.findGlobalUniqueEntityId());
 		EntityRegistry.registerGlobalEntityID(EntityIceElemental.class, "Ice Elemental", EntityRegistry.findGlobalUniqueEntityId(), Color.CYAN.getRGB(), Color.BLUE.getRGB());
 		EntityRegistry.registerGlobalEntityID(EntityEnderCreeper.class, "Ender Creeper", EntityRegistry.findGlobalUniqueEntityId(), Color.BLACK.getRGB(), Color.MAGENTA.getRGB());
+		EntityRegistry.registerGlobalEntityID(EntityUndeadSpider.class, "Undead Spider", EntityRegistry.findGlobalUniqueEntityId(), Color.BLACK.getRGB(), Color.GRAY.getRGB());
+		EntityRegistry.registerGlobalEntityID(EntityUndeadSpiderling.class, "Undead Spiderling", EntityRegistry.findGlobalUniqueEntityId());
+		EntityRegistry.registerGlobalEntityID(EntityEnderSkeleton.class, "Ender Skeleton", EntityRegistry.findGlobalUniqueEntityId(), Color.WHITE.getRGB(), Color.MAGENTA.getRGB());
+		EntityRegistry.registerGlobalEntityID(EntityGhoul.class, "Ghoul", EntityRegistry.findGlobalUniqueEntityId(), Color.GREEN.getRGB(), Color.GRAY.getRGB());
+		EntityRegistry.registerGlobalEntityID(EntityGhost.class, "Ghost", EntityRegistry.findGlobalUniqueEntityId(), Color.GRAY.getRGB(), Color.LIGHT_GRAY.getRGB());
 		
 		EntityRegistry.addSpawn(EntityHerobrine.class, ConfigHelper.herobrineSpawnRate, 1, 1, EnumCreatureType.monster);
+		EntityRegistry.addSpawn(EntityUndeadSpider.class, ConfigHelper.undeadSpiderSpawnRate, 1, 1, EnumCreatureType.monster);
+		EntityRegistry.addSpawn(EntityEnderSkeleton.class, ConfigHelper.enderSkeletonSpawnRate, 1, 1, EnumCreatureType.monster);
+		EntityRegistry.addSpawn(EntityGhoul.class, ConfigHelper.ghoulSpawnRate, 1, 1, EnumCreatureType.monster);
+		EntityRegistry.addSpawn(EntityGhost.class, ConfigHelper.ghostSpawnRate, 1, 1, EnumCreatureType.monster);
 		EntityRegistry.addSpawn(EntitySuperSlime.class, ConfigHelper.superSlimeSpawnRate, 1, 1, EnumCreatureType.monster, BiomeDictionary.getBiomesForType(Type.SWAMP));
-		EntityRegistry.addSpawn(EntityForestGuard.class, ConfigHelper.forestGuardSpawnRate, 1, 1, EnumCreatureType.creature, BiomeDictionary.getBiomesForType(Type.FOREST));
-		EntityRegistry.addSpawn(EntityStealthCreeper.class, ConfigHelper.stealthCreeperSpawnRate, 1, 1, EnumCreatureType.creature, BiomeDictionary.getBiomesForType(Type.JUNGLE));
-		EntityRegistry.addSpawn(EntityInfernoGolem.class, ConfigHelper.infernoGolemSpawnRate, 1, 4, EnumCreatureType.monster, BiomeDictionary.getBiomesForType(Type.NETHER));
-		EntityRegistry.addSpawn(EntityIceElemental.class, ConfigHelper.iceElementalSpawnRate, 1, 3, EnumCreatureType.creature, BiomeDictionary.getBiomesForType(Type.FROZEN));
-		EntityRegistry.addSpawn(EntityEnderCreeper.class, ConfigHelper.enderCreeperSpawnRate, 1, 2, EnumCreatureType.monster, BiomeDictionary.getBiomesForType(Type.END));
+		EntityRegistry.addSpawn(EntityForestGuard.class, ConfigHelper.forestGuardSpawnRate, 1, 1, EnumCreatureType.monster, BiomeDictionary.getBiomesForType(Type.FOREST));
+		EntityRegistry.addSpawn(EntityInfernoGolem.class, ConfigHelper.infernoGolemSpawnRate, 1, 1, EnumCreatureType.monster, BiomeDictionary.getBiomesForType(Type.NETHER));
+		EntityRegistry.addSpawn(EntityIceElemental.class, ConfigHelper.iceElementalSpawnRate, 1, 1, EnumCreatureType.monster, BiomeDictionary.getBiomesForType(Type.SNOWY));
+		EntityRegistry.addSpawn(EntityEnderCreeper.class, ConfigHelper.enderCreeperSpawnRate, 1, 1, EnumCreatureType.monster, BiomeDictionary.getBiomesForType(Type.END));
 		
-		//блоки
+		//пїЅпїЅпїЅпїЅпїЅ
 		malachiteoreblock = new BlockMalachiteOre();
 		GameRegistry.registerBlock(malachiteoreblock, "malachiteore");
 		rubyoreblock = new BlockRubyOre();
@@ -272,7 +289,7 @@ public class OrdinaryOresBase {
 		bluetorchblock = new BlockBlueTorch();
 		GameRegistry.registerBlock(bluetorchblock, "bluetorch");
 		
-		//предметы
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		malachiteitem = new ItemMalachite().setUnlocalizedName("malachite");
 		GameRegistry.registerItem(malachiteitem, "malachite");
 		rubyitem = new ItemRuby().setUnlocalizedName("ruby");
@@ -389,6 +406,10 @@ public class OrdinaryOresBase {
 		GameRegistry.registerItem(enderdust, "enderdust");
 		endercloth= new ItemEnderCloth().setUnlocalizedName("endercloth");
 		GameRegistry.registerItem(endercloth, "endercloth");
+		spidergland = new ItemSpiderGland().setUnlocalizedName("spidergland");
+		GameRegistry.registerItem(spidergland, "spidergland");
+		vampiretooth = new ItemVampireTooth().setUnlocalizedName("vampiretooth");
+		GameRegistry.registerItem(vampiretooth, "vampiretooth");
 		
 		invisibilitycloak = new ItemInvisibilityCloak(0, 1).setUnlocalizedName("invisibilitycloak").setTextureName("ordinaryores:Cloak");
 		GameRegistry.registerItem(invisibilitycloak, "invisibilitycloak");
@@ -399,7 +420,7 @@ public class OrdinaryOresBase {
 		invulnerabilitychest = new ItemChestplateOfInvulnerability(0, 1).setUnlocalizedName("invulnerabilitychest").setTextureName("ordinaryores:ChestplateOfInvulnerability");
 		GameRegistry.registerItem(invulnerabilitychest, "invulnerabilitychest");
 		
-		//генерация в сундуках
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		if(ConfigHelper.addLootToDungeons) {
 		ChestGenHooks.addItem(ChestGenHooks.DUNGEON_CHEST, new WeightedRandomChestContent(new ItemStack(OrdinaryOresBase.magicorenugget, 1), 1, 5, 10));
 		ChestGenHooks.addItem(ChestGenHooks.DUNGEON_CHEST, new WeightedRandomChestContent(new ItemStack(OrdinaryOresBase.rubyitem, 1), 1, 4, 10));
@@ -407,12 +428,12 @@ public class OrdinaryOresBase {
 		ChestGenHooks.addItem(ChestGenHooks.DUNGEON_CHEST, new WeightedRandomChestContent(new ItemStack(OrdinaryOresBase.malachiteitem, 1), 1, 6, 10));
 		}
 		
-		//спаунеры модовых мобов в данжах
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		/*if(ConfigHelper.addMobsToDungeons) {
 			DungeonHooks.addDungeonMob("Forest Guard", 50);
 		}*/
 		
-		//рецепты
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		GameRegistry.addShapelessRecipe(new ItemStack(OrdinaryOresBase.malachiteitem, 9), new Object[] {OrdinaryOresBase.malachiteblock});
 		GameRegistry.addRecipe(new ItemStack(OrdinaryOresBase.malachiteblock, 1), 
                 new Object[]{ "AAA", "AAA", "AAA",
@@ -616,7 +637,7 @@ public class OrdinaryOresBase {
         
         GameRegistry.addRecipe(new ItemStack(OrdinaryOresBase.vampiresword, 1), 
                 new Object[]{ " A ", " B ", "CDC",
-        	('A'), Items.nether_star, ('B'), OrdinaryOresBase.magicoreblank, ('C'), Items.bone, ('D'), Item.getItemFromBlock(OrdinaryOresBase.rubyblock)});
+        	('A'), Items.nether_star, ('B'), OrdinaryOresBase.magicoreblank, ('C'), OrdinaryOresBase.vampiretooth, ('D'), Item.getItemFromBlock(OrdinaryOresBase.rubyblock)});
         
         GameRegistry.addRecipe(new ItemStack(OrdinaryOresBase.icesword, 1), 
                 new Object[]{ " A ", " B ", "CDC",
@@ -626,13 +647,13 @@ public class OrdinaryOresBase {
                 new Object[]{ "C C", "ABA", "CAC",
         	('A'), Item.getItemFromBlock(OrdinaryOresBase.malachiteblock), ('B'), OrdinaryOresBase.rootoflife, ('C'), OrdinaryOresBase.magicorelamella});
         
-        //генерация
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         GameRegistry.registerWorldGenerator(malachiteoregenerator, 0);
         GameRegistry.registerWorldGenerator(rubyoregenerator, 0);
         GameRegistry.registerWorldGenerator(sapphireoregenerator, 0);
         GameRegistry.registerWorldGenerator(magicoregenerator, 0);
         
-        //руды
+        //пїЅпїЅпїЅпїЅ
 		OreDictionary.registerOre("ingotMagicOre", OrdinaryOresBase.magicoreingot);
 		//OreDictionary.registerOre("ingotInferno", MBItems.ingotInferno);
 	}

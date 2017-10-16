@@ -50,7 +50,7 @@ public class OrdinaryOresEventHandler {
 		if (event.entityLiving.getClass() == EntityEnderSkeleton.class) {
 			if (this.random.nextInt(1)+1 == 1) {
 				EntityEnderSkeleton entity = (EntityEnderSkeleton) event.entityLiving;
-				entity.teleportRandomly();
+				if (entity.teleportRandomly())
 				event.setCanceled(true);
 			}
 		}	

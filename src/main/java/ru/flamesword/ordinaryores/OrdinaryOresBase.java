@@ -101,7 +101,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-@Mod (modid = "ordinaryores", name = "Ordinary Ores", version = "1.4")
+@Mod (modid = "ordinaryores", name = "Ordinary Ores", version = "1.4.1")
 
 public class OrdinaryOresBase {
 	

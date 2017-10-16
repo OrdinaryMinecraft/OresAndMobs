@@ -70,19 +70,20 @@ public class EntityEnderSkeleton extends EntitySkeleton {
 
     public boolean teleportRandomly()
     {
-        double d0 = this.posX + (this.rand.nextDouble() - 0.5D) * 8.0D;
-        double d1 = this.posY + (double)(this.rand.nextInt(8) - 4);
-        double d2 = this.posZ + (this.rand.nextDouble() - 0.5D) * 8.0D;
-        return this.teleportTo(d0, d1, d2);
+		for (int i = 0; i < 10; i++) {
+	        double d0 = this.posX + (this.rand.nextDouble() - 0.5D) * 8.0D;
+	        double d1 = this.posY + (double)(this.rand.nextInt(8) - 4);
+	        double d2 = this.posZ + (this.rand.nextDouble() - 0.5D) * 8.0D;
+	        if (this.teleportTo(d0, d1, d2)) return true;
+		}
+		return false;
     }
     
 
     protected boolean teleportTo(double p_70825_1_, double p_70825_3_, double p_70825_5_)
     {
         EnderTeleportEvent event = new EnderTeleportEvent(this, p_70825_1_, p_70825_3_, p_70825_5_, 0);
-        if (MinecraftForge.EVENT_BUS.post(event)){
-            return false;
-        }
+
         double d3 = this.posX;
         double d4 = this.posY;
         double d5 = this.posZ;

@@ -53,8 +53,8 @@ public class EntityUndeadSpider extends EntityMob {
 		super.attackEntityFrom(source, damage);
 		if (this.rand.nextInt(3) == 1) {
 			if(!this.worldObj.isRemote) {
-				for(int i = 0; i < MathHelper.getRandomIntegerInRange(rand, 3, 5); i++) {
-					EntityUndeadSpiderling spiderling = new EntityUndeadSpiderling(this.worldObj);
+				for(int i = 0; i < MathHelper.getRandomIntegerInRange(rand, 2, 3); i++) {
+					EntityUndeadSpidy spiderling = new EntityUndeadSpidy(this.worldObj);
 					spiderling.setPosition(this.posX, this.posY, this.posZ);
 					this.worldObj.spawnEntityInWorld(spiderling);
 				}
@@ -66,7 +66,7 @@ public class EntityUndeadSpider extends EntityMob {
 	@Override
 	public void dropFewItems(boolean hitRecently, int looting) {
 		dropItem(Item.getItemFromBlock(Blocks.web), rand.nextInt(2));
-		dropItem(Items.string, rand.nextInt(9));
+		dropItem(Items.string, rand.nextInt(4));
 	}
 	
 	@Override

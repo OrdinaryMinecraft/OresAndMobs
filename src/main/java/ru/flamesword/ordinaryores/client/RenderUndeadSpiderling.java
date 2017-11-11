@@ -13,7 +13,7 @@ import net.minecraft.entity.monster.EntityCaveSpider;
 import net.minecraft.util.ResourceLocation;
 import ru.flamesword.ordinaryores.entities.EntityIceElemental;
 import ru.flamesword.ordinaryores.entities.EntityUndeadSpider;
-import ru.flamesword.ordinaryores.entities.EntityUndeadSpiderling;
+import ru.flamesword.ordinaryores.entities.EntityUndeadSpidy;
 
 public class RenderUndeadSpiderling extends RenderLiving {
 
@@ -22,14 +22,14 @@ public class RenderUndeadSpiderling extends RenderLiving {
         this.shadowSize *= 0.5F;
 	}
 
-    protected void preRenderCallback(EntityUndeadSpiderling p_77041_1_, float p_77041_2_)
+    protected void preRenderCallback(EntityUndeadSpidy p_77041_1_, float p_77041_2_)
     {
         GL11.glScalef(0.5F, 0.5F, 0.5F);
     }
 
     protected void preRenderCallback(EntityLivingBase p_77041_1_, float p_77041_2_)
     {
-        this.preRenderCallback((EntityUndeadSpiderling)p_77041_1_, p_77041_2_);
+        this.preRenderCallback((EntityUndeadSpidy)p_77041_1_, p_77041_2_);
     }
 
 

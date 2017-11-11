@@ -15,7 +15,7 @@ import ru.flamesword.ordinaryores.entities.EntityLivingBlock;
 import ru.flamesword.ordinaryores.entities.EntitySprout;
 import ru.flamesword.ordinaryores.entities.EntitySuperSlime;
 import ru.flamesword.ordinaryores.entities.EntityUndeadSpider;
-import ru.flamesword.ordinaryores.entities.EntityUndeadSpiderling;
+import ru.flamesword.ordinaryores.entities.EntityUndeadSpidy;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 
 public class ClientProxy extends CommonProxy {
@@ -32,7 +32,7 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityIceElemental.class, new RenderIceElemental());
 		RenderingRegistry.registerEntityRenderingHandler(EntityEnderCreeper.class, new RenderEnderCreeper());
 		RenderingRegistry.registerEntityRenderingHandler(EntityUndeadSpider.class, new RenderUndeadSpider());
-		RenderingRegistry.registerEntityRenderingHandler(EntityUndeadSpiderling.class, new RenderUndeadSpiderling());
+		RenderingRegistry.registerEntityRenderingHandler(EntityUndeadSpidy.class, new RenderUndeadSpiderling());
 		RenderingRegistry.registerEntityRenderingHandler(EntityEnderSkeleton.class, new RenderEnderSkeleton());
 		RenderingRegistry.registerEntityRenderingHandler(EntityGhoul.class, new RenderGhoul());
 		RenderingRegistry.registerEntityRenderingHandler(EntityGhost.class, new RenderGhost());

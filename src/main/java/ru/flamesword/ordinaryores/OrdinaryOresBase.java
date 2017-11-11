@@ -12,6 +12,7 @@ import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.WeightedRandomChestContent;
+import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.common.ChestGenHooks;
@@ -48,7 +49,7 @@ import ru.flamesword.ordinaryores.entities.EntitySprout;
 import ru.flamesword.ordinaryores.entities.EntityStealthCreeper;
 import ru.flamesword.ordinaryores.entities.EntitySuperSlime;
 import ru.flamesword.ordinaryores.entities.EntityUndeadSpider;
-import ru.flamesword.ordinaryores.entities.EntityUndeadSpiderling;
+import ru.flamesword.ordinaryores.entities.EntityUndeadSpidy;
 import ru.flamesword.ordinaryores.items.InfernoArmor;
 import ru.flamesword.ordinaryores.items.ItemChestplateOfInvulnerability;
 import ru.flamesword.ordinaryores.items.ItemEnderCloth;
@@ -101,7 +102,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-@Mod (modid = "ordinaryores", name = "Ordinary Ores", version = "1.4.1")
+@Mod (modid = "ordinaryores", name = "Ordinary Ores", version = "1.4.3")
 
 public class OrdinaryOresBase {
 	
@@ -237,16 +238,16 @@ public class OrdinaryOresBase {
 		EntityRegistry.registerGlobalEntityID(EntityIceElemental.class, "Ice Elemental", EntityRegistry.findGlobalUniqueEntityId(), Color.CYAN.getRGB(), Color.BLUE.getRGB());
 		EntityRegistry.registerGlobalEntityID(EntityEnderCreeper.class, "Ender Creeper", EntityRegistry.findGlobalUniqueEntityId(), Color.BLACK.getRGB(), Color.MAGENTA.getRGB());
 		EntityRegistry.registerGlobalEntityID(EntityUndeadSpider.class, "Undead Spider", EntityRegistry.findGlobalUniqueEntityId(), Color.BLACK.getRGB(), Color.GRAY.getRGB());
-		EntityRegistry.registerGlobalEntityID(EntityUndeadSpiderling.class, "Undead Spiderling", EntityRegistry.findGlobalUniqueEntityId());
+		EntityRegistry.registerGlobalEntityID(EntityUndeadSpidy.class, "Undead Spiderling", EntityRegistry.findGlobalUniqueEntityId());
 		EntityRegistry.registerGlobalEntityID(EntityEnderSkeleton.class, "Ender Skeleton", EntityRegistry.findGlobalUniqueEntityId(), Color.WHITE.getRGB(), Color.MAGENTA.getRGB());
 		EntityRegistry.registerGlobalEntityID(EntityGhoul.class, "Ghoul", EntityRegistry.findGlobalUniqueEntityId(), Color.GREEN.getRGB(), Color.GRAY.getRGB());
 		EntityRegistry.registerGlobalEntityID(EntityGhost.class, "Ghost", EntityRegistry.findGlobalUniqueEntityId(), Color.GRAY.getRGB(), Color.LIGHT_GRAY.getRGB());
 		
-		EntityRegistry.addSpawn(EntityHerobrine.class, ConfigHelper.herobrineSpawnRate, 1, 1, EnumCreatureType.monster);
-		EntityRegistry.addSpawn(EntityUndeadSpider.class, ConfigHelper.undeadSpiderSpawnRate, 1, 1, EnumCreatureType.monster);
-		EntityRegistry.addSpawn(EntityEnderSkeleton.class, ConfigHelper.enderSkeletonSpawnRate, 1, 1, EnumCreatureType.monster);
-		EntityRegistry.addSpawn(EntityGhoul.class, ConfigHelper.ghoulSpawnRate, 1, 1, EnumCreatureType.monster);
-		EntityRegistry.addSpawn(EntityGhost.class, ConfigHelper.ghostSpawnRate, 1, 1, EnumCreatureType.monster);
+		EntityRegistry.addSpawn(EntityHerobrine.class, ConfigHelper.herobrineSpawnRate, 1, 1, EnumCreatureType.monster, BiomeDictionary.getBiomesForType(Type.PLAINS));
+		EntityRegistry.addSpawn(EntityUndeadSpider.class, ConfigHelper.undeadSpiderSpawnRate, 1, 1, EnumCreatureType.monster, BiomeDictionary.getBiomesForType(Type.DEAD));
+		EntityRegistry.addSpawn(EntityEnderSkeleton.class, ConfigHelper.enderSkeletonSpawnRate, 1, 1, EnumCreatureType.monster, BiomeDictionary.getBiomesForType(Type.END));
+		EntityRegistry.addSpawn(EntityGhoul.class, ConfigHelper.ghoulSpawnRate, 1, 1, EnumCreatureType.monster, BiomeDictionary.getBiomesForType(Type.PLAINS));
+		EntityRegistry.addSpawn(EntityGhost.class, ConfigHelper.ghostSpawnRate, 1, 1, EnumCreatureType.monster, BiomeDictionary.getBiomesForType(Type.DEAD));
 		EntityRegistry.addSpawn(EntitySuperSlime.class, ConfigHelper.superSlimeSpawnRate, 1, 1, EnumCreatureType.monster, BiomeDictionary.getBiomesForType(Type.SWAMP));
 		EntityRegistry.addSpawn(EntityForestGuard.class, ConfigHelper.forestGuardSpawnRate, 1, 1, EnumCreatureType.monster, BiomeDictionary.getBiomesForType(Type.FOREST));
 		EntityRegistry.addSpawn(EntityInfernoGolem.class, ConfigHelper.infernoGolemSpawnRate, 1, 1, EnumCreatureType.monster, BiomeDictionary.getBiomesForType(Type.NETHER));

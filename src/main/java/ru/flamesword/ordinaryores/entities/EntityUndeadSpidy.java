@@ -14,10 +14,11 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.world.World;
+import ru.flamesword.ordinaryores.OrdinaryOresBase;
 
-public class EntityUndeadSpiderling extends EntityMob {
+public class EntityUndeadSpidy extends EntityMob {
 
-	public EntityUndeadSpiderling(World p_i1738_1_) {
+	public EntityUndeadSpidy(World p_i1738_1_) {
 		super(p_i1738_1_);
 		this.tasks.addTask(0, new EntityAISwimming(this));
 		this.tasks.addTask(1, new EntityAIAttackOnCollide(this, EntityPlayer.class, 1.0D, false));
@@ -30,9 +31,9 @@ public class EntityUndeadSpiderling extends EntityMob {
 	@Override
 	protected void applyEntityAttributes() {
 		super.applyEntityAttributes();
-		this.getAttributeMap().getAttributeInstance(SharedMonsterAttributes.maxHealth).setBaseValue(3);
+		this.getAttributeMap().getAttributeInstance(SharedMonsterAttributes.maxHealth).setBaseValue(4);
 		this.getAttributeMap().getAttributeInstance(SharedMonsterAttributes.movementSpeed).setBaseValue(0.43D);
-		this.getAttributeMap().getAttributeInstance(SharedMonsterAttributes.attackDamage).setBaseValue(1);
+		this.getAttributeMap().getAttributeInstance(SharedMonsterAttributes.attackDamage).setBaseValue(3);
 	}
 	
 	@Override
@@ -62,6 +63,10 @@ public class EntityUndeadSpiderling extends EntityMob {
 	
 	@Override
 	public void dropFewItems(boolean hitRecently, int looting) {
+	}	
+	
+	@Override
+	public void dropRareDrop(int looting) {
 		dropItem(Items.string, 1);
 	}
 }

@@ -1,6 +1,7 @@
 package ru.flamesword.ordinaryores.entities;
 
 import net.minecraft.block.Block;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.player.EntityPlayer;
@@ -23,7 +24,7 @@ public class EntityHerobrine extends EntityZombie {
 	protected void applyEntityAttributes() {
 		super.applyEntityAttributes();
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(8.0D);
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(50D);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(100D);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(.45D);
 		this.getAttributeMap().getAttributeInstance(SharedMonsterAttributes.followRange).setBaseValue(20.5D);
 		this.setCustomNameTag("Herobrine");
@@ -42,7 +43,7 @@ public class EntityHerobrine extends EntityZombie {
 	
 	@Override
 	public String getLivingSound() {
-		return null;
+		return "mob.endermen.scream";
 	}
 	
 	@Override
@@ -102,9 +103,18 @@ public class EntityHerobrine extends EntityZombie {
 	@Override
 	public boolean attackEntityFrom(DamageSource source, float damage) {
 		super.attackEntityFrom(source, damage);
-		if(source.getEntity() != null && source.getEntity() instanceof EntityPlayer) {
+		Entity attacker = source.getEntity();
+		if(attacker != null && attacker instanceof EntityPlayer) {
 			if(this.rand.nextInt(5) == 1) {
 				this.setAngry();
+			}
+			if(this.rand.nextInt(5) == 1) {
+				this.posX = attacker.posX;
+				this.posY = attacker.posY;
+				this.posZ = attacker.posZ;
+				this.setPositionAndUpdate(attacker.posX, attacker.posY, attacker.posZ);
+				this.playSound("mob.endermen.portal", 1.0F, 1.0F);
+				this.worldObj.playSoundEffect(this.posX, this.posY, this.posZ, "mob.endermen.portal", 1.0F, 1.0F);
 			}
 		}
 		return true;

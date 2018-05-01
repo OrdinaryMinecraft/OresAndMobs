@@ -17,7 +17,7 @@ public class ItemChestplateOfRegeneration extends ItemArmor {
 	  private String texturePath = "ordinaryores:textures/models/armor/";
       
       public ItemChestplateOfRegeneration(int id, int armorType) {
-              super(OrdinaryOresBase.ARTIFACTARM1, id, armorType);
+              super(OrdinaryOresBase.RAREARM, id, armorType);
               this.setCreativeTab(OrdinaryOresBase.tabOrdinaryOres);
               this.setMaxStackSize(1);
               this.setTextureName();

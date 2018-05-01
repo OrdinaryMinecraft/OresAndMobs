@@ -14,7 +14,7 @@ import ru.flamesword.ordinaryores.OrdinaryOresBase;
 public class ItemIceSword extends ItemSword {
 
     public ItemIceSword() {
-        super(OrdinaryOresBase.ARTIFACTTOOL1);
+        super(OrdinaryOresBase.ARTIFACTTOOL);
         this.setCreativeTab(OrdinaryOresBase.tabOrdinaryOres);
         setTextureName("ordinaryores:IceSword");
     }

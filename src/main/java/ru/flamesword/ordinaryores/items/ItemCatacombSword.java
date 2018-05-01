@@ -11,7 +11,7 @@ import java.util.List;
 public class ItemCatacombSword extends ItemSword {
 
     public ItemCatacombSword() {
-        super(OrdinaryOresBase.ARTIFACTTOOL1);
+        super(OrdinaryOresBase.ARTIFACTTOOL);
         this.setCreativeTab(OrdinaryOresBase.tabOrdinaryOres);
         setTextureName("ordinaryores:CatacombSword");
     }

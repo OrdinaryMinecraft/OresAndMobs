@@ -13,7 +13,7 @@ import ru.flamesword.ordinaryores.OrdinaryOresBase;
 public class ItemCurseSword extends ItemSword {
 
 	public ItemCurseSword() {
-		super(OrdinaryOresBase.MAGICORETOOL);
+		super(OrdinaryOresBase.RARETOOL);
         this.setCreativeTab(OrdinaryOresBase.tabOrdinaryOres);
 		setTextureName("ordinaryores:CurseSword");
 	}

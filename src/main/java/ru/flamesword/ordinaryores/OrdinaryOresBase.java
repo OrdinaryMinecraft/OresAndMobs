@@ -177,8 +177,9 @@ public class OrdinaryOresBase {
 	public static ToolMaterial MAGICORETOOL = EnumHelper.addToolMaterial("MAGICORE", 3, 1561, 8.0F, 3.0F, 30);
 	public static ArmorMaterial MAGICOREARM = EnumHelper.addArmorMaterial("MAGICORE", 44, new int[] {3, 8, 6, 3}, 30);
 	public static ArmorMaterial INFERNOARM = EnumHelper.addArmorMaterial("INFERNO", 44, new int[] {3, 8, 6, 3}, 10);
-	public static ToolMaterial ARTIFACTTOOL1 = EnumHelper.addToolMaterial("ARTIFACT", 3, 1561, 10.0F, 4.0F, 30);
-	public static ArmorMaterial ARTIFACTARM1 = EnumHelper.addArmorMaterial("ARTIFACT", 59, new int[] {3, 8, 6, 3}, 30);
+	public static ToolMaterial RARETOOL = EnumHelper.addToolMaterial("RARE", 3, 1561, 10.0F, 4.0F, 30);
+	public static ToolMaterial ARTIFACTTOOL = EnumHelper.addToolMaterial("ARTIFACT", 3, 2096, 10.0F, 4.5F, 30);
+	public static ArmorMaterial RAREARM = EnumHelper.addArmorMaterial("RARE", 59, new int[] {3, 8, 6, 3}, 30);
 	
 	@EventHandler
 	public void preLoad(FMLPreInitializationEvent event)

@@ -14,7 +14,7 @@ import ru.flamesword.ordinaryores.OrdinaryOresBase;
 public class ItemColdSword extends ItemSword {
 
 	public ItemColdSword() {
-		super(OrdinaryOresBase.MAGICORETOOL);
+		super(OrdinaryOresBase.RARETOOL);
         this.setCreativeTab(OrdinaryOresBase.tabOrdinaryOres);
 		setTextureName("ordinaryores:ColdSword");
 	}

@@ -12,7 +12,7 @@ import ru.flamesword.ordinaryores.OrdinaryOresBase;
 public class ItemVampireSword extends ItemSword {
 
     public ItemVampireSword() {
-        super(OrdinaryOresBase.ARTIFACTTOOL1);
+        super(OrdinaryOresBase.ARTIFACTTOOL);
         this.setCreativeTab(OrdinaryOresBase.tabOrdinaryOres);
         setTextureName("ordinaryores:VampireSword");
     }

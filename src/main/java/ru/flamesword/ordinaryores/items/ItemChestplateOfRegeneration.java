@@ -12,11 +12,11 @@ import net.minecraft.world.World;
 import ru.flamesword.ordinaryores.ConfigHelper;
 import ru.flamesword.ordinaryores.OrdinaryOresBase;
 
-public class ItemChestplateOfInvulnerability extends ItemArmor {
+public class ItemChestplateOfRegeneration extends ItemArmor {
 	
 	  private String texturePath = "ordinaryores:textures/models/armor/";
       
-      public ItemChestplateOfInvulnerability(int id, int armorType) {
+      public ItemChestplateOfRegeneration(int id, int armorType) {
               super(OrdinaryOresBase.ARTIFACTARM1, id, armorType);
               this.setCreativeTab(OrdinaryOresBase.tabOrdinaryOres);
               this.setMaxStackSize(1);
@@ -43,15 +43,15 @@ public class ItemChestplateOfInvulnerability extends ItemArmor {
       }
       
     	public void addInformation(ItemStack armor, EntityPlayer player, List list, boolean show) {
-  			if(armor.getItem() == OrdinaryOresBase.invulnerabilitychest) {
-  				list.add(ConfigHelper.artifactIndicator);
+  			if(armor.getItem() == OrdinaryOresBase.regenerationchest) {
+  				list.add(ConfigHelper.rareIndicator);
 				list.add(ConfigHelper.regenerationEffectName + " I " + ConfigHelper.effectIndicator);
   			}
 	}
   	
 
   	  public void onArmorTick(World world, EntityPlayer player, ItemStack armor) {
-  			  if(armor.getItem() == OrdinaryOresBase.invulnerabilitychest) {
+  			  if(armor.getItem() == OrdinaryOresBase.regenerationchest) {
   				  	player.addPotionEffect(new PotionEffect(Potion.regeneration.id, 20));
   			  }
   	  }

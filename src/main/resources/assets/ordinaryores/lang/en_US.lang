@@ -76,9 +76,12 @@ item.spidergland.name=Spider Gland
 item.vampiretooth.name=Vampire Tooth
 
 item.invisibilitycloak.name=Invisibility Cloak
+item.cursesword.name=Curse Sword
 item.vampiresword.name=Vampire Sword
-item.icesword.name=Ice Sword
-item.invulnerabilitychest.name=Chestplate Of Invulnerability
+item.coldsword.name=Cold Sword
+item.icesword.name=Ice Blade
+item.regenerationchest.name=Chestplate Of Regeneration
+item.catacombsword.name=Catacomb Sword
 
 entity.Herobrine.name=Herobrine
 entity.Super Slime.name=Super Slime
@@ -94,3 +97,21 @@ entity.Undead Spider.name=Undead Spider
 entity.Undead Spiderling.name=Undead Spiderling
 entity.Ghoul.name=Ghoul
 entity.Ghost.name=Ghost
+
+tooltip.item.rare=§bRare
+tooltip.item.effect=(effect)
+tooltip.item.artifact=§dArtifact
+tooltip.item.effect.movespeed=Move Speed
+tooltip.item.effect.resistance=Resistance
+tooltip.item.effect.jump=Jump
+tooltip.item.effect.nightvision=Night Vision
+tooltip.item.effect.haste=Haste
+tooltip.item.effect.damage=Damage Boost
+tooltip.item.effect.invisibility=Invisibility
+tooltip.item.effect.regeneration=Regeneration
+tooltip.item.effect.lifesteal=Lifesteal
+tooltip.item.effect.freeze=Freeze
+tooltip.item.effect.inferno1=§8The full Inferno set gives fire and lava invulnerability
+tooltip.item.effect.inferno2=Bonus: Fire extinguishing on you immediately
+tooltip.item.effect.inferno3=Bonus: Burns enemies attacking you
+tooltip.item.effect.exp=Bonus: x2 experience

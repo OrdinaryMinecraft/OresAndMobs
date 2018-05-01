@@ -12,7 +12,6 @@ import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.WeightedRandomChestContent;
-import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.common.ChestGenHooks;
@@ -50,49 +49,9 @@ import ru.flamesword.ordinaryores.entities.EntityStealthCreeper;
 import ru.flamesword.ordinaryores.entities.EntitySuperSlime;
 import ru.flamesword.ordinaryores.entities.EntityUndeadSpider;
 import ru.flamesword.ordinaryores.entities.EntityUndeadSpidy;
-import ru.flamesword.ordinaryores.items.InfernoArmor;
-import ru.flamesword.ordinaryores.items.ItemChestplateOfInvulnerability;
-import ru.flamesword.ordinaryores.items.ItemEnderCloth;
-import ru.flamesword.ordinaryores.items.ItemEnderDust;
-import ru.flamesword.ordinaryores.items.ItemIceHeart;
-import ru.flamesword.ordinaryores.items.ItemIceSword;
-import ru.flamesword.ordinaryores.items.ItemInfernoIngot;
-import ru.flamesword.ordinaryores.items.ItemInvisibilityCloak;
-import ru.flamesword.ordinaryores.items.ItemMagicOreAxe;
-import ru.flamesword.ordinaryores.items.ItemMagicOreBlank;
-import ru.flamesword.ordinaryores.items.ItemMagicOreHoe;
-import ru.flamesword.ordinaryores.items.ItemMagicOreIngot;
-import ru.flamesword.ordinaryores.items.ItemMagicOreLamella;
-import ru.flamesword.ordinaryores.items.ItemMagicOreNugget;
-import ru.flamesword.ordinaryores.items.ItemMagicOrePickaxe;
-import ru.flamesword.ordinaryores.items.ItemMagicOreSpade;
-import ru.flamesword.ordinaryores.items.ItemMagicOreSword;
-import ru.flamesword.ordinaryores.items.ItemMalachite;
-import ru.flamesword.ordinaryores.items.ItemMalachiteAxe;
-import ru.flamesword.ordinaryores.items.ItemMalachiteHoe;
-import ru.flamesword.ordinaryores.items.ItemMalachitePickaxe;
-import ru.flamesword.ordinaryores.items.ItemMalachiteSpade;
-import ru.flamesword.ordinaryores.items.ItemMalachiteSword;
-import ru.flamesword.ordinaryores.items.ItemRootOfLife;
-import ru.flamesword.ordinaryores.items.ItemRuby;
-import ru.flamesword.ordinaryores.items.ItemRubyAxe;
-import ru.flamesword.ordinaryores.items.ItemRubyHoe;
-import ru.flamesword.ordinaryores.items.ItemRubyPickaxe;
-import ru.flamesword.ordinaryores.items.ItemRubySpade;
-import ru.flamesword.ordinaryores.items.ItemRubySword;
-import ru.flamesword.ordinaryores.items.ItemSapphire;
-import ru.flamesword.ordinaryores.items.ItemSapphireAxe;
-import ru.flamesword.ordinaryores.items.ItemSapphireHoe;
-import ru.flamesword.ordinaryores.items.ItemSapphirePickaxe;
-import ru.flamesword.ordinaryores.items.ItemSapphireSpade;
-import ru.flamesword.ordinaryores.items.ItemSapphireSword;
-import ru.flamesword.ordinaryores.items.ItemSpiderGland;
-import ru.flamesword.ordinaryores.items.ItemVampireSword;
-import ru.flamesword.ordinaryores.items.ItemVampireTooth;
-import ru.flamesword.ordinaryores.items.MagicOreArmor;
-import ru.flamesword.ordinaryores.items.MalachiteArmor;
-import ru.flamesword.ordinaryores.items.RubyArmor;
-import ru.flamesword.ordinaryores.items.SapphireArmor;
+import ru.flamesword.ordinaryores.handlers.OrdinaryOresEventHandler;
+import ru.flamesword.ordinaryores.handlers.PlayerEventHandler;
+import ru.flamesword.ordinaryores.items.*;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -102,7 +61,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-@Mod (modid = "ordinaryores", name = "Ordinary Ores", version = "1.4.3")
+@Mod (modid = "ordinaryores", name = "Ordinary Ores", version = "1.4.5")
 
 public class OrdinaryOresBase {
 	
@@ -191,11 +150,16 @@ public class OrdinaryOresBase {
 	public static Item endercloth;
 	public static Item spidergland;
 	public static Item vampiretooth;
+	public static Item catacombswordpart1;
+	public static Item catacombswordpart2;
 	
 	public static Item invisibilitycloak;
-	public static Item vampiresword;
+	public static Item cursesword;
+	public static Item coldsword;
+	public static Item regenerationchest;
 	public static Item icesword;
-	public static Item invulnerabilitychest;
+	public static Item vampiresword;
+	public static Item catacombsword;
 	
 	public static MalachiteOreGenerator malachiteoregenerator = new MalachiteOreGenerator();
 	public static RubyOreGenerator rubyoregenerator = new RubyOreGenerator();
@@ -224,6 +188,8 @@ public class OrdinaryOresBase {
 		MinecraftForge.EVENT_BUS.register(eventHandler);
 		//MinecraftForge.EVENT_BUS.register(new OrdinaryOresEventHandler());
 		ConfigHelper.setupConfig(new Configuration(event.getSuggestedConfigurationFile()));
+
+		MinecraftForge.EVENT_BUS.register(new PlayerEventHandler());
 		
 		//�������� 
 		proxy.registerRenderers();
@@ -411,15 +377,26 @@ public class OrdinaryOresBase {
 		GameRegistry.registerItem(spidergland, "spidergland");
 		vampiretooth = new ItemVampireTooth().setUnlocalizedName("vampiretooth");
 		GameRegistry.registerItem(vampiretooth, "vampiretooth");
+		catacombswordpart1 = new ItemCatacombSwordPart1().setUnlocalizedName("catacombswordpart1");
+		GameRegistry.registerItem(catacombswordpart1, "catacombswordpart1");
+		catacombswordpart2 = new ItemCatacombSwordPart2().setUnlocalizedName("catacombswordpart2");
+		GameRegistry.registerItem(catacombswordpart2, "catacombswordpart2");
 		
 		invisibilitycloak = new ItemInvisibilityCloak(0, 1).setUnlocalizedName("invisibilitycloak").setTextureName("ordinaryores:Cloak");
 		GameRegistry.registerItem(invisibilitycloak, "invisibilitycloak");
-		vampiresword = new ItemVampireSword().setUnlocalizedName("vampiresword");
-		GameRegistry.registerItem(vampiresword, "vampiresword");
+		cursesword = new ItemCurseSword().setUnlocalizedName("cursesword");
+		GameRegistry.registerItem(cursesword, "cursesword");
+		coldsword = new ItemColdSword().setUnlocalizedName("coldsword");
+		GameRegistry.registerItem(coldsword, "coldsword");
+		regenerationchest = new ItemChestplateOfRegeneration(0, 1).setUnlocalizedName("regenerationchest").setTextureName("ordinaryores:ChestplateOfInvulnerability");
+		GameRegistry.registerItem(regenerationchest, "regenerationchest");
+
 		icesword = new ItemIceSword().setUnlocalizedName("icesword");
 		GameRegistry.registerItem(icesword, "icesword");
-		invulnerabilitychest = new ItemChestplateOfInvulnerability(0, 1).setUnlocalizedName("invulnerabilitychest").setTextureName("ordinaryores:ChestplateOfInvulnerability");
-		GameRegistry.registerItem(invulnerabilitychest, "invulnerabilitychest");
+		vampiresword = new ItemVampireSword().setUnlocalizedName("vampiresword");
+		GameRegistry.registerItem(vampiresword, "vampiresword");
+		catacombsword = new ItemCatacombSword().setUnlocalizedName("catacombsword");
+		GameRegistry.registerItem(catacombsword, "catacombsword");
 		
 		//��������� � ��������
 		if(ConfigHelper.addLootToDungeons) {
@@ -636,19 +613,21 @@ public class OrdinaryOresBase {
                 new Object[]{ "ABA", "BBB", "BBB",
         	('A'), OrdinaryOresBase.magicoreingot, ('B'), OrdinaryOresBase.endercloth});
         
-        GameRegistry.addRecipe(new ItemStack(OrdinaryOresBase.vampiresword, 1), 
+        GameRegistry.addRecipe(new ItemStack(OrdinaryOresBase.cursesword, 1),
                 new Object[]{ " A ", " B ", "CDC",
         	('A'), Items.nether_star, ('B'), OrdinaryOresBase.magicoreblank, ('C'), OrdinaryOresBase.vampiretooth, ('D'), Item.getItemFromBlock(OrdinaryOresBase.rubyblock)});
         
-        GameRegistry.addRecipe(new ItemStack(OrdinaryOresBase.icesword, 1), 
+        GameRegistry.addRecipe(new ItemStack(OrdinaryOresBase.coldsword, 1),
                 new Object[]{ " A ", " B ", "CDC",
         	('A'), OrdinaryOresBase.iceheart, ('B'), OrdinaryOresBase.magicoreblank, ('C'), Item.getItemFromBlock(Blocks.packed_ice), ('D'), Item.getItemFromBlock(OrdinaryOresBase.sapphireblock)});
         
-        GameRegistry.addRecipe(new ItemStack(OrdinaryOresBase.invulnerabilitychest, 1), 
+        GameRegistry.addRecipe(new ItemStack(OrdinaryOresBase.regenerationchest, 1),
                 new Object[]{ "C C", "ABA", "CAC",
         	('A'), Item.getItemFromBlock(OrdinaryOresBase.malachiteblock), ('B'), OrdinaryOresBase.rootoflife, ('C'), OrdinaryOresBase.magicorelamella});
-        
-        //���������
+
+        GameRegistry.addShapelessRecipe(new ItemStack(OrdinaryOresBase.catacombsword, 1), new Object[] {OrdinaryOresBase.catacombswordpart1, OrdinaryOresBase.catacombswordpart2});
+
+		//���������
         GameRegistry.registerWorldGenerator(malachiteoregenerator, 0);
         GameRegistry.registerWorldGenerator(rubyoregenerator, 0);
         GameRegistry.registerWorldGenerator(sapphireoregenerator, 0);

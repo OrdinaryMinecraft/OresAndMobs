@@ -76,9 +76,12 @@ item.spidergland.name=Железа паука
 item.vampiretooth.name=Зуб вампира
 
 item.invisibilitycloak.name=Плащ-невидимка
+item.cursesword.name=Проклятый меч
 item.vampiresword.name=Меч-вампир
-item.icesword.name=Меч Льда
-item.invulnerabilitychest.name=Нагрудник Неуязвимости
+item.coldsword.name=Ледяной меч
+item.icesword.name=Клинок Льда
+item.regenerationchest.name=Нагрудник Регенерации
+item.catacombsword.name=Меч из Катакомб
 
 entity.Herobrine.name=Herobrine
 entity.Super Slime.name=Король слизней
@@ -94,3 +97,21 @@ entity.Undead Spider.name=Паук-нежить
 entity.Undead Spiderling.name=Паучонок-нежить
 entity.Ghoul.name=Упырь
 entity.Ghost.name=Призрак
+
+tooltip.item.rare=§bРедкий
+tooltip.item.effect=(эффект)
+tooltip.item.artifact=§dАртефакт
+tooltip.item.effect.movespeed=Скорость передвижения
+tooltip.item.effect.resistance=Сопротивление
+tooltip.item.effect.jump=Прыжок
+tooltip.item.effect.nightvision=Ночное зрение
+tooltip.item.effect.haste=Скорость добычи
+tooltip.item.effect.damage=Урон
+tooltip.item.effect.invisibility=Невидимость
+tooltip.item.effect.regeneration=Регенерация
+tooltip.item.effect.lifesteal=Вампиризм
+tooltip.item.effect.freeze=Замедление
+tooltip.item.effect.inferno1=§8Полный сет даст вам неуязвимость к огню и лаве
+tooltip.item.effect.inferno2=Бонус: Огонь немедленно на вас тухнет
+tooltip.item.effect.inferno3=Бонус: Атакующие вас противники поджигаются
+tooltip.item.effect.exp=Бонус: Удваивает получаемый опыт

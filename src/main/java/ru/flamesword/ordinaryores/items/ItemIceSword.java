@@ -13,21 +13,21 @@ import ru.flamesword.ordinaryores.OrdinaryOresBase;
 
 public class ItemIceSword extends ItemSword {
 
-	public ItemIceSword() {
-		super(OrdinaryOresBase.ARTIFACTTOOL1);
+    public ItemIceSword() {
+        super(OrdinaryOresBase.ARTIFACTTOOL1);
         this.setCreativeTab(OrdinaryOresBase.tabOrdinaryOres);
-		setTextureName("ordinaryores:IceSword");
-	}
-	
-	@Override
-	public boolean hitEntity(ItemStack stack, EntityLivingBase attackedEntity, EntityLivingBase attacker) {
-		super.hitEntity(stack, attackedEntity, attacker);
-		attackedEntity.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 60, 1));
-		return true;
-	}
-	
-	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean show) {
-		list.add(ConfigHelper.artifactIndicator);
-		list.add(ConfigHelper.freezeEffectName + " I");
-	}
+        setTextureName("ordinaryores:IceSword");
+    }
+
+    @Override
+    public boolean hitEntity(ItemStack stack, EntityLivingBase attackedEntity, EntityLivingBase attacker) {
+        super.hitEntity(stack, attackedEntity, attacker);
+        attackedEntity.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 60, 1));
+        return true;
+    }
+
+    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean show) {
+        list.add(ConfigHelper.artifactIndicator);
+        list.add(ConfigHelper.freezeEffectName + " II");
+    }
 }

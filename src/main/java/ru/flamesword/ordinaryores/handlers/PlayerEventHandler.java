@@ -14,7 +14,6 @@ public class PlayerEventHandler {
         EntityPlayer player = event.entityPlayer;
 
         if (player.inventory.getCurrentItem().getItem() == OrdinaryOresBase.catacombsword) {
-            System.out.println(event.orb.xpValue);
             player.addExperience(event.orb.xpValue);
         }
     }

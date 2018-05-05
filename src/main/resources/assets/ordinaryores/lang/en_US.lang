@@ -77,6 +77,9 @@ item.vampiretooth.name=Vampire Tooth
 item.catacombswordpart1.name=Catacomb Sword Part
 item.catacombswordpart2.name=Catacomb Sword Part
 
+item.netherstone.name=Hell Stone
+item.endstone.name=End Stone
+
 item.invisibilitycloak.name=Invisibility Cloak
 item.cursesword.name=Curse Sword
 item.vampiresword.name=Vampire Sword
@@ -117,3 +120,6 @@ tooltip.item.effect.inferno1=§8The full Inferno set gives fire and lava invulne
 tooltip.item.effect.inferno2=Bonus: Fire extinguishing on you immediately
 tooltip.item.effect.inferno3=Bonus: Burns enemies attacking you
 tooltip.item.effect.exp=Bonus: x2 experience
+
+item.netherstone.tooltip=§7Teleports to Nether (1 time)
+item.endstone.tooltip=§7Teleports to End (1 time)

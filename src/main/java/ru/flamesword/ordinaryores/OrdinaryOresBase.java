@@ -152,6 +152,9 @@ public class OrdinaryOresBase {
 	public static Item vampiretooth;
 	public static Item catacombswordpart1;
 	public static Item catacombswordpart2;
+
+	public static Item netherstone;
+	public static Item endstone;
 	
 	public static Item invisibilitycloak;
 	public static Item cursesword;
@@ -382,6 +385,11 @@ public class OrdinaryOresBase {
 		GameRegistry.registerItem(catacombswordpart1, "catacombswordpart1");
 		catacombswordpart2 = new ItemCatacombSwordPart2().setUnlocalizedName("catacombswordpart2");
 		GameRegistry.registerItem(catacombswordpart2, "catacombswordpart2");
+
+		netherstone = new ItemNetherStone().setUnlocalizedName("netherstone");
+		GameRegistry.registerItem(netherstone, "netherstone");
+		endstone = new ItemEndStone().setUnlocalizedName("endstone");
+		GameRegistry.registerItem(endstone, "endstone");
 		
 		invisibilitycloak = new ItemInvisibilityCloak(0, 1).setUnlocalizedName("invisibilitycloak").setTextureName("ordinaryores:Cloak");
 		GameRegistry.registerItem(invisibilitycloak, "invisibilitycloak");

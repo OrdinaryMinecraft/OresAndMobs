@@ -77,6 +77,9 @@ item.vampiretooth.name=Зуб вампира
 item.catacombswordpart1.name=Рукоять меча из катакомб
 item.catacombswordpart2.name=Лезвие меча из катакомб
 
+item.netherstone.name=Камень Ада
+item.endstone.name=Камень Края
+
 item.invisibilitycloak.name=Плащ-невидимка
 item.cursesword.name=Проклятый меч
 item.vampiresword.name=Меч-вампир
@@ -117,3 +120,6 @@ tooltip.item.effect.inferno1=§8Полный сет даст вам неуязв
 tooltip.item.effect.inferno2=Бонус: Огонь немедленно на вас тухнет
 tooltip.item.effect.inferno3=Бонус: Атакующие вас противники поджигаются
 tooltip.item.effect.exp=Бонус: Удваивает получаемый опыт
+
+item.netherstone.tooltip=§7Этот камень телепортирует вас в Нижний мир (используется 1 раз)
+item.endstone.tooltip=§7Этот камень телепортирует вас в Край (используется 1 раз)

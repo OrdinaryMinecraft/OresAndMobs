@@ -87,6 +87,7 @@ item.coldsword.name=Ледяной меч
 item.icesword.name=Клинок Льда
 item.regenerationchest.name=Нагрудник Регенерации
 item.catacombsword.name=Меч из Катакомб
+item.purplemace.name=Проклятая булава
 
 entity.Herobrine.name=Herobrine
 entity.Super Slime.name=Король слизней
@@ -120,6 +121,7 @@ tooltip.item.effect.inferno1=§8Полный сет даст вам неуязв
 tooltip.item.effect.inferno2=Бонус: Огонь немедленно на вас тухнет
 tooltip.item.effect.inferno3=Бонус: Атакующие вас противники поджигаются
 tooltip.item.effect.exp=Бонус: Удваивает получаемый опыт
+tooltip.item.effect.blindness=Слепота
 
 item.netherstone.tooltip=§7Этот камень телепортирует вас в Нижний мир (используется 1 раз)
 item.endstone.tooltip=§7Этот камень телепортирует вас в Край (используется 1 раз)

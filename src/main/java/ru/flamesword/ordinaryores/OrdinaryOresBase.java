@@ -163,6 +163,7 @@ public class OrdinaryOresBase {
 	public static Item icesword;
 	public static Item vampiresword;
 	public static Item catacombsword;
+	public static Item purplemace;
 	
 	public static MalachiteOreGenerator malachiteoregenerator = new MalachiteOreGenerator();
 	public static RubyOreGenerator rubyoregenerator = new RubyOreGenerator();
@@ -399,6 +400,8 @@ public class OrdinaryOresBase {
 		GameRegistry.registerItem(coldsword, "coldsword");
 		regenerationchest = new ItemChestplateOfRegeneration(0, 1).setUnlocalizedName("regenerationchest").setTextureName("ordinaryores:ChestplateOfInvulnerability");
 		GameRegistry.registerItem(regenerationchest, "regenerationchest");
+		purplemace = new ItemPurpleMace().setUnlocalizedName("purplemace");
+		GameRegistry.registerItem(purplemace, "purplemace");
 
 		icesword = new ItemIceSword().setUnlocalizedName("icesword");
 		GameRegistry.registerItem(icesword, "icesword");

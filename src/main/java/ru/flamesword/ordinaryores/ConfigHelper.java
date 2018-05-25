@@ -37,6 +37,7 @@ public class ConfigHelper {
 	public static String regenerationEffectName = StatCollector.translateToLocal("tooltip.item.effect.regeneration");
 	public static String lifestealEffectName = StatCollector.translateToLocal("tooltip.item.effect.lifesteal");
 	public static String freezeEffectName = StatCollector.translateToLocal("tooltip.item.effect.freeze");
+	public static String blindnessEffectName = StatCollector.translateToLocal("tooltip.item.effect.blindness");
 	public static Object effectInferno1 = StatCollector.translateToLocal("tooltip.item.effect.inferno1");
 	public static Object effectInferno2 = StatCollector.translateToLocal("tooltip.item.effect.inferno2");
 	public static Object effectInferno3 = StatCollector.translateToLocal("tooltip.item.effect.inferno3");

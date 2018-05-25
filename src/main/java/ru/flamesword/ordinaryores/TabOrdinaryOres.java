@@ -15,7 +15,7 @@ public class TabOrdinaryOres extends CreativeTabs {
 	@SideOnly(Side.CLIENT)
 	public Item getTabIconItem()
 	{
-	return Item.getItemFromBlock(OrdinaryOresBase.malachiteblock);
+	return OrdinaryOresBase.magicoreingot;
 	}
 
 }

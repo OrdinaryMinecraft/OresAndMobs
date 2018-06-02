@@ -6,6 +6,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.stats.Achievement;
+import net.minecraft.stats.AchievementList;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import ru.flamesword.ordinaryores.OrdinaryOresBase;
@@ -27,8 +29,9 @@ public class ItemNetherStone extends Item {
         if (!entityplayer.capabilities.isCreativeMode)
             itemstack.stackSize--;
         if (!world.isRemote) {
-            WorldUtils.teleportToDimension((EntityPlayerMP)entityplayer, -1);
+            WorldUtils.teleportToDimension((EntityPlayerMP)entityplayer, -1, (int) entityplayer.posX / 8, (int) entityplayer.posZ / 8);
         }
+        entityplayer.addStat(AchievementList.portal, 1);
         return itemstack;
     }
 

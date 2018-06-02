@@ -29,8 +29,8 @@ public class ItemRainGodSpear extends ItemSword {
     public boolean hitEntity(ItemStack stack, EntityLivingBase attackedEntity, EntityLivingBase attacker) {
         super.hitEntity(stack, attackedEntity, attacker);
         if (Math.random() <= 0.1) {
-            attackedEntity.worldObj.getWorldInfo().setRaining(!attackedEntity.worldObj.getWorldInfo().isRaining());
-            //attackedEntity.worldObj.addWeatherEffect(new EntityLightningBolt(attackedEntity.worldObj, attackedEntity.posX, attackedEntity.posY, attackedEntity.posZ));
+            //attackedEntity.worldObj.getWorldInfo().setRaining(!attackedEntity.worldObj.getWorldInfo().isRaining());
+            attackedEntity.worldObj.addWeatherEffect(new EntityLightningBolt(attackedEntity.worldObj, attackedEntity.posX, attackedEntity.posY, attackedEntity.posZ));
         }
         return true;
     }

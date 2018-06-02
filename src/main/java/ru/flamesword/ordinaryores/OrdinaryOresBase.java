@@ -164,6 +164,7 @@ public class OrdinaryOresBase {
 	public static Item vampiresword;
 	public static Item catacombsword;
 	public static Item purplemace;
+	public static Item raingodspear;
 	
 	public static MalachiteOreGenerator malachiteoregenerator = new MalachiteOreGenerator();
 	public static RubyOreGenerator rubyoregenerator = new RubyOreGenerator();
@@ -195,7 +196,10 @@ public class OrdinaryOresBase {
 		ConfigHelper.setupConfig(new Configuration(event.getSuggestedConfigurationFile()));
 
 		MinecraftForge.EVENT_BUS.register(new PlayerEventHandler());
-		
+
+		raingodspear = new ItemRainGodSpear().setUnlocalizedName("raingodspear");
+		GameRegistry.registerItem(raingodspear, "raingodspear");
+
 		//�������� 
 		proxy.registerRenderers();
 		
@@ -637,7 +641,10 @@ public class OrdinaryOresBase {
                 new Object[]{ "C C", "ABA", "CAC",
         	('A'), Item.getItemFromBlock(OrdinaryOresBase.malachiteblock), ('B'), OrdinaryOresBase.rootoflife, ('C'), OrdinaryOresBase.magicorelamella});
 
-        GameRegistry.addShapelessRecipe(new ItemStack(OrdinaryOresBase.catacombsword, 1), new Object[] {OrdinaryOresBase.catacombswordpart1, OrdinaryOresBase.catacombswordpart2});
+        boolean craftCatacombSword = false;
+        if (craftCatacombSword) {
+			GameRegistry.addShapelessRecipe(new ItemStack(OrdinaryOresBase.catacombsword, 1), new Object[] {OrdinaryOresBase.catacombswordpart1, OrdinaryOresBase.catacombswordpart2});
+		}
 
 		//���������
         GameRegistry.registerWorldGenerator(malachiteoregenerator, 0);

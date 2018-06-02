@@ -7,6 +7,7 @@ public class ItemCatacombSwordPart2 extends Item {
 
     public ItemCatacombSwordPart2() {
 
+        this.setMaxStackSize(1);
         this.setCreativeTab(OrdinaryOresBase.tabOrdinaryOres);
         this.setTextureName("ordinaryores:CatacombSword2");
     }

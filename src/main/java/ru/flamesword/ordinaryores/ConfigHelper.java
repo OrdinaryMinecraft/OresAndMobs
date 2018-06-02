@@ -42,6 +42,7 @@ public class ConfigHelper {
 	public static Object effectInferno2 = StatCollector.translateToLocal("tooltip.item.effect.inferno2");
 	public static Object effectInferno3 = StatCollector.translateToLocal("tooltip.item.effect.inferno3");
 	public static String expEffectName = StatCollector.translateToLocal("tooltip.item.effect.exp");
+	public static String thunderEffectName = StatCollector.translateToLocal("tooltip.item.effect.thunder");
 	
 	
 	

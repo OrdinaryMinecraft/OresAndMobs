@@ -2,7 +2,9 @@ package ru.flamesword.ordinaryores.client;
 
 import net.minecraft.client.model.ModelSlime;
 import net.minecraft.client.renderer.entity.RenderSlime;
+import net.minecraftforge.client.MinecraftForgeClient;
 import ru.flamesword.ordinaryores.CommonProxy;
+import ru.flamesword.ordinaryores.OrdinaryOresBase;
 import ru.flamesword.ordinaryores.entities.EntityEnderCreeper;
 import ru.flamesword.ordinaryores.entities.EntityEnderSkeleton;
 import ru.flamesword.ordinaryores.entities.EntityForestGuard;
@@ -36,6 +38,7 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityEnderSkeleton.class, new RenderEnderSkeleton());
 		RenderingRegistry.registerEntityRenderingHandler(EntityGhoul.class, new RenderGhoul());
 		RenderingRegistry.registerEntityRenderingHandler(EntityGhost.class, new RenderGhost());
+		MinecraftForgeClient.registerItemRenderer(OrdinaryOresBase.raingodspear, new ItemRendererSpear());
 		System.out.println("Successfully registered all entity renderers!");
 	}
 	

@@ -88,6 +88,7 @@ item.icesword.name=Ice Blade
 item.regenerationchest.name=Chestplate Of Regeneration
 item.catacombsword.name=Catacomb Sword
 item.purplemace.name=Cursed Mace
+item.raingodspear.name=Spear of Rain God
 
 entity.Herobrine.name=Herobrine
 entity.Super Slime.name=Super Slime
@@ -122,6 +123,7 @@ tooltip.item.effect.inferno2=Bonus: Fire extinguishing on you immediately
 tooltip.item.effect.inferno3=Bonus: Burns enemies attacking you
 tooltip.item.effect.exp=Bonus: x2 experience
 tooltip.item.effect.blindness=Blindness
+tooltip.item.effect.thunder=Bonus: 10% chanse to lightning strike
 
 item.netherstone.tooltip=§7Teleports to Nether (1 time)
 item.endstone.tooltip=§7Teleports to End (1 time)

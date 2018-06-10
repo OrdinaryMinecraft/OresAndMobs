@@ -1,6 +1,7 @@
 package ru.flamesword.ordinaryores.items;
 
 import net.minecraft.item.ItemPickaxe;
+import net.minecraft.potion.PotionEffect;
 import ru.flamesword.ordinaryores.OrdinaryOresBase;
 
 public class ItemRubyPickaxe extends ItemPickaxe {

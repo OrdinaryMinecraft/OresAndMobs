@@ -125,5 +125,12 @@ tooltip.item.effect.exp=Бонус: Удваивает получаемый оп
 tooltip.item.effect.blindness=Слепота
 tooltip.item.effect.thunder=Бонус: 10% шанс поразить противника молнией
 
+item.necromanthelmet.name=Шлем древнего культа
+item.necromantplate.name=Нагрудник древнего культа
+item.necromantpants.name=Поножи древнего культа
+tooltip.item.effect.necromant1=§8Полный сет даст вам 10% шанс избежать урона
+tooltip.item.effect.necromant2=Бонус: Атакующие вас противники получают "Иссушение"
+tooltip.item.effect.necromant3=на 1 секунду за каждый надетый элемент брони
+
 item.netherstone.tooltip=§7Этот камень телепортирует вас в Нижний мир (используется 1 раз)
 item.endstone.tooltip=§7Этот камень телепортирует вас в Край (используется 1 раз)

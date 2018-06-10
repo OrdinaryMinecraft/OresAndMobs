@@ -6,6 +6,8 @@ import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.world.BlockEvent.BreakEvent;
@@ -19,10 +21,8 @@ import cpw.mods.fml.common.gameevent.TickEvent.Phase;
 
 
 public class OrdinaryOresEventHandler {
-	
-	public static OrdinaryOresEventHandler	INSTANCE	= new OrdinaryOresEventHandler();
+
 	private final Random random = new Random();
-	int k = 0;
 	
 	@SubscribeEvent
 	public void onBlockBreak(BreakEvent event) {
@@ -134,34 +134,74 @@ public class OrdinaryOresEventHandler {
 			ItemStack plate = player.getCurrentArmor(2);
 			ItemStack pants = player.getCurrentArmor(1);
 			ItemStack boots = player.getCurrentArmor(0);
-		
-			if (helmet != null)
-				if(helmet.getItem()  == OrdinaryOresBase.infernohelmet) {
-					k = k + 1;
+
+			// Inferno and Necromant armor
+			{
+				int fireDuration = 0;
+				int witherDuration = 0;
+
+				if (helmet != null) {
+					if(helmet.getItem()  == OrdinaryOresBase.infernohelmet) {
+						fireDuration++;
+					}
+					if(helmet.getItem()  == OrdinaryOresBase.necromanthelmet) {
+						witherDuration++;
+					}
 				}
-			if (plate != null)
-				if(plate.getItem() == OrdinaryOresBase.infernoplate) {
-					k = k + 2;
+				if (plate != null) {
+					if(plate.getItem() == OrdinaryOresBase.infernoplate) {
+						fireDuration++;
+					}
+					if(plate.getItem() == OrdinaryOresBase.necromantplate) {
+						witherDuration++;
+					}
 				}
-			if (pants != null)
-				if(pants.getItem() == OrdinaryOresBase.infernopants) {
-					k = k + 2;
+				if (pants != null) {
+					if(pants.getItem() == OrdinaryOresBase.infernopants) {
+						fireDuration++;
+					}
+					if(pants.getItem() == OrdinaryOresBase.necromantpants) {
+						witherDuration++;
+					}
 				}
-			if (boots != null)
-				if(boots.getItem() == OrdinaryOresBase.infernoboots) {
-					k = k + 1;
+
+				if (boots != null) {
+					if(boots.getItem() == OrdinaryOresBase.infernoboots) {
+						fireDuration++;
+					}
 				}
-			if (event.source.getEntity() instanceof EntityMob) {
-				EntityMob mob = (EntityMob)event.source.getEntity();
-				mob.setFire(k);
-				player.worldObj.spawnParticle("lava", player.posX, player.posY+0.7, player.posZ, 0, 0, 0);
+
+				if (event.source.getEntity() instanceof EntityMob) {
+					EntityMob mob = (EntityMob)event.source.getEntity();
+					if (fireDuration > 0) {
+						mob.setFire(fireDuration);
+					}
+					if (witherDuration > 0) {
+						mob.addPotionEffect(new PotionEffect(Potion.wither.id, witherDuration * 40, 0));
+					}
+				}
+				if (event.source.getEntity() instanceof EntityPlayer) {
+					EntityPlayer attacking_player = (EntityPlayer)event.source.getEntity();
+					if (fireDuration > 0) {
+						attacking_player.setFire(fireDuration);
+					}
+					if (witherDuration > 0) {
+						attacking_player.addPotionEffect(new PotionEffect(Potion.wither.id, witherDuration * 40, 0));
+					}
+				}
 			}
-			if (event.source.getEntity() instanceof EntityPlayer) {
-				EntityPlayer attacking_player = (EntityPlayer)event.source.getEntity();
-				attacking_player.setFire(k);
-				player.worldObj.spawnParticle("lava", player.posX, player.posY+0.7, player.posZ, 0, 0, 0);
+
+			// Necromant armor
+			if (helmet != null && plate != null && pants != null) {
+				if (helmet.getItem() == OrdinaryOresBase.necromanthelmet && plate.getItem() == OrdinaryOresBase.necromantplate && pants.getItem() == OrdinaryOresBase.necromantpants) {
+					if (Math.random() <= 0.1) {
+						System.out.println("test");
+						player.getEntityWorld().playAuxSFX(2003, (int) player.posX-1, (int) player.posY+1, (int) player.posZ, 15);
+						player.worldObj.playSoundEffect(player.posX, player.posY, player.posZ, "mob.endermen.portal", 1.0F, 1.5F + random.nextFloat() * 0.2F);
+						event.setCanceled(true);
+					}
+				}
 			}
-			k = 0;
 		}
 	}
 }

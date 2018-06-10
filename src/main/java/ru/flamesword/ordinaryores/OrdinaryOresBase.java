@@ -165,6 +165,10 @@ public class OrdinaryOresBase {
 	public static Item catacombsword;
 	public static Item purplemace;
 	public static Item raingodspear;
+
+	public static Item necromanthelmet;
+	public static Item necromantplate;
+	public static Item necromantpants;
 	
 	public static MalachiteOreGenerator malachiteoregenerator = new MalachiteOreGenerator();
 	public static RubyOreGenerator rubyoregenerator = new RubyOreGenerator();
@@ -185,6 +189,7 @@ public class OrdinaryOresBase {
 	public static ToolMaterial RARETOOL = EnumHelper.addToolMaterial("RARE", 3, 1561, 10.0F, 4.0F, 30);
 	public static ToolMaterial ARTIFACTTOOL = EnumHelper.addToolMaterial("ARTIFACT", 3, 2096, 10.0F, 4.5F, 30);
 	public static ArmorMaterial RAREARM = EnumHelper.addArmorMaterial("RARE", 59, new int[] {3, 8, 6, 3}, 30);
+	public static ArmorMaterial ARTIFACTARM = EnumHelper.addArmorMaterial("ARTIFACT", 64, new int[] {4, 8, 6, 3}, 30);
 	
 	@EventHandler
 	public void preLoad(FMLPreInitializationEvent event)
@@ -413,6 +418,13 @@ public class OrdinaryOresBase {
 		GameRegistry.registerItem(vampiresword, "vampiresword");
 		catacombsword = new ItemCatacombSword().setUnlocalizedName("catacombsword");
 		GameRegistry.registerItem(catacombsword, "catacombsword");
+
+		necromanthelmet = new NecromantArmor(0, 0).setUnlocalizedName("necromanthelmet").setTextureName("ordinaryores:NecromantHelmet");
+		necromantplate = new NecromantArmor(0, 1).setUnlocalizedName("necromantplate").setTextureName("ordinaryores:NecromantChestplate");
+		necromantpants = new NecromantArmor(0, 2).setUnlocalizedName("necromantpants").setTextureName("ordinaryores:NecromantLeggings");
+		GameRegistry.registerItem(necromanthelmet, "necromanthelmet");
+		GameRegistry.registerItem(necromantplate, "necromantplate");
+		GameRegistry.registerItem(necromantpants, "necromantpants");
 		
 		//��������� � ��������
 		if(ConfigHelper.addLootToDungeons) {

@@ -36,7 +36,6 @@ public class WorldUtils {
         boolean pointFind = false;
         while (!pointFind) {
             if (world.getBlock(x,y,z) == Blocks.air && world.getBlock(x,y+1,z) == Blocks.air) {
-                System.out.println("X:"+x+", Y:"+y+", Z:"+z);
                 if (world.getBlock(x,y-1,z) != Blocks.air && world.getBlock(x,y-1,z) != Blocks.water && world.getBlock(x,y-1,z) != Blocks.lava) {
                     pointFind = true;
                 }

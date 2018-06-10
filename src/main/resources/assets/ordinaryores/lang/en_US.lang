@@ -125,5 +125,12 @@ tooltip.item.effect.exp=Bonus: x2 experience
 tooltip.item.effect.blindness=Blindness
 tooltip.item.effect.thunder=Bonus: 10% chanse to lightning strike
 
+item.necromanthelmet.name=Necromant Helmet
+item.necromantplate.name=Necromant Chestplate
+item.necromantpants.name=Necromant Leggings
+tooltip.item.effect.necromant1=§8The full set gives 10% chanse to avoid attack
+tooltip.item.effect.necromant2=Bonus: Withers enemies attacking you
+tooltip.item.effect.necromant3=for (1 sec) * armor parts on you
+
 item.netherstone.tooltip=§7Teleports to Nether (1 time)
 item.endstone.tooltip=§7Teleports to End (1 time)

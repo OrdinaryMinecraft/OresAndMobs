@@ -77,9 +77,10 @@ public class InfernoArmor extends ItemArmor {
 	}
 	
   	public void addInformation(ItemStack armor, EntityPlayer player, List list, boolean show) {
-			list.add(ConfigHelper.effectInferno1);
-			list.add(ConfigHelper.effectInferno2);
-			list.add(ConfigHelper.effectInferno3);
+		list.add(ConfigHelper.rareIndicator);
+		list.add(ConfigHelper.effectInferno1);
+		list.add(ConfigHelper.effectInferno2);
+		list.add(ConfigHelper.effectInferno3);
   	}
 
 

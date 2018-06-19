@@ -23,10 +23,10 @@ public class EntityHerobrine extends EntityZombie {
 	@Override
 	protected void applyEntityAttributes() {
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(8.0D);
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(100D);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(.45D);
-		this.getAttributeMap().getAttributeInstance(SharedMonsterAttributes.followRange).setBaseValue(20.5D);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(4.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(350D);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(.35D);
+		this.getAttributeMap().getAttributeInstance(SharedMonsterAttributes.followRange).setBaseValue(32.0D);
 		this.setCustomNameTag("Herobrine");
 	}
 	

@@ -1,16 +1,28 @@
 package ru.flamesword.ordinaryores.handlers;
 
 import java.util.Random;
+import java.util.UUID;
 
+import net.minecraft.block.Block;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemDye;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.world.World;
+import net.minecraftforge.common.IPlantable;
+import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
+import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.world.BlockEvent.BreakEvent;
+import ru.flamesword.ordinaryores.ConfigHelper;
 import ru.flamesword.ordinaryores.OrdinaryOresBase;
 import ru.flamesword.ordinaryores.OrdinaryOresUtil;
 import ru.flamesword.ordinaryores.entities.EntityEnderSkeleton;
@@ -23,6 +35,9 @@ import cpw.mods.fml.common.gameevent.TickEvent.Phase;
 public class OrdinaryOresEventHandler {
 
 	private final Random random = new Random();
+	private static final UUID speedID = UUID.fromString("9a34886b-d488-40a0-ac07-ad9da3fbeee3");
+	private static double natureBootsSpeedBonus = 0.5;
+	private static float natureBootsJumpBonus = 1.3F;
 	
 	@SubscribeEvent
 	public void onBlockBreak(BreakEvent event) {
@@ -79,19 +94,39 @@ public class OrdinaryOresEventHandler {
 		
 		if (player.ticksExisted % 2 != 0)
 		{
+			boolean naturebootsbonus = false;
 			int px = (int) player.posX;
 			int py = (int) player.posY;
 			int pz = (int) player.posZ;
-			
+
 			if (boots != null)
 				if (boots.getItem() == OrdinaryOresBase.infernoboots)
 				{
 					OrdinaryOresUtil.burn(player.worldObj, px, py - 1, pz);
-					
+
 					if (flag1 && player.isInWater())
 					{
 						boots.damageItem(1, player);
 						flag2 = true;
+					}
+				}
+				else if (boots.getItem() == OrdinaryOresBase.natureboots)
+				{
+					naturebootsbonus = true;
+					World world = player.worldObj;
+					if (player.ticksExisted % 5 == 0 && Math.random() <= 0.25) {
+						int x = (int) Math.floor(player.posX);
+						int y = (int) (player.posY - player.getYOffset());
+						int z = (int) Math.floor(player.posZ);
+						Block block = world.getBlock(x, y, z);
+						Integer blockid = Block.getIdFromBlock(block);
+						if (block instanceof IPlantable && !ConfigHelper.cropsBlacklist.contains(blockid.toString())) {
+							Block soil = world.getBlock(x, y - 1, z);
+							if (!soil.isAir(world, x, y - 1, z) && soil.canSustainPlant(world, x, y - 1, z, ForgeDirection.UP, (IPlantable) block)) {
+								ItemDye.applyBonemeal(new ItemStack(Items.dye, 1, 15), world, x, y, z, player);
+								world.playAuxSFX(2005, x, y, z, 0);
+							}
+						}
 					}
 				}
 			if (pants != null)
@@ -122,10 +157,43 @@ public class OrdinaryOresEventHandler {
 					}
 				}
 			if (flag2) player.worldObj.playAuxSFX(1004, px, py + 1, pz, 0);
-			flag2 = false;
+
+			// Applying bonuses
+			IAttributeInstance atinst = player.getEntityAttribute(SharedMonsterAttributes.movementSpeed);
+			AttributeModifier natureBootsModifier;
+			natureBootsModifier = new AttributeModifier(speedID, "NatureBootsBonus", natureBootsSpeedBonus, 2);
+			if (naturebootsbonus) {
+				if (atinst.getModifier(speedID) == null) {
+					atinst.applyModifier(natureBootsModifier);
+				}
+			}
+			else {
+				if (atinst.getModifier(speedID) != null) {
+					atinst.removeModifier(natureBootsModifier);
+				}
+			}
 		}
 	}
-	
+
+
+	@SubscribeEvent
+	public void onPlayerJump(LivingEvent.LivingJumpEvent event) {
+		if (event.entityLiving instanceof EntityPlayer) {
+			EntityPlayer player = (EntityPlayer)event.entityLiving;
+
+			boolean naturebootsbonus = false;
+			ItemStack boots = player.getCurrentArmor(0);
+			if (boots != null) {
+				if (boots.getItem() == OrdinaryOresBase.natureboots) {
+					naturebootsbonus = true;
+				}
+			}
+			if (naturebootsbonus) {
+				player.motionY = player.motionY * natureBootsJumpBonus;
+			}
+		}
+	}
+
 	@SubscribeEvent
 	public void attackEntityFrom(LivingAttackEvent event) {
 		if (event.entityLiving instanceof EntityPlayer) {

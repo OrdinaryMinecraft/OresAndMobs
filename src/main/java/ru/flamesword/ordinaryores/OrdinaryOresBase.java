@@ -152,6 +152,8 @@ public class OrdinaryOresBase {
 	public static Item vampiretooth;
 	public static Item catacombswordpart1;
 	public static Item catacombswordpart2;
+	public static Item magicalpage;
+	public static Item unknownbook;
 
 	public static Item netherstone;
 	public static Item endstone;
@@ -165,6 +167,7 @@ public class OrdinaryOresBase {
 	public static Item catacombsword;
 	public static Item purplemace;
 	public static Item raingodspear;
+	public static Item natureboots;
 
 	public static Item necromanthelmet;
 	public static Item necromantplate;
@@ -395,6 +398,10 @@ public class OrdinaryOresBase {
 		GameRegistry.registerItem(catacombswordpart1, "catacombswordpart1");
 		catacombswordpart2 = new ItemCatacombSwordPart2().setUnlocalizedName("catacombswordpart2");
 		GameRegistry.registerItem(catacombswordpart2, "catacombswordpart2");
+		magicalpage = new Item().setUnlocalizedName("magicalpage").setTextureName("ordinaryores:MagicalPage").setCreativeTab(OrdinaryOresBase.tabOrdinaryOres);
+		GameRegistry.registerItem(magicalpage, "magicalpage");
+		unknownbook = new ItemUnknownBook().setUnlocalizedName("unknownbook");
+		GameRegistry.registerItem(unknownbook, "unknownbook");
 
 		netherstone = new ItemNetherStone().setUnlocalizedName("netherstone");
 		GameRegistry.registerItem(netherstone, "netherstone");
@@ -418,6 +425,8 @@ public class OrdinaryOresBase {
 		GameRegistry.registerItem(vampiresword, "vampiresword");
 		catacombsword = new ItemCatacombSword().setUnlocalizedName("catacombsword");
 		GameRegistry.registerItem(catacombsword, "catacombsword");
+		natureboots = new ItemNatureBoots(0, 3).setUnlocalizedName("natureboots").setTextureName("ordinaryores:NatureBoots");
+		GameRegistry.registerItem(natureboots, "natureboots");
 
 		necromanthelmet = new NecromantArmor(0, 0).setUnlocalizedName("necromanthelmet").setTextureName("ordinaryores:NecromantHelmet");
 		necromantplate = new NecromantArmor(0, 1).setUnlocalizedName("necromantplate").setTextureName("ordinaryores:NecromantChestplate");
@@ -652,6 +661,10 @@ public class OrdinaryOresBase {
         GameRegistry.addRecipe(new ItemStack(OrdinaryOresBase.regenerationchest, 1),
                 new Object[]{ "C C", "ABA", "CAC",
         	('A'), Item.getItemFromBlock(OrdinaryOresBase.malachiteblock), ('B'), OrdinaryOresBase.rootoflife, ('C'), OrdinaryOresBase.magicorelamella});
+
+		GameRegistry.addRecipe(new ItemStack(OrdinaryOresBase.unknownbook, 1),
+				new Object[]{ "AAA", "AAA", "AAA",
+						('A'), OrdinaryOresBase.magicalpage});
 
         boolean craftCatacombSword = false;
         if (craftCatacombSword) {

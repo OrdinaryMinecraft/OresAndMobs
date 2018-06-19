@@ -3,6 +3,9 @@ package ru.flamesword.ordinaryores;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.config.Configuration;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class ConfigHelper {
 
 	public ConfigHelper() {
@@ -23,6 +26,7 @@ public class ConfigHelper {
 	//public static boolean addMobsToDungeons;
 	public static boolean addLootToDungeons;
 	public static boolean addMalachiteArmor;
+	public static List<String> cropsBlacklist;
 
 	public static String effectIndicator = StatCollector.translateToLocal("tooltip.item.effect");
 	public static String artifactIndicator = StatCollector.translateToLocal("tooltip.item.artifact");
@@ -46,6 +50,7 @@ public class ConfigHelper {
 	public static Object effectNecromant1 = StatCollector.translateToLocal("tooltip.item.effect.necromant1");
 	public static Object effectNecromant2 = StatCollector.translateToLocal("tooltip.item.effect.necromant2");
 	public static Object effectNecromant3 = StatCollector.translateToLocal("tooltip.item.effect.necromant3");
+	public static String growthEffectName = StatCollector.translateToLocal("tooltip.item.effect.growth");
 	
 	
 	
@@ -65,7 +70,7 @@ public class ConfigHelper {
 			//addMobsToDungeons = config.get("General", "addMobsToDungeons", true).getBoolean(true);
 			addLootToDungeons = config.get("General", "addLootToDungeons", true).getBoolean(true);
 			addMalachiteArmor = config.get("General", "addMalachiteArmor", false).getBoolean(false);
-			
+			cropsBlacklist = Arrays.asList(config.getStringList("Crops blacklist for farming", "General", new String[]{"31", "37", "38"}, "That won't be affected by nature boots, uses internal block name."));
 		} catch(Exception e) {
 			System.out.println("A severe error has occured when attempting to load the config file for this mod!");
 		} finally {

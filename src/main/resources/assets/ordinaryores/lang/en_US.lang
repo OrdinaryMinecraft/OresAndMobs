@@ -76,6 +76,8 @@ item.spidergland.name=Spider Gland
 item.vampiretooth.name=Vampire Tooth
 item.catacombswordpart1.name=Catacomb Sword Part
 item.catacombswordpart2.name=Catacomb Sword Part
+item.magicalpage.name=Magical Page
+item.unknownbook.name=Unknown Book
 
 item.netherstone.name=Hell Stone
 item.endstone.name=End Stone
@@ -89,6 +91,7 @@ item.regenerationchest.name=Chestplate Of Regeneration
 item.catacombsword.name=Catacomb Sword
 item.purplemace.name=Cursed Mace
 item.raingodspear.name=Spear of Rain God
+item.natureboots.name=Nature Boots
 
 entity.Herobrine.name=Herobrine
 entity.Super Slime.name=Super Slime
@@ -124,6 +127,7 @@ tooltip.item.effect.inferno3=Bonus: Burns enemies attacking you
 tooltip.item.effect.exp=Bonus: x2 experience
 tooltip.item.effect.blindness=Blindness
 tooltip.item.effect.thunder=Bonus: 10% chanse to lightning strike
+tooltip.item.effect.growth=Bonus: growths crops under the player
 
 item.necromanthelmet.name=Necromant Helmet
 item.necromantplate.name=Necromant Chestplate
@@ -134,3 +138,4 @@ tooltip.item.effect.necromant3=for (1 sec) * armor parts on you
 
 item.netherstone.tooltip=§7Teleports to Nether (1 time)
 item.endstone.tooltip=§7Teleports to End (1 time)
+item.unknownbook.tooltip=§7Transforms to random enchant book on use

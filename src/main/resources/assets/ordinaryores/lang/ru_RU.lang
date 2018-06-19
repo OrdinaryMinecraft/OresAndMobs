@@ -76,6 +76,8 @@ item.spidergland.name=Железа паука
 item.vampiretooth.name=Зуб вампира
 item.catacombswordpart1.name=Рукоять меча из катакомб
 item.catacombswordpart2.name=Лезвие меча из катакомб
+item.magicalpage.name=Магическая страница
+item.unknownbook.name=Неизвестная книга
 
 item.netherstone.name=Камень Ада
 item.endstone.name=Камень Края
@@ -89,6 +91,7 @@ item.regenerationchest.name=Нагрудник Регенерации
 item.catacombsword.name=Меч из Катакомб
 item.purplemace.name=Проклятая булава
 item.raingodspear.name=Копье Бога Дождя
+item.natureboots.name=Ботинки Духа Природы
 
 entity.Herobrine.name=Herobrine
 entity.Super Slime.name=Король слизней
@@ -124,6 +127,7 @@ tooltip.item.effect.inferno3=Бонус: Атакующие вас против�
 tooltip.item.effect.exp=Бонус: Удваивает получаемый опыт
 tooltip.item.effect.blindness=Слепота
 tooltip.item.effect.thunder=Бонус: 10% шанс поразить противника молнией
+tooltip.item.effect.growth=Бонус: проращивает посевы под ногами
 
 item.necromanthelmet.name=Шлем древнего культа
 item.necromantplate.name=Нагрудник древнего культа
@@ -134,3 +138,4 @@ tooltip.item.effect.necromant3=на 1 секунду за каждый наде�
 
 item.netherstone.tooltip=§7Этот камень телепортирует вас в Нижний мир (используется 1 раз)
 item.endstone.tooltip=§7Этот камень телепортирует вас в Край (используется 1 раз)
+item.unknownbook.tooltip=§7При использовании превращается в книгу с случайной чарой

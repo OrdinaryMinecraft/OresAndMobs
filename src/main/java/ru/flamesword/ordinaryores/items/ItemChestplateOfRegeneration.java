@@ -22,9 +22,9 @@ public class ItemChestplateOfRegeneration extends ItemArmor {
               this.setMaxStackSize(1);
               this.setTextureName();
       }
-      
+
       public int armorType() {
-    	  return 2;
+    	  return 1;
       }
 
       public void setTextureName ()

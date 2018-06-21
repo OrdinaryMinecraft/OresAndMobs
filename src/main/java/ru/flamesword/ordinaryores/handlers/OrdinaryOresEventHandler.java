@@ -3,6 +3,7 @@ package ru.flamesword.ordinaryores.handlers;
 import java.util.Random;
 import java.util.UUID;
 
+import cpw.mods.fml.common.gameevent.PlayerEvent;
 import net.minecraft.block.Block;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
@@ -22,6 +23,7 @@ import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.world.BlockEvent.BreakEvent;
+import net.minecraftforge.event.world.WorldEvent;
 import ru.flamesword.ordinaryores.ConfigHelper;
 import ru.flamesword.ordinaryores.OrdinaryOresBase;
 import ru.flamesword.ordinaryores.OrdinaryOresUtil;
@@ -30,6 +32,7 @@ import ru.flamesword.ordinaryores.entities.EntityLivingBlock;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.Phase;
+import ru.flamesword.ordinaryores.util.WorldUtils;
 
 
 public class OrdinaryOresEventHandler {
@@ -173,8 +176,18 @@ public class OrdinaryOresEventHandler {
 				}
 			}
 		}
+
+		if (player.ticksExisted % 20 == 0) {
+			if (player.motionX > 0 || player.motionY > 0 || player.motionZ > 0 ) {
+				WorldUtils.ckeckAndRemovePortals(player);
+			}
+		}
 	}
 
+	@SubscribeEvent
+	public void onPlayerChangeDimension(PlayerEvent.PlayerChangedDimensionEvent event) {
+		WorldUtils.ckeckAndRemovePortals(event.player);
+	}
 
 	@SubscribeEvent
 	public void onPlayerJump(LivingEvent.LivingJumpEvent event) {

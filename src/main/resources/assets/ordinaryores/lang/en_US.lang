@@ -139,3 +139,5 @@ tooltip.item.effect.necromant3=for (1 sec) * armor parts on you
 item.netherstone.tooltip=§7Teleports to Nether (1 time)
 item.endstone.tooltip=§7Teleports to End (1 time)
 item.unknownbook.tooltip=§7Transforms to random enchant book on use
+
+message.portal.found=[§2Legacy§f] Player §b%s§f found and closed a portal!

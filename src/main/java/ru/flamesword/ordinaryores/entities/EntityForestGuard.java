@@ -24,6 +24,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IShearable;
 import ru.flamesword.ordinaryores.OrdinaryOresBase;
+import ru.flamesword.ordinaryores.items.ItemRegistry;
 
 public class EntityForestGuard extends EntityMob implements IShearable {
 	
@@ -104,7 +105,7 @@ public class EntityForestGuard extends EntityMob implements IShearable {
 	
 	@Override
 	public void dropRareDrop(int looting) {
-		dropItem(OrdinaryOresBase.rootoflife, 1);
+		dropItem(ItemRegistry.rootoflife, 1);
 	}
 	
 	@Override

@@ -10,7 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
-import ru.flamesword.ordinaryores.ConfigHelper;
+import ru.flamesword.ordinaryores.util.ConfigHelper;
 import ru.flamesword.ordinaryores.OrdinaryOresBase;
 
 public class InfernoArmor extends ItemArmor {
@@ -49,7 +49,7 @@ public class InfernoArmor extends ItemArmor {
 		ItemStack pants = player.getCurrentArmor(1);
 		ItemStack boots = player.getCurrentArmor(0);
 		if (helmet != null && plate != null && pants != null && boots != null)
-		if (helmet.getItem() == OrdinaryOresBase.infernohelmet && plate.getItem() == OrdinaryOresBase.infernoplate && pants.getItem() == OrdinaryOresBase.infernopants && boots.getItem() == OrdinaryOresBase.infernoboots) {
+		if (helmet.getItem() == ItemRegistry.infernohelmet && plate.getItem() == ItemRegistry.infernoplate && pants.getItem() == ItemRegistry.infernopants && boots.getItem() == ItemRegistry.infernoboots) {
 			player.addPotionEffect(new PotionEffect(Potion.fireResistance.id, 10, 20));
 		}
 		

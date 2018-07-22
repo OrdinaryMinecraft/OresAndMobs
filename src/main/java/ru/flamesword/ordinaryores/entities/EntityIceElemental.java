@@ -34,6 +34,7 @@ import net.minecraft.world.World;
 import ru.flamesword.ordinaryores.OrdinaryOresBase;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
+import ru.flamesword.ordinaryores.items.ItemRegistry;
 
 public class EntityIceElemental extends EntityMob {
 	
@@ -288,7 +289,7 @@ public class EntityIceElemental extends EntityMob {
 	
 	@Override
 	public void dropRareDrop(int looting) {
-		dropItem(OrdinaryOresBase.iceheart, 1);
+		dropItem(ItemRegistry.iceheart, 1);
 	}
 	
 	@Override

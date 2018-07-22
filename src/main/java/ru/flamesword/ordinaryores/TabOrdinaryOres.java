@@ -4,6 +4,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import ru.flamesword.ordinaryores.items.ItemRegistry;
 
 public class TabOrdinaryOres extends CreativeTabs {
 
@@ -15,7 +16,7 @@ public class TabOrdinaryOres extends CreativeTabs {
 	@SideOnly(Side.CLIENT)
 	public Item getTabIconItem()
 	{
-	return OrdinaryOresBase.magicoreingot;
+	return ItemRegistry.magicoreingot;
 	}
 
 }

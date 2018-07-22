@@ -3,7 +3,7 @@ package ru.flamesword.ordinaryores.items;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
-import ru.flamesword.ordinaryores.ConfigHelper;
+import ru.flamesword.ordinaryores.util.ConfigHelper;
 import ru.flamesword.ordinaryores.OrdinaryOresBase;
 
 import java.util.List;

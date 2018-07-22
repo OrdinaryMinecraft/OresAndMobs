@@ -13,6 +13,7 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
+import ru.flamesword.ordinaryores.items.ItemRegistry;
 
 public class EntityHerobrine extends EntityZombie {
 
@@ -25,7 +26,7 @@ public class EntityHerobrine extends EntityZombie {
 		super.applyEntityAttributes();
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(4.0D);
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(350D);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(.35D);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0);
 		this.getAttributeMap().getAttributeInstance(SharedMonsterAttributes.followRange).setBaseValue(32.0D);
 		this.setCustomNameTag("Herobrine");
 	}
@@ -43,7 +44,10 @@ public class EntityHerobrine extends EntityZombie {
 	
 	@Override
 	public String getLivingSound() {
-		return "mob.endermen.scream";
+		if (isAngry()) {
+            return "mob.endermen.scream";
+        }
+        return null;
 	}
 	
 	@Override
@@ -73,7 +77,7 @@ public class EntityHerobrine extends EntityZombie {
 	
 	@Override
 	public void onLivingUpdate() {
-		super.onLivingUpdate();
+        super.onLivingUpdate();
 		
 		if (this.isBurning()) {
 			this.extinguish();
@@ -97,6 +101,7 @@ public class EntityHerobrine extends EntityZombie {
 	
 	
 	public void setAngry() {
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(.35D);
 		this.getDataWatcher().updateObject(15, Integer.valueOf(1));
 	}
 	
@@ -105,9 +110,9 @@ public class EntityHerobrine extends EntityZombie {
 		super.attackEntityFrom(source, damage);
 		Entity attacker = source.getEntity();
 		if(attacker != null && attacker instanceof EntityPlayer) {
-			if(this.rand.nextInt(5) == 1) {
-				this.setAngry();
-			}
+            if (!isAngry()) {
+                setAngry();
+            }
 			if(this.rand.nextInt(5) == 1) {
 				this.posX = attacker.posX;
 				this.posY = attacker.posY;
@@ -152,28 +157,31 @@ public class EntityHerobrine extends EntityZombie {
 	
 	@Override
 	public void dropFewItems(boolean hitRecently, int looting) {
-		dropItem(Item.getItemFromBlock(Blocks.planks), rand.nextInt(5));
-		dropItem(Item.getItemFromBlock(Blocks.cobblestone), rand.nextInt(5));
-		dropItem(Item.getItemFromBlock(Blocks.torch), rand.nextInt(3));
-		dropItem(Item.getItemFromBlock(Blocks.obsidian), rand.nextInt(2));
-		dropItem(Items.iron_pickaxe, rand.nextInt(2));
-		dropItem(Items.iron_shovel, rand.nextInt(2));
-		dropItem(Items.cooked_beef, rand.nextInt(3));
-		dropItem(Items.stick, rand.nextInt(3));
-		dropItem(Items.coal, rand.nextInt(5));
-		dropItem(Items.gold_nugget, rand.nextInt(32));
+		dropItem(ItemRegistry.magicoreingot, rand.nextInt(2));
+		dropItem(ItemRegistry.unknownbook, rand.nextInt(2));
+		dropItem(ItemRegistry.repairtool, rand.nextInt(1));
+		dropItem(Items.diamond, rand.nextInt(5));
+		dropItem(Items.emerald, rand.nextInt(5));
+		dropItem(Items.gold_ingot, rand.nextInt(8));
 	}
 	
 	@Override
 	public void dropRareDrop(int looting) {
-		dropItem(Items.diamond, rand.nextInt(5));
+		dropItem(ItemRegistry.endstone, 1);
 	}
 	
 	@Override
 	public boolean canDespawn() {
 		return true;
 	}
-	
+
+	@Override
+    public boolean attackEntityAsMob(Entity entity) {
+	    if (isAngry()) {
+	        return super.attackEntityAsMob(entity);
+        }
+        return false;
+    }
 
 	public String getBanlistName() {
 		return "Herobrine";

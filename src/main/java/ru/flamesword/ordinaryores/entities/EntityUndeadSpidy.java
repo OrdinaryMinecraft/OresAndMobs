@@ -60,7 +60,12 @@ public class EntityUndeadSpidy extends EntityMob {
     {
         this.playSound("mob.spider.step", 0.15F, 1.0F);
     }
-	
+
+	@Override
+	public boolean isEntityUndead() {
+		return true;
+	}
+
 	@Override
 	public void dropFewItems(boolean hitRecently, int looting) {
 	}	

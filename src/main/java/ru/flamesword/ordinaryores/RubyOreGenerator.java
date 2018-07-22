@@ -9,6 +9,8 @@ import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import cpw.mods.fml.common.IWorldGenerator;
+import ru.flamesword.ordinaryores.blocks.BlockRegistry;
+import ru.flamesword.ordinaryores.items.ItemRegistry;
 
 public class RubyOreGenerator implements IWorldGenerator {
 	@Override
@@ -34,7 +36,7 @@ public class RubyOreGenerator implements IWorldGenerator {
     private void generateOverworld(World world, Random random, int x, int z) 
     {
     		if (!(BiomeDictionary.isBiomeOfType(world.getBiomeGenForCoords(x + 8, z + 8), Type.FROZEN)))
-            this.addOreSpawn(OrdinaryOresBase.rubyoreblock, world, random, x, z, 16, 16, 2 + random.nextInt(4), 8, 12, 48);
+            this.addOreSpawn(BlockRegistry.rubyoreblock, world, random, x, z, 16, 16, 2 + random.nextInt(4), 8, 12, 48);
     }
     
     public void generateSurface(World world, Random par2Random, int chunkX, int chunkZ)
@@ -49,7 +51,7 @@ public class RubyOreGenerator implements IWorldGenerator {
      	 int randomPosX = chunkX + par2Random.nextInt(16);
      	 int randomPosY = par2Random.nextInt(height);
      	 int randomPosZ = chunkZ + par2Random.nextInt(16);
-     	 (new WorldGenMinable(OrdinaryOresBase.rubyoreblock, veinSize)).generate(world, par2Random, randomPosX, randomPosY, randomPosZ);
+     	 (new WorldGenMinable(BlockRegistry.rubyoreblock, veinSize)).generate(world, par2Random, randomPosX, randomPosY, randomPosZ);
         }
       }
     }

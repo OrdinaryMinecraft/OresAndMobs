@@ -9,7 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
-import ru.flamesword.ordinaryores.ConfigHelper;
+import ru.flamesword.ordinaryores.util.ConfigHelper;
 import ru.flamesword.ordinaryores.OrdinaryOresBase;
 
 public class ItemChestplateOfRegeneration extends ItemArmor {
@@ -43,7 +43,7 @@ public class ItemChestplateOfRegeneration extends ItemArmor {
       }
       
     	public void addInformation(ItemStack armor, EntityPlayer player, List list, boolean show) {
-  			if(armor.getItem() == OrdinaryOresBase.regenerationchest) {
+  			if(armor.getItem() == ItemRegistry.regenerationchest) {
   				list.add(ConfigHelper.rareIndicator);
 				list.add(ConfigHelper.regenerationEffectName + " I " + ConfigHelper.effectIndicator);
   			}
@@ -51,7 +51,7 @@ public class ItemChestplateOfRegeneration extends ItemArmor {
   	
 
   	  public void onArmorTick(World world, EntityPlayer player, ItemStack armor) {
-  			  if(armor.getItem() == OrdinaryOresBase.regenerationchest) {
+  			  if(armor.getItem() == ItemRegistry.regenerationchest) {
   				  	player.addPotionEffect(new PotionEffect(Potion.regeneration.id, 20));
   			  }
   	  }

@@ -78,9 +78,24 @@ item.catacombswordpart1.name=Catacomb Sword Part
 item.catacombswordpart2.name=Catacomb Sword Part
 item.magicalpage.name=Magical Page
 item.unknownbook.name=Unknown Book
+item.dragonbone.name=Dragon Bone
+item.dragonskin.name=Dragon Skin
+item.repairtool.name=Repair Tool
+item.dragonessense.name=§cDragon Essense
+item.dragonblood.name=Dragon Blood
+item.unknownbook2.name=Ancient Unknown Book
+item.frostarrow.name=Frost Arrow
+item.frostbow.name=Frost Bow
+item.dragoniteingot.name=Dragonite Ingot
+item.magicorepickaxeaxe.name=Magic Ore Pickaxe Axe
+item.dragonicspearhead.name=Dragonic Spear Head
+item.dragonictoolhead.name=Dragonic Tool Head
+item.dragonbonedetail.name=Dragon Bone Detail
+item.reinforcedbow.name=Reinforced Bow
 
 item.netherstone.name=Hell Stone
 item.endstone.name=End Stone
+item.worldstone.name=World Stone
 
 item.invisibilitycloak.name=Invisibility Cloak
 item.cursesword.name=Curse Sword
@@ -92,6 +107,13 @@ item.catacombsword.name=Catacomb Sword
 item.purplemace.name=Cursed Mace
 item.raingodspear.name=Spear of Rain God
 item.natureboots.name=Nature Boots
+
+item.dragonicbow.name=Dragonic Bow
+item.dragonicbowcharged.name=Charged Dragonic Bow
+item.dragonictool.name=Dragonic Tool
+item.dragonictoolcharged.name=Charged Dragonic Tool
+item.dragonicspear.name=Dragonic Spear
+item.dragonicspearcharged.name=Charged Dragonic Spear
 
 entity.Herobrine.name=Herobrine
 entity.Super Slime.name=Super Slime
@@ -107,6 +129,10 @@ entity.Undead Spider.name=Undead Spider
 entity.Undead Spiderling.name=Undead Spiderling
 entity.Ghoul.name=Ghoul
 entity.Ghost.name=Ghost
+entity.Bandit.name=Bandit
+entity.BanditLeader.name=Bandit Leader
+entity.RedDragon.name=Red Dragon
+entity.Zigomore Skeleton.name=Zigomore
 
 tooltip.item.rare=§bRare
 tooltip.item.effect=(effect)
@@ -138,6 +164,28 @@ tooltip.item.effect.necromant3=for (1 sec) * armor parts on you
 
 item.netherstone.tooltip=§7Teleports to Nether (1 time)
 item.endstone.tooltip=§7Teleports to End (1 time)
+item.endstone.tooltip2=§7Also it re-creates enderdragon and crystals
+item.worldstone.tooltip=§7Teleports to world (1 time)
 item.unknownbook.tooltip=§7Transforms to random enchant book on use
+item.repairtool.tooltip=§7Repairs all armor on use
+item.dragonictool.tooltip=§8This tool counts digged blocks
+item.dragonictool.tooltip.charged=§8Haste increases for 10000 digged blocks
+item.dragonicbow.tooltip1=§8Damage: +10%, range: +50%
+item.dragonicbow.tooltip2=§8This bow counts killed enemies
+item.dragonicbow.tooltip.charged=§8Damage increases for 250 killed enemies
+item.dragonicspear.tooltip=§8This spear counts killed enemies
+item.dragonicspear.tooltip.charged=§8Damage bonus increases for 500 killed enemies
+item.frostarrow.tooltip=§7This arrows can be used only by Frost Bow
+item.frostbow.tooltip=§7Slows down targets when using ice arrows
 
 message.portal.found=[§2Legacy§f] Player §b%s§f found and closed a portal!
+message.endportal.found=[§2Legacy§f] Player §b%s§f found and closed a End Portal!
+event.bandit.start=You hear a rustle near you...
+event.dragon.start=Player §b%s§f noticed a dragon in the sky!
+event.herobrine.start=The stranger looks at you...
+
+tooltip.item.counter.blocksdigged=Blocks Digged:
+tooltip.item.counter.enemieskilled=Enemies Killed:
+tooltip.item.dragonic.charged=§cDragon Essense bonus:
+tooltip.item.bonus.firearrows=Flaming Arrows
+tooltip.item.bonus.damage=Bonus Damage:

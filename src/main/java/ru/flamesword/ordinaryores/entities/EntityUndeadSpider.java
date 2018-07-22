@@ -26,6 +26,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IShearable;
 import ru.flamesword.ordinaryores.OrdinaryOresBase;
+import ru.flamesword.ordinaryores.items.ItemRegistry;
 
 public class EntityUndeadSpider extends EntityMob {
 	
@@ -62,7 +63,12 @@ public class EntityUndeadSpider extends EntityMob {
 		}
 		return true;
 	}
-	
+
+	@Override
+	public boolean isEntityUndead() {
+		return true;
+	}
+
 	@Override
 	public void dropFewItems(boolean hitRecently, int looting) {
 		dropItem(Item.getItemFromBlock(Blocks.web), rand.nextInt(2));
@@ -71,7 +77,7 @@ public class EntityUndeadSpider extends EntityMob {
 	
 	@Override
 	public void dropRareDrop(int looting) {
-		dropItem(OrdinaryOresBase.spidergland, 1);
+		dropItem(ItemRegistry.spidergland, 1);
 	}
 
     protected String getLivingSound()

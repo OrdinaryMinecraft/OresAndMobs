@@ -183,7 +183,7 @@ public class EntityGhost extends EntityMob {
 	
 	@Override
 	public boolean isEntityUndead() {
-		return false;
+		return true;
 	}
 	
 	@Override

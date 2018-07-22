@@ -2,25 +2,13 @@ package ru.flamesword.ordinaryores.items;
 
 import java.util.List;
 import java.util.Random;
-import java.util.UUID;
 
-import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemArmor;
-import net.minecraft.item.ItemDye;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
-import net.minecraftforge.common.IPlantable;
-import net.minecraftforge.common.util.ForgeDirection;
-import ru.flamesword.ordinaryores.ConfigHelper;
+import ru.flamesword.ordinaryores.util.ConfigHelper;
 import ru.flamesword.ordinaryores.OrdinaryOresBase;
 
 public class ItemNatureBoots extends ItemArmor {
@@ -55,7 +43,7 @@ public class ItemNatureBoots extends ItemArmor {
     }
 
     public void addInformation(ItemStack armor, EntityPlayer player, List list, boolean show) {
-        if(armor.getItem() == OrdinaryOresBase.natureboots) {
+        if(armor.getItem() == ItemRegistry.natureboots) {
             list.add(ConfigHelper.artifactIndicator);
             list.add(ConfigHelper.jumpEffectName + " II");
             list.add(ConfigHelper.moveSpeedEffectName + " II");
@@ -64,7 +52,7 @@ public class ItemNatureBoots extends ItemArmor {
     }
 
     public void onArmorTick(World world, EntityPlayer player, ItemStack armor) {
-        if(armor.getItem() == OrdinaryOresBase.natureboots) {
+        if(armor.getItem() == ItemRegistry.natureboots) {
             if (player.motionX > 0 || player.motionY > 0 || player.motionZ > 0) {
                 if (Math.random() <= 0.5) {
                     player.worldObj.spawnParticle("happyVillager", player.posX+rand.nextFloat()*(0.8)-0.4, player.posY+rand.nextFloat()*(1)-1.5, player.posZ+rand.nextFloat()*(0.8)-0.4, 0, 0, 0);

@@ -9,6 +9,8 @@ import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import cpw.mods.fml.common.IWorldGenerator;
+import ru.flamesword.ordinaryores.blocks.BlockRegistry;
+import ru.flamesword.ordinaryores.items.ItemRegistry;
 
 public class SapphireOreGenerator implements IWorldGenerator {
 	@Override
@@ -34,7 +36,7 @@ public class SapphireOreGenerator implements IWorldGenerator {
     private void generateOverworld(World world, Random random, int x, int z) 
     {
     	 	if (!BiomeDictionary.isBiomeOfType(world.getBiomeGenForCoords(x + 8, z + 8), Type.DESERT))
-            this.addOreSpawn(OrdinaryOresBase.sapphireoreblock, world, random, x, z, 16, 16, 3 + random.nextInt(3), 6, 1, 32);
+            this.addOreSpawn(BlockRegistry.sapphireoreblock, world, random, x, z, 16, 16, 3 + random.nextInt(3), 6, 1, 32);
     }
 
     public void generateSurface(World world, Random par2Random, int chunkX, int chunkZ)
@@ -49,7 +51,7 @@ public class SapphireOreGenerator implements IWorldGenerator {
      	 int randomPosX = chunkX + par2Random.nextInt(16);
      	 int randomPosY = par2Random.nextInt(height);
      	 int randomPosZ = chunkZ + par2Random.nextInt(16);
-     	 (new WorldGenMinable(OrdinaryOresBase.sapphireoreblock, veinSize)).generate(world, par2Random, randomPosX, randomPosY, randomPosZ);
+     	 (new WorldGenMinable(BlockRegistry.sapphireoreblock, veinSize)).generate(world, par2Random, randomPosX, randomPosY, randomPosZ);
         }
       }
     }

@@ -34,6 +34,7 @@ import net.minecraft.world.World;
 import ru.flamesword.ordinaryores.OrdinaryOresBase;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
+import ru.flamesword.ordinaryores.items.ItemRegistry;
 
 public class EntityGhoul extends EntityMob {
 	
@@ -175,7 +176,7 @@ public class EntityGhoul extends EntityMob {
 	
 	@Override
 	public boolean isEntityUndead() {
-		return false;
+		return true;
 	}
 	
 	@Override
@@ -274,7 +275,7 @@ public class EntityGhoul extends EntityMob {
 	
 	@Override
 	public void dropRareDrop(int looting) {
-		dropItem(OrdinaryOresBase.vampiretooth, 1);
+		dropItem(ItemRegistry.vampiretooth, 1);
 	}
 	
 	@Override

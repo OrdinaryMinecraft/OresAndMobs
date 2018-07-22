@@ -4,11 +4,12 @@ import ru.flamesword.ordinaryores.OrdinaryOresBase;
 import net.minecraft.block.BlockStairs;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
+import ru.flamesword.ordinaryores.items.ItemRegistry;
 
 public class BlockMalachiteStairs extends BlockStairs {
 
 	public BlockMalachiteStairs() {
-		super(OrdinaryOresBase.malachiteblock, 1);
+		super(BlockRegistry.malachiteblock, 1);
 		this.setBlockName("malachitestairs");
 		this.setCreativeTab(OrdinaryOresBase.tabOrdinaryOres);
 		this.setHardness(3F);

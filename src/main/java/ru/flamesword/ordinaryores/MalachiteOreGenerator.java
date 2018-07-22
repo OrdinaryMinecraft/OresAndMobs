@@ -7,6 +7,8 @@ import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import cpw.mods.fml.common.IWorldGenerator;
+import ru.flamesword.ordinaryores.blocks.BlockRegistry;
+import ru.flamesword.ordinaryores.items.ItemRegistry;
 
 public class MalachiteOreGenerator implements IWorldGenerator {
 	@Override
@@ -29,7 +31,7 @@ public class MalachiteOreGenerator implements IWorldGenerator {
 
     private void generateOverworld(World world, Random random, int x, int z) 
     {
-            this.addOreSpawn(OrdinaryOresBase.malachiteoreblock, world, random, x, z, 16, 16, 5 + random.nextInt(6), 25, 32, 255);
+            this.addOreSpawn(BlockRegistry.malachiteoreblock, world, random, x, z, 16, 16, 5 + random.nextInt(6), 25, 32, 255);
     }
 
     /*private void generateNether(World world, Random random, int x, int z)

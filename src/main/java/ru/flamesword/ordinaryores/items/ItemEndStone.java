@@ -6,10 +6,12 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.stats.AchievementList;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import ru.flamesword.ordinaryores.OrdinaryOresBase;
 import ru.flamesword.ordinaryores.util.WorldUtils;
+import ru.flamesword.powerfulenderdragon.Utils;
 
 import java.util.List;
 
@@ -27,8 +29,11 @@ public class ItemEndStone extends Item {
         if (!entityplayer.capabilities.isCreativeMode)
             itemstack.stackSize--;
         if (!world.isRemote) {
+            Utils.spawnCrystals();
+            Utils.spawnDragonIfIsNotExist();
             WorldUtils.teleportToDimension((EntityPlayerMP)entityplayer, 1);
         }
+        entityplayer.addStat(AchievementList.theEnd, 1);
         return itemstack;
     }
 
@@ -36,6 +41,7 @@ public class ItemEndStone extends Item {
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack itemStack, EntityPlayer entityPlayer, List list, boolean isAdvanced) {
         list.add(StatCollector.translateToLocal("item.endstone.tooltip"));
+        list.add(StatCollector.translateToLocal("item.endstone.tooltip2"));
     }
 }
 

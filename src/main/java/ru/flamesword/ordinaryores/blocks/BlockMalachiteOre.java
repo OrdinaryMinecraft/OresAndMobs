@@ -6,6 +6,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
 import ru.flamesword.ordinaryores.OrdinaryOresBase;
+import ru.flamesword.ordinaryores.items.ItemRegistry;
 
 public class BlockMalachiteOre extends Block {
 
@@ -22,7 +23,7 @@ public class BlockMalachiteOre extends Block {
 	@Override
     public Item getItemDropped(int par1, Random par2Random, int par3)
     {
-        return OrdinaryOresBase.malachiteitem;
+        return ItemRegistry.malachiteitem;
     }
 	
     @Override

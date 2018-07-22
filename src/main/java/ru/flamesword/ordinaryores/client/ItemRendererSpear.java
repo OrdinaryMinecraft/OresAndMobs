@@ -70,7 +70,7 @@ public class ItemRendererSpear implements IItemRenderer {
                 GL11.glRotatef(0.0f, 1.0f, 0.0f, 0.0f); //X
                 GL11.glRotatef(-45.0f, 0.0f, 1.0f, 0.0f); //Y
                 GL11.glRotatef(20.0f, 0.0f, 0.0f, 1.0f); //Z
-                GL11.glTranslatef(-1.0f, -1.0f, 0.0f);
+                GL11.glTranslatef(-1.2f, -1.0f, 0.0f);
                 GL11.glScalef(4.0f, 4.0f, 4.0f);
                 ItemRenderer.renderItemIn2D(tessellator, icon.getMaxU(), icon.getMinV(), icon.getMinU(), icon.getMaxV(), icon.getIconWidth(), icon.getIconHeight(), 0.0625F);
                 GL11.glPopMatrix();

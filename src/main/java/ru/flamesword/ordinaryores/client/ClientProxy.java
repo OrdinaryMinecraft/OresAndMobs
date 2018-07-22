@@ -1,30 +1,28 @@
 package ru.flamesword.ordinaryores.client;
 
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.relauncher.Side;
 import net.minecraft.client.model.ModelSlime;
 import net.minecraft.client.renderer.entity.RenderSlime;
+import net.minecraft.entity.projectile.EntityArrow;
+import net.minecraft.world.World;
 import net.minecraftforge.client.MinecraftForgeClient;
 import ru.flamesword.ordinaryores.CommonProxy;
 import ru.flamesword.ordinaryores.OrdinaryOresBase;
-import ru.flamesword.ordinaryores.entities.EntityEnderCreeper;
-import ru.flamesword.ordinaryores.entities.EntityEnderSkeleton;
-import ru.flamesword.ordinaryores.entities.EntityForestGuard;
-import ru.flamesword.ordinaryores.entities.EntityGhost;
-import ru.flamesword.ordinaryores.entities.EntityGhoul;
-import ru.flamesword.ordinaryores.entities.EntityHerobrine;
-import ru.flamesword.ordinaryores.entities.EntityIceElemental;
-import ru.flamesword.ordinaryores.entities.EntityInfernoGolem;
-import ru.flamesword.ordinaryores.entities.EntityLivingBlock;
-import ru.flamesword.ordinaryores.entities.EntitySprout;
-import ru.flamesword.ordinaryores.entities.EntitySuperSlime;
-import ru.flamesword.ordinaryores.entities.EntityUndeadSpider;
-import ru.flamesword.ordinaryores.entities.EntityUndeadSpidy;
+import ru.flamesword.ordinaryores.entities.*;
 import cpw.mods.fml.client.registry.RenderingRegistry;
+import ru.flamesword.ordinaryores.items.ItemRegistry;
+
+import java.util.Random;
 
 public class ClientProxy extends CommonProxy {
-	
+
 	@Override
 	public void registerRenderers() {
 		System.out.println("Registering entity renderers...");
+		// Почему не рендерится?!
+		RenderingRegistry.registerEntityRenderingHandler(EntityFrostArrow.class, new RenderFrostArrow());
+
 		RenderingRegistry.registerEntityRenderingHandler(EntityHerobrine.class, new RenderHerobrine());
 		RenderingRegistry.registerEntityRenderingHandler(EntitySuperSlime.class, new RenderSlime(new ModelSlime(16), new ModelSlime(0), 0.25F));
 		RenderingRegistry.registerEntityRenderingHandler(EntityForestGuard.class, new RenderForestGuard());
@@ -38,13 +36,23 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityEnderSkeleton.class, new RenderEnderSkeleton());
 		RenderingRegistry.registerEntityRenderingHandler(EntityGhoul.class, new RenderGhoul());
 		RenderingRegistry.registerEntityRenderingHandler(EntityGhost.class, new RenderGhost());
-		MinecraftForgeClient.registerItemRenderer(OrdinaryOresBase.raingodspear, new ItemRendererSpear());
+		RenderingRegistry.registerEntityRenderingHandler(EntityBandit.class, new RenderBandit());
+		RenderingRegistry.registerEntityRenderingHandler(EntityBanditLeader.class, new RenderBanditLeader());
+		RenderingRegistry.registerEntityRenderingHandler(EntityRedDragon.class, new RenderRedDragon());
+		RenderingRegistry.registerEntityRenderingHandler(EntityZigomoreSkeleton.class, new RenderZigomoreSkeleton());
+		MinecraftForgeClient.registerItemRenderer(ItemRegistry.raingodspear, new ItemRendererSpear());
+		MinecraftForgeClient.registerItemRenderer(ItemRegistry.dragonicbow, new ItemRendererBow());
+		MinecraftForgeClient.registerItemRenderer(ItemRegistry.dragonicbowcharged, new ItemRendererBow());
+		MinecraftForgeClient.registerItemRenderer(ItemRegistry.frostbow, new ItemRendererBow());
+		MinecraftForgeClient.registerItemRenderer(ItemRegistry.reinforcedbow, new ItemRendererBow());
+        MinecraftForgeClient.registerItemRenderer(ItemRegistry.dragonicspear, new ItemRendererSpear());
+        MinecraftForgeClient.registerItemRenderer(ItemRegistry.dragonicspearcharged, new ItemRendererSpear());
 		System.out.println("Successfully registered all entity renderers!");
 	}
-	
+
 	/*@Override
 	public int registerDarkArmorRenderPrefix() {
-		return RenderingRegistry.addNewArmourRendererPrefix("dark_iron");
+		return RenderingRegistry.addNewArmourRendererPrefix("magic_ore");
 	}*/
 	
 	/*@Override

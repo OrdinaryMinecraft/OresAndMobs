@@ -12,6 +12,7 @@ import net.minecraft.world.World;
 import ru.flamesword.ordinaryores.OrdinaryOresBase;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
+import ru.flamesword.ordinaryores.items.ItemRegistry;
 
 public class EntityInfernoGolem extends EntityIronGolem {
 
@@ -37,7 +38,7 @@ public class EntityInfernoGolem extends EntityIronGolem {
 	
 	@Override
 	public void dropFewItems(boolean hitRecently, int looting) {
-		dropItem(OrdinaryOresBase.infernoingot, rand.nextInt(2)+1);
+		dropItem(ItemRegistry.infernoingot, rand.nextInt(2)+1);
 	}
 	
 	@Override

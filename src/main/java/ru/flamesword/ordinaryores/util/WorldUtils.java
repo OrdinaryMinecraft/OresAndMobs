@@ -1,11 +1,14 @@
 package ru.flamesword.ordinaryores.util;
 
 import cpw.mods.fml.common.FMLCommonHandler;
+import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemSword;
 import net.minecraft.network.play.server.S07PacketRespawn;
 import net.minecraft.network.play.server.S1DPacketEntityEffect;
 import net.minecraft.potion.PotionEffect;
@@ -19,6 +22,7 @@ import net.minecraft.world.WorldProvider;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.DimensionManager;
 import ru.flamesword.ordinaryores.OrdinaryOresBase;
+import ru.flamesword.ordinaryores.items.ItemRegistry;
 
 import java.util.Iterator;
 import java.util.Objects;
@@ -82,8 +86,14 @@ public class WorldUtils {
         //player.rotationYaw = getRotationYaw(facing);
     }
 
-    public static void ckeckAndRemovePortals(EntityPlayer player) {
+    public static void ckeckAndRemovePortals(EntityPlayer player, Integer fromDim, Integer toDim) {
         int radius = 16;
+        boolean isRunicDungeon = false;
+        if (Objects.nonNull(fromDim) && Objects.nonNull(toDim)) {
+            if (fromDim == -34 || toDim == -34) {
+                isRunicDungeon = true;
+            }
+        }
         boolean flagBreak = false;
         for (int x = (int) player.posX - radius; x < (int) player.posX + radius; x++) {
             for (int y = (int) player.posY - radius; y < (int) player.posY + radius; y++) {
@@ -91,8 +101,48 @@ public class WorldUtils {
                     if (player.worldObj.getBlock(x, y, z) == Blocks.portal) {
                         removePortal(player.worldObj, x, y, z);
                         player.worldObj.playSoundEffect(x, y, z, "random.explode", 0.7F, 0.7F);
-                        player.inventory.addItemStackToInventory(new ItemStack(OrdinaryOresBase.netherstone, 1));
-                        MinecraftServer.getServer().getConfigurationManager().sendChatMsg(new ChatComponentTranslation("message.portal.found", player.getDisplayName()));
+                        if (!isRunicDungeon) player.inventory.addItemStackToInventory(new ItemStack(ItemRegistry.netherstone, 1));
+                        if (!isRunicDungeon) MinecraftServer.getServer().getConfigurationManager().sendChatMsg(new ChatComponentTranslation("message.portal.found", player.getDisplayName()));
+                        System.out.println("------------------------");
+                        System.out.println("CLOSING NETHER PORTAL: " + player.getDisplayName());
+                        System.out.println("Player world: " + player.worldObj.provider.getDimensionName() + " "  + player.worldObj.provider.dimensionId);
+                        System.out.println("Portal coordinates: " + x + " " + y + " " + z);
+                        System.out.println("------------------------");
+                        flagBreak = true;
+                    } else if (player.worldObj.getBlock(x, y, z) == Blocks.end_portal_frame) {
+                        removeEndPortal(player.worldObj, x, y, z);
+                        player.worldObj.playSoundEffect(x, y, z, "random.explode", 0.7F, 0.7F);
+                        player.inventory.addItemStackToInventory(new ItemStack(ItemRegistry.endstone, 1));
+                        MinecraftServer.getServer().getConfigurationManager().sendChatMsg(new ChatComponentTranslation("message.endportal.found", player.getDisplayName()));
+                        System.out.println("------------------------");
+                        System.out.println("CLOSING END PORTAL: " + player.getDisplayName());
+                        System.out.println("Player world: " + player.worldObj.provider.getDimensionName() + " "  + player.worldObj.provider.dimensionId);
+                        System.out.println("Portal coordinates: " + x + " " + y + " " + z);
+                        System.out.println("------------------------");
+                        flagBreak = true;
+                    }
+                    if (flagBreak) {
+                        break;
+                    }
+                }
+                if (flagBreak) {
+                    break;
+                }
+            }
+            if (flagBreak) {
+                break;
+            }
+        }
+    }
+
+    public static void checkAndRemoveFire(EntityPlayer player) {
+        int radius = 16;
+        boolean flagBreak = false;
+        for (int x = (int) player.posX - radius; x < (int) player.posX + radius; x++) {
+            for (int y = (int) player.posY - radius; y < (int) player.posY + radius; y++) {
+                for (int z = (int) player.posZ - radius; z < (int) player.posZ + radius; z++) {
+                    if (player.worldObj.getBlock(x, y, z) == Blocks.fire && player.worldObj.getBlock(x, y-1, z) != Blocks.netherrack) {
+                        player.worldObj.setBlockToAir(x, y, z);
                         flagBreak = true;
                     }
                     if (flagBreak) {
@@ -115,6 +165,19 @@ public class WorldUtils {
             for (int y = portal_y - radius; y < portal_y + radius; y++) {
                 for (int z = portal_z - radius; z < portal_z + radius; z++) {
                     if (world.getBlock(x, y, z) == Blocks.portal || world.getBlock(x, y, z) == Blocks.obsidian) {
+                        world.setBlockToAir(x, y, z);
+                    }
+                }
+            }
+        }
+    }
+
+    public static void removeEndPortal(World world, int portal_x, int portal_y, int portal_z) {
+        int radius = 10;
+        for (int x = portal_x - radius; x < portal_x + radius; x++) {
+            for (int y = portal_y - radius; y < portal_y + radius; y++) {
+                for (int z = portal_z - radius; z < portal_z + radius; z++) {
+                    if (world.getBlock(x, y, z) == Blocks.end_portal_frame || world.getBlock(x, y, z) == Blocks.end_portal) {
                         world.setBlockToAir(x, y, z);
                     }
                 }
@@ -202,5 +265,33 @@ public class WorldUtils {
         }
 
         p_82448_1_.setWorld(p_82448_4_);
+    }
+
+    public static int getPlayerLevel(EntityPlayer player) {
+        int level = 1;
+        if (player.getTotalArmorValue() > 0) {
+            level = level + player.getTotalArmorValue();
+        }
+        if (player.getMaxHealth() > 20) {
+            level = level + ((int) player.getMaxHealth() - 20);
+        }
+        int maxDamage = 0;
+        for (ItemStack is : player.inventory.mainInventory) {
+            if (Objects.nonNull(is) && Objects.nonNull(is.getItem()) && is.getItem() instanceof ItemSword) {
+                ItemSword weapon = (ItemSword) is.getItem();
+                if (Item.ToolMaterial.valueOf(weapon.getToolMaterialName()).getDamageVsEntity() > maxDamage) {
+                    maxDamage = (int) Item.ToolMaterial.valueOf(weapon.getToolMaterialName()).getDamageVsEntity();
+                }
+            }
+        }
+        if (maxDamage > 0) {
+            level = level + maxDamage;
+        }
+        //System.out.println("Level: " + level);
+        return level;
+    }
+
+    public static boolean blockIsInShadow (World world, int x, int y, int z) {
+        return world.getLightBrightness(x, y, z) <= 0.5;
     }
 }

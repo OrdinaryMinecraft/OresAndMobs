@@ -7,10 +7,8 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
-import ru.flamesword.ordinaryores.ConfigHelper;
+import ru.flamesword.ordinaryores.util.ConfigHelper;
 import ru.flamesword.ordinaryores.OrdinaryOresBase;
 
 public class NecromantArmor extends ItemArmor {
@@ -43,6 +41,7 @@ public class NecromantArmor extends ItemArmor {
     }
 
     public void onArmorTick(World world, EntityPlayer player, ItemStack armor) {
+        /*
         if (player.motionX > 0 || player.motionY > 0 || player.motionZ > 0 ) {
             player.worldObj.spawnParticle(
                     "portal",
@@ -54,6 +53,7 @@ public class NecromantArmor extends ItemArmor {
                     0
             );
         }
+        */
     }
 
     public void addInformation(ItemStack armor, EntityPlayer player, List list, boolean show) {

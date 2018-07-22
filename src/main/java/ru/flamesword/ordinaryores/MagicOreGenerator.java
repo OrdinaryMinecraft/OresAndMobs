@@ -8,6 +8,7 @@ import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import cpw.mods.fml.common.IWorldGenerator;
+import ru.flamesword.ordinaryores.blocks.BlockRegistry;
 
 public class MagicOreGenerator implements IWorldGenerator {
 	@Override
@@ -45,7 +46,7 @@ public class MagicOreGenerator implements IWorldGenerator {
      	 int randomPosX = chunkX + par2Random.nextInt(16);
      	 int randomPosY = par2Random.nextInt(height);
      	 int randomPosZ = chunkZ + par2Random.nextInt(16);
-     	 (new WorldGenMinable(OrdinaryOresBase.magicoreblock, veinSize)).generate(world, par2Random, randomPosX, randomPosY, randomPosZ);
+     	 (new WorldGenMinable(BlockRegistry.magicoreblock, veinSize)).generate(world, par2Random, randomPosX, randomPosY, randomPosZ);
         }
       }
     }

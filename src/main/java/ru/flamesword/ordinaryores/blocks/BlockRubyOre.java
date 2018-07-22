@@ -6,6 +6,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
 import ru.flamesword.ordinaryores.OrdinaryOresBase;
+import ru.flamesword.ordinaryores.items.ItemRegistry;
 
 public class BlockRubyOre extends Block {
 
@@ -22,6 +23,6 @@ public class BlockRubyOre extends Block {
 	@Override
     public Item getItemDropped(int par1, Random par2Random, int par3)
     {
-        return OrdinaryOresBase.rubyitem;
+        return ItemRegistry.rubyitem;
     }
 }

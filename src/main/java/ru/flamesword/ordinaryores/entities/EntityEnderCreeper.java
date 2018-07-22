@@ -9,6 +9,7 @@ import net.minecraft.world.World;
 import ru.flamesword.ordinaryores.OrdinaryOresBase;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
+import ru.flamesword.ordinaryores.items.ItemRegistry;
 
 public class EntityEnderCreeper extends EntityCreeper {
 
@@ -36,7 +37,7 @@ public class EntityEnderCreeper extends EntityCreeper {
 	
 	@Override
 	public Item getDropItem() {
-		return OrdinaryOresBase.enderdust;
+		return ItemRegistry.enderdust;
 	}
 	
 	/*

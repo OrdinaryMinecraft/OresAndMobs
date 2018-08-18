@@ -33,7 +33,7 @@ import ru.flamesword.ordinaryores.util.RecipeResistry;
 
 import static ru.flamesword.ordinaryores.items.ItemRegistry.*;
 
-@Mod (modid = "ordinaryores", name = "Ordinary Ores", version = "1.4.5")
+@Mod (modid = "ordinaryores", name = "Ordinary Ores", version = "1.5.1")
 
 public class OrdinaryOresBase {
 

@@ -384,7 +384,7 @@ public class EntityBanditLeader extends EntityMob {
 
     @Override
     public void dropRareDrop(int looting) {
-        dropItem(ItemRegistry.repairtool, 5);
+        dropItem(ItemRegistry.repairtool, 1);
     }
 
     @Override

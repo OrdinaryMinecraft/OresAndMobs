@@ -48,7 +48,7 @@ public class ItemDragonicSpearCharged extends ItemDragonicSpear {
 
     public static int getBonusLevel(ItemStack itemstack) {
         int enemiesKilled = getEnemiesKilled(itemstack);
-        int level = enemiesKilled / 500;
+        int level = enemiesKilled / 1000;
         if (level > 2) {
             level = 2;
         }

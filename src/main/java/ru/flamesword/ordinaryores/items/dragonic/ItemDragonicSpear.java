@@ -1,3 +1,4 @@
+
 package ru.flamesword.ordinaryores.items.dragonic;
 
 import java.util.List;
@@ -28,10 +29,6 @@ public class ItemDragonicSpear extends ItemSword {
     @Override
     public boolean hitEntity(ItemStack stack, EntityLivingBase attackedEntity, EntityLivingBase attacker) {
         super.hitEntity(stack, attackedEntity, attacker);
-        if (Math.random() <= 0.1) {
-            //attackedEntity.worldObj.getWorldInfo().setRaining(!attackedEntity.worldObj.getWorldInfo().isRaining());
-            attackedEntity.worldObj.addWeatherEffect(new EntityLightningBolt(attackedEntity.worldObj, attackedEntity.posX, attackedEntity.posY, attackedEntity.posZ));
-        }
         return true;
     }
 

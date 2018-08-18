@@ -16,6 +16,7 @@ import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemDye;
@@ -41,6 +42,7 @@ import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.event.world.BlockEvent.BreakEvent;
 import ru.flamesword.ordinaryores.items.dragonic.ItemDragonicBow;
 import ru.flamesword.ordinaryores.items.ItemRegistry;
+import ru.flamesword.ordinaryores.items.dragonic.ItemDragonicBowCharged;
 import ru.flamesword.ordinaryores.util.AnvilManager;
 import ru.flamesword.ordinaryores.util.ConfigHelper;
 import ru.flamesword.ordinaryores.OrdinaryOresUtil;
@@ -248,7 +250,7 @@ public class OrdinaryOresEventHandler {
 						z = random.nextInt(32) + (int) player.posZ - 16;
 
 						// Distance between 2 points > 12
-						if (Math.sqrt(Math.pow((x - player.posX), 2) + Math.pow((y - player.posZ), 2)) > 12) {
+						if (Math.sqrt(Math.pow((x - player.posX), 2) + Math.pow((z - player.posZ), 2)) > 12) {
 							if (player.worldObj.getBlock(x, y, z) == Blocks.air && player.worldObj.getBlock(x, y + 1, z) == Blocks.air) {
 								if (player.worldObj.getBlock(x, y - 1, z).isNormalCube() && WorldUtils.blockIsInShadow(player.worldObj, x, y, z)) {
 									pointFound = true;
@@ -268,7 +270,7 @@ public class OrdinaryOresEventHandler {
 						System.out.println("Player level: " + WorldUtils.getPlayerLevel(player));
 						System.out.println("Player world: " + player.worldObj.provider.getDimensionName() + " "  + player.worldObj.provider.dimensionId);
 						System.out.println("Bandit coordinates: " + x + " " + y + " " + z);
-						System.out.println("Dist: " + Math.sqrt(Math.pow((x - player.posX), 2) + Math.pow((y - player.posZ), 2)));
+						System.out.println("Dist: " + Math.sqrt(Math.pow((x - player.posX), 2) + Math.pow((z - player.posZ), 2)));
 						System.out.println("Bandit lightlevel: " + player.worldObj.getLightBrightness(x, y, z));
 						System.out.println("------------------------");
 						int count = 1;
@@ -318,7 +320,7 @@ public class OrdinaryOresEventHandler {
 							z = random.nextInt(64) + (int) player.posZ - 32;
 
 							// Distance between 2 points > 16
-							if (Math.sqrt(Math.pow((x - player.posX), 2) + Math.pow((y - player.posZ), 2)) > 16) {
+							if (Math.sqrt(Math.pow((x - player.posX), 2) + Math.pow((z - player.posZ), 2)) > 16) {
 								if (player.worldObj.getBlock(x, y, z) == Blocks.air && player.worldObj.getBlock(x, y + 1, z) == Blocks.air) {
 									pointFound = true;
 								}
@@ -336,7 +338,7 @@ public class OrdinaryOresEventHandler {
 							System.out.println("Player level: " + WorldUtils.getPlayerLevel(player));
 							System.out.println("Player world: " + player.worldObj.provider.getDimensionName() + " "  + player.worldObj.provider.dimensionId);
 							System.out.println("Dragon coordinates: " + x + " " + y + " " + z);
-							System.out.println("Dist: " + Math.sqrt(Math.pow((x - player.posX), 2) + Math.pow((y - player.posZ), 2)));
+							System.out.println("Dist: " + Math.sqrt(Math.pow((x - player.posX), 2) + Math.pow((z - player.posZ), 2)));
 							System.out.println("Time: " + player.worldObj.getWorldTime());
 							System.out.println("------------------------");
 							EntityRedDragon dragon = new EntityRedDragon(player.worldObj);
@@ -357,7 +359,7 @@ public class OrdinaryOresEventHandler {
 			if (!player.capabilities.isCreativeMode &&
 					!player.capabilities.isFlying &&
 					player.worldObj.provider.dimensionId != 3) {
-				if (Math.random() <= 0.05) {
+				if (Math.random() <= 0.02) {
 					boolean pointFound = false;
 					int x = 0;
 					int y = 0;
@@ -369,7 +371,7 @@ public class OrdinaryOresEventHandler {
 						z = random.nextInt(32) + (int) player.posZ - 16;
 
 						// Distance between 2 points > 8
-						if (Math.sqrt(Math.pow((x - player.posX), 2) + Math.pow((y - player.posZ), 2)) > 8) {
+						if (Math.sqrt(Math.pow((x - player.posX), 2) + Math.pow((z - player.posZ), 2)) > 8) {
 							if (player.worldObj.getBlock(x, y, z) == Blocks.air && player.worldObj.getBlock(x, y + 1, z) == Blocks.air) {
 								if (player.worldObj.getBlock(x, y - 1, z).isNormalCube()) {
 									pointFound = true;
@@ -388,7 +390,7 @@ public class OrdinaryOresEventHandler {
 						System.out.println("Player coordinates: " + player.posX + " " + player.posY + " " + player.posZ);
 						System.out.println("Player world: " + player.worldObj.provider.getDimensionName() + " "  + player.worldObj.provider.dimensionId);
 						System.out.println("Herobrine coordinates: " + x + " " + y + " " + z);
-						System.out.println("Dist: " + Math.sqrt(Math.pow((x - player.posX), 2) + Math.pow((y - player.posZ), 2)));
+						System.out.println("Dist: " + Math.sqrt(Math.pow((x - player.posX), 2) + Math.pow((z - player.posZ), 2)));
 						System.out.println("Time: " + player.worldObj.getWorldTime());
 						System.out.println("------------------------");
 						EntityHerobrine herobrine = new EntityHerobrine(player.worldObj);
@@ -642,4 +644,78 @@ public class OrdinaryOresEventHandler {
 			}
 		}
     }
+
+	@SubscribeEvent(priority = EventPriority.LOW)
+	public void onArrowSpawn(EntityJoinWorldEvent event) {
+		if (event.entity instanceof EntityArrow) {
+			EntityArrow arrow = (EntityArrow) event.entity;
+			if (arrow.shootingEntity instanceof EntityPlayer) {
+				EntityPlayer archer = (EntityPlayer) arrow.shootingEntity;
+
+				if (event.entity.getClass().getName().equals(EntityArrow.class.getName())) {
+					if (archer.getHeldItem() != null) {
+
+						boolean isFrostBow = false;
+						if (archer.getHeldItem().getItem() instanceof ItemDragonicBow) {
+							System.out.println("DRAGON");
+							boolean charged = false;
+							if (archer.getHeldItem().getItem() instanceof ItemDragonicBowCharged) {
+								charged = true;
+							}
+							double damageBonus = 0.1;
+							if (charged) {
+								damageBonus = 0.1 + ((double) ((ItemDragonicBowCharged)archer.getHeldItem().getItem()).getBonusValue(archer.getHeldItem()) * 0.01);
+								arrow.setFire(10);
+							}
+							System.out.println(damageBonus);
+							arrow.setDamage(arrow.getDamage() * ((double) 1 + damageBonus));
+							// + 50% range
+							arrow.motionX *= 1.0F + 50 / 100F;
+							arrow.motionY *= 1.0F + 50 / 100F;
+							arrow.motionZ *= 1.0F + 50 / 100F;
+
+						} else if (archer.getHeldItem().getItem() == ItemRegistry.frostbow) {
+							// + 5% damage
+							System.out.println("FROST");
+							isFrostBow = true;
+							arrow.setDamage(arrow.getDamage() * 1.05);
+						}
+
+						int countFrostArrows = 0;
+						for (ItemStack s : archer.inventory.mainInventory)
+						{
+							if (s != null && s.getItem() == ItemRegistry.frostarrow) {
+								countFrostArrows = countFrostArrows + s.stackSize;
+							}
+						}
+
+						if (countFrostArrows > 0 || isFrostBow) {
+							EntityFrostArrow frostArrow = new EntityFrostArrow(arrow.worldObj, archer, 0);
+							frostArrow.setDamage(arrow.getDamage());
+							frostArrow.posX = arrow.posX + 0.1 + random.nextFloat() * (-0.1 - 0.1);
+							frostArrow.posY = arrow.posY + 0.1 + random.nextFloat() * (-0.1 - 0.1);
+							frostArrow.posZ = arrow.posZ + 0.1 + random.nextFloat() * (-0.1 - 0.1);
+							frostArrow.rotationPitch = arrow.rotationPitch;
+							frostArrow.rotationYaw = arrow.rotationYaw;
+							frostArrow.motionX = arrow.motionX + 0.1 + random.nextFloat() * (-0.1 - 0.1);
+							frostArrow.motionY = arrow.motionY + 0.1 + random.nextFloat() * (-0.1 - 0.1);
+							frostArrow.motionZ = arrow.motionZ + 0.1 + random.nextFloat() * (-0.1 - 0.1);
+							frostArrow.setIsCritical(arrow.getIsCritical());
+
+							if (!archer.capabilities.isCreativeMode && !isFrostBow) {
+								archer.inventory.consumeInventoryItem(ItemRegistry.frostarrow);
+								archer.inventory.addItemStackToInventory(new ItemStack(Items.arrow, 1));
+							}
+
+							arrow.worldObj.spawnEntityInWorld(frostArrow);
+
+							if (arrow.isEntityAlive()) {
+								arrow.setDead();
+							}
+						}
+					}
+				}
+			}
+		}
+	}
 }

@@ -33,7 +33,10 @@ public class ItemDragonicTool extends ItemTool {
     private String toolClass3;
 
     private boolean toolClassEquals(String toolClass) {
-        return toolClass.equals(this.toolClass1) || toolClass.equals(this.toolClass2) || toolClass.equals(this.toolClass3);
+        if (Objects.nonNull(toolClass)) {
+            return toolClass.equals(this.toolClass1) || toolClass.equals(this.toolClass2) || toolClass.equals(this.toolClass3);
+        }
+        return false;
     }
 
     @Override

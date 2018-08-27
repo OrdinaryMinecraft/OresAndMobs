@@ -14,6 +14,7 @@ import ru.flamesword.ordinaryores.OrdinaryOresBase;
 import ru.flamesword.ordinaryores.util.ConfigHelper;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 public class ItemMagicOrePickaxeAxe extends ItemTool {
@@ -32,7 +33,10 @@ public class ItemMagicOrePickaxeAxe extends ItemTool {
     private String toolClass2;
 
     private boolean toolClassEquals(String toolClass) {
-        return toolClass.equals(this.toolClass1) || toolClass.equals(this.toolClass2);
+        if (Objects.nonNull(toolClass)) {
+            return toolClass.equals(this.toolClass1) || toolClass.equals(this.toolClass2);
+        }
+        return false;
     }
 
     @Override

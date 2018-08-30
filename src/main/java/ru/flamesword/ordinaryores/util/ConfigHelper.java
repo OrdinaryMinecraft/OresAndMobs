@@ -37,8 +37,14 @@ public class ConfigHelper {
 	public static List<String> cropsBlacklist;
 
 	public static String effectIndicator = StatCollector.translateToLocal("tooltip.item.effect");
-	public static String artifactIndicator = StatCollector.translateToLocal("tooltip.item.artifact");
+	public static String uncommonIndicator = StatCollector.translateToLocal("tooltip.item.uncommon");
+	public static String uncommonIndicatorLore = StatCollector.translateToLocal("tooltip.item.uncommon.lore");
 	public static String rareIndicator = StatCollector.translateToLocal("tooltip.item.rare");
+	public static String rareIndicatorLore = StatCollector.translateToLocal("tooltip.item.rare.lore");
+	public static String legendaryIndicator = StatCollector.translateToLocal("tooltip.item.legendary");
+	public static String legendaryIndicatorLore = StatCollector.translateToLocal("tooltip.item.legendary.lore");
+	public static String artifactIndicator = StatCollector.translateToLocal("tooltip.item.artifact");
+	public static String artifactIndicatorLore = StatCollector.translateToLocal("tooltip.item.artifact.lore");
 	public static String moveSpeedEffectName = StatCollector.translateToLocal("tooltip.item.effect.movespeed");
 	public static String resistanceEffectName = StatCollector.translateToLocal("tooltip.item.effect.resistance");
 	public static String jumpEffectName = StatCollector.translateToLocal("tooltip.item.effect.jump");

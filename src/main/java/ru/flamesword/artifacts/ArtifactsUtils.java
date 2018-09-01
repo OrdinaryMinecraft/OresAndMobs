@@ -11,6 +11,8 @@ public class ArtifactsUtils {
 
     private static Random random = new Random();
 
+    public static final String FROM_CHEST = "chest";
+
     public static int randomBetween(int min, int max) {
         return random.nextInt((max - min) + 1) + min;
     }
@@ -22,11 +24,16 @@ public class ArtifactsUtils {
         result = new ItemStack(item, 1);
 
         String word1 = "";
-        if (result.getDisplayName().substring(result.getDisplayName().length() - 1).equals("а")) {
+        System.out.println(ConfigHelper.nameParts1f.size());
+        System.out.println(ConfigHelper.nameParts1m.size());
+        System.out.println(ConfigHelper.nameParts1p.size());
+        System.out.println(ConfigHelper.nameParts2.size());
+        System.out.println(ConfigHelper.nameParts3.size());
+        if (getLastSybmol(result.getDisplayName()).equals("а") || getLastSybmol(result.getDisplayName()).equals("я")) {
             // Женский род
             number = randomBetween(0, ConfigHelper.nameParts1f.size()) - 1;
             word1 = ConfigHelper.nameParts1f.get(number);
-        } if (result.getDisplayName().substring(result.getDisplayName().length() - 1).equals("и") || result.getDisplayName().substring(result.getDisplayName().length() - 1).equals("ы")) {
+        } else if (getLastSybmol(result.getDisplayName()).equals("и") || getLastSybmol(result.getDisplayName()).equals("ы")) {
             // Множественное число
             number = randomBetween(0, ConfigHelper.nameParts1p.size()) - 1;
             word1 = ConfigHelper.nameParts1p.get(number);
@@ -42,12 +49,14 @@ public class ArtifactsUtils {
         number = randomBetween(0, ConfigHelper.nameParts3.size() - 1);
         String word3 = ConfigHelper.nameParts3.get(number);
 
+        boolean wordAdded = false;
         if (Math.random() <= 0.8 * level) {
             result.setStackDisplayName(word1 + " " + result.getDisplayName().toLowerCase());
+            wordAdded = true;
         }
         result.setStackDisplayName("§b" + result.getDisplayName());
 
-        if (Math.random() <= 0.2 * level) {
+        if (Math.random() <= 0.2 * level || !wordAdded) {
             result.setStackDisplayName(result.getDisplayName() + " " + word2);
         }
 
@@ -59,6 +68,8 @@ public class ArtifactsUtils {
         result = addLore(result, from);
 
         EnchantmentHelper.addRandomEnchantment(random, result, 10 * level);
+
+        result.setItemDamage(randomBetween(0, (int) (result.getMaxDamage() * (0.4 - 0.1 * level) * 2)));
 
         System.out.println("CREATED ARTIFACT level:" + level + " item:" + item.getUnlocalizedName() + " name:" + result.getDisplayName());
         return result;
@@ -84,5 +95,9 @@ public class ArtifactsUtils {
             tagCompound.setString("IndicatorLore", from);
         }
         return is;
+    }
+
+    public static String getLastSybmol(String string) {
+        return string.substring(string.length() - 1);
     }
 }

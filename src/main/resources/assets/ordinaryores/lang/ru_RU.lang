@@ -135,9 +135,10 @@ entity.Red Dragon.name=Красный дракон
 entity.Zigomore Skeleton.name=Зигомор
 
 tooltip.item.lore=уронил это при смерти...
+tooltip.item.lore.chest=Найден в старом сундуке
 tooltip.item.unknownmob=Неизвестный монстр
 tooltip.item.uncommon=§eОсобый
-tooltip.item.uncommon.lore=§8Этот предмет видал лучшие времена, но все еще хорош
+tooltip.item.uncommon.lore=§8Необычный предмет выделяющийся из общего числа
 tooltip.item.rare=§bРедкий
 tooltip.item.rare.lore=§8Найти такой предмет - большая удача
 tooltip.item.legendary=§aЛегендарный
@@ -189,9 +190,11 @@ item.frostbow.tooltip1=§8Урон: +5%
 
 message.portal.found=[§2Legacy§f] Игрок §b%s§f обнаружил и закрыл портал, за что получает камень Ада!
 message.endportal.found=[§2Legacy§f] Игрок §b%s§f обнаружил и закрыл портал Края, за что получает камень Края!
+message.artifact.nokey=Вам нужен древний ключ чтобы открыть этот сундук.
 event.bandit.start=Вы слышите шорох неподалеку от вас...
 event.dragon.start=Игрок §b%s§f заметил в небе дракона!
 event.herobrine.start=Вы чувствуете на себе взгляд незнакомца...
+event.artifact.drop=%s уронил какой-то предмет...
 
 tooltip.item.counter.blocksdigged=Блоков добыто:
 tooltip.item.counter.enemieskilled=Противников убито:

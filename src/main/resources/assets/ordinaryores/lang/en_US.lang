@@ -135,6 +135,7 @@ entity.Red Dragon.name=Red Dragon
 entity.Zigomore Skeleton.name=Zigomore
 
 tooltip.item.lore=dropped this on death...
+tooltip.item.lore.chest=Found in old chest
 tooltip.item.unknownmob=Unknown Mob
 tooltip.item.uncommon=§eUncommon
 tooltip.item.uncommon.lore=§8Good old item...
@@ -189,9 +190,11 @@ item.frostbow.tooltip1=§8Damage: +5%
 
 message.portal.found=[§2Legacy§f] Player §b%s§f found and closed a portal!
 message.endportal.found=[§2Legacy§f] Player §b%s§f found and closed a End Portal!
+message.artifact.nokey=You need Ancient Key to open this box.
 event.bandit.start=You hear a rustle near you...
 event.dragon.start=Player §b%s§f noticed a dragon in the sky!
 event.herobrine.start=The stranger looks at you...
+event.artifact.drop=%s dropped item...
 
 tooltip.item.counter.blocksdigged=Blocks Digged:
 tooltip.item.counter.enemieskilled=Enemies Killed:

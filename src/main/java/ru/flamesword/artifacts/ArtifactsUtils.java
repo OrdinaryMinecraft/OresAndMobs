@@ -57,25 +57,28 @@ public class ArtifactsUtils {
         number = randomBetween(0, ConfigHelper.nameParts3.size() - 1);
         String word3 = ConfigHelper.nameParts3.get(number);
 
+        result.setStackDisplayName(name);
         boolean wordAdded = false;
         if (Math.random() <= 0.8 * level) {
-            result.setStackDisplayName(word1 + " " + name.toLowerCase());
+            result.setStackDisplayName(word1 + " " + result.getDisplayName().toLowerCase());
             wordAdded = true;
         }
-        result.setStackDisplayName("§b" + name);
+        result.setStackDisplayName("§b" + result.getDisplayName());
 
         if (Math.random() <= 0.2 * level || !wordAdded) {
-            result.setStackDisplayName(name + " " + word2);
+            result.setStackDisplayName(result.getDisplayName() + " " + word2);
         }
 
         if (Math.random() <= 0.2 * level) {
-            result.setStackDisplayName(name + " " + word3);
+            result.setStackDisplayName(result.getDisplayName() + " " + word3);
         }
 
         result = addIndicator(result, level);
         result = addLore(result, from);
 
-        EnchantmentHelper.addRandomEnchantment(random, result, 10 * level);
+        while (!result.isItemEnchanted()) {
+            EnchantmentHelper.addRandomEnchantment(random, result, 10 * level);
+        }
 
         result.setItemDamage(randomBetween(0, (int) (result.getMaxDamage() * (0.4 - 0.1 * level) * 2)));
 

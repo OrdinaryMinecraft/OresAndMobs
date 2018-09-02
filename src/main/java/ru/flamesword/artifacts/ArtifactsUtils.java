@@ -1,6 +1,10 @@
 package ru.flamesword.artifacts;
 
+import cpw.mods.fml.common.network.internal.FMLProxyPacket;
+import cpw.mods.fml.relauncher.Side;
 import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -17,29 +21,33 @@ public class ArtifactsUtils {
         return random.nextInt((max - min) + 1) + min;
     }
 
-    public static ItemStack getRandomArtifact(short level, String from) {
-        ItemStack result = null;
+    // Я не нашел способа перевести название предмета на нужный язык на сервере. Really?
+    // Здесь выполняется отправка айди предмета в клиент для перевода на нужный язык
+    // Инкостыляция 80 лвла
+    public static void createRandomArtifact(short level, String from, EntityPlayer player, int x, int y, int z) {
         int number = randomBetween(0, ConfigHelper.itemsForDrop.size() - 1);
-        Item item = Item.getItemById(Integer.parseInt(ConfigHelper.itemsForDrop.get(number)));
-        result = new ItemStack(item, 1);
+        FMLProxyPacket packet = PacketHandler.getOtherPacket(Side.CLIENT, Integer.parseInt(ConfigHelper.itemsForDrop.get(number)), level, from, x, y, z, "");
+        ArtifactsBase.otherChannel.sendTo(packet, (EntityPlayerMP) player);
+    }
 
+
+    public static ItemStack getArtifact(short level, String name, int itemId, String from) {
+        ItemStack result = null;
+        Item item = Item.getItemById(itemId);
+        result = new ItemStack(item, 1);
         String word1 = "";
-        System.out.println(ConfigHelper.nameParts1f.size());
-        System.out.println(ConfigHelper.nameParts1m.size());
-        System.out.println(ConfigHelper.nameParts1p.size());
-        System.out.println(ConfigHelper.nameParts2.size());
-        System.out.println(ConfigHelper.nameParts3.size());
-        if (getLastSybmol(result.getDisplayName()).equals("а") || getLastSybmol(result.getDisplayName()).equals("я")) {
+        int number = 0;
+        if (getLastSybmol(name).equals("а") || getLastSybmol(name).equals("я")) {
             // Женский род
-            number = randomBetween(0, ConfigHelper.nameParts1f.size()) - 1;
+            number = randomBetween(0, ConfigHelper.nameParts1f.size() - 1);
             word1 = ConfigHelper.nameParts1f.get(number);
-        } else if (getLastSybmol(result.getDisplayName()).equals("и") || getLastSybmol(result.getDisplayName()).equals("ы")) {
+        } else if (getLastSybmol(name).equals("и") || getLastSybmol(name).equals("ы")) {
             // Множественное число
-            number = randomBetween(0, ConfigHelper.nameParts1p.size()) - 1;
+            number = randomBetween(0, ConfigHelper.nameParts1p.size() - 1);
             word1 = ConfigHelper.nameParts1p.get(number);
         } else {
             // Мужской род
-            number = randomBetween(0, ConfigHelper.nameParts1m.size()) - 1;
+            number = randomBetween(0, ConfigHelper.nameParts1m.size() - 1);
             word1 = ConfigHelper.nameParts1m.get(number);
         }
 
@@ -51,17 +59,17 @@ public class ArtifactsUtils {
 
         boolean wordAdded = false;
         if (Math.random() <= 0.8 * level) {
-            result.setStackDisplayName(word1 + " " + result.getDisplayName().toLowerCase());
+            result.setStackDisplayName(word1 + " " + name.toLowerCase());
             wordAdded = true;
         }
-        result.setStackDisplayName("§b" + result.getDisplayName());
+        result.setStackDisplayName("§b" + name);
 
         if (Math.random() <= 0.2 * level || !wordAdded) {
-            result.setStackDisplayName(result.getDisplayName() + " " + word2);
+            result.setStackDisplayName(name + " " + word2);
         }
 
         if (Math.random() <= 0.2 * level) {
-            result.setStackDisplayName(result.getDisplayName() + " " + word3);
+            result.setStackDisplayName(name + " " + word3);
         }
 
         result = addIndicator(result, level);
@@ -71,7 +79,7 @@ public class ArtifactsUtils {
 
         result.setItemDamage(randomBetween(0, (int) (result.getMaxDamage() * (0.4 - 0.1 * level) * 2)));
 
-        System.out.println("CREATED ARTIFACT level:" + level + " item:" + item.getUnlocalizedName() + " name:" + result.getDisplayName());
+        System.out.println("CREATED ARTIFACT level:" + level + " item:" + item.getUnlocalizedName() + " from:" + from + " name:" + result.getDisplayName());
         return result;
     }
 

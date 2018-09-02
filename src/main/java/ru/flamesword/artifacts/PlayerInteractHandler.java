@@ -38,16 +38,16 @@ public class PlayerInteractHandler {
                 level = 4;
             }
             // Вероятность выпадения зависит от хп моба
-            if (Math.random() <= 0.01 * level) {
+            if (Math.random() <= 0.02 * level) {
                 if (!killedMob.worldObj.isRemote) {
                     // Сила предмета так же зависит от хп моба
                     String mobName = killedMob.getCommandSenderName();
                     if (StringUtils.isNullOrEmpty(mobName)) {
                         mobName = StatCollector.translateToLocal("tooltip.item.unknownmob");
                     }
-                    ItemStack aftifact = ArtifactsUtils.getRandomArtifact((short) ArtifactsUtils.randomBetween(1, level), mobName);
-                    EntityItem entityAftifact = new EntityItem(killedMob.worldObj, killedMob.posX, killedMob.posY, killedMob.posZ, aftifact);
-                    event.entity.worldObj.spawnEntityInWorld(entityAftifact);
+                    ArtifactsUtils.createRandomArtifact((short) ArtifactsUtils.randomBetween(1, level), mobName, player, (int) killedMob.posX, (int) killedMob.posY, (int) killedMob.posZ);
+                    //EntityItem entityAftifact = new EntityItem(killedMob.worldObj, killedMob.posX, killedMob.posY, killedMob.posZ, aftifact);
+                    //event.entity.worldObj.spawnEntityInWorld(entityAftifact);
                     player.addChatMessage(new ChatComponentTranslation("event.artifact.drop", mobName));
                 }
             }

@@ -35,9 +35,9 @@ public class ItemArtifactBox extends Item {
                 entityplayer.inventory.consumeInventoryItem(ArtifactsBase.ancientkey);
             }
             if (!world.isRemote) {
-                ItemStack artifact = ArtifactsUtils.getRandomArtifact((short) ArtifactsUtils.randomBetween(1, 4), ArtifactsUtils.FROM_CHEST);
-                EntityItem entityArtifact = new EntityItem(entityplayer.worldObj, entityplayer.posX, entityplayer.posY, entityplayer.posZ, artifact);
-                entityplayer.worldObj.spawnEntityInWorld(entityArtifact);
+                ArtifactsUtils.createRandomArtifact((short) ArtifactsUtils.randomBetween(1, 4), ArtifactsUtils.FROM_CHEST, entityplayer, (int) entityplayer.posX, (int) entityplayer.posY, (int) entityplayer.posZ);
+                //EntityItem entityArtifact = new EntityItem(entityplayer.worldObj, entityplayer.posX, entityplayer.posY, entityplayer.posZ, artifact);
+                //entityplayer.worldObj.spawnEntityInWorld(entityArtifact);
             }
         } else {
             entityplayer.addChatMessage(new ChatComponentTranslation("message.artifact.nokey"));

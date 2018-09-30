@@ -1,5 +1,6 @@
 package ru.flamesword.ordinaryores.entities;
 
+import cpw.mods.fml.common.eventhandler.Event;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -15,6 +16,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+import net.minecraftforge.event.ForgeEventFactory;
 import ru.flamesword.ordinaryores.OrdinaryOresBase;
 import ru.flamesword.ordinaryores.items.ItemRegistry;
 
@@ -28,6 +30,7 @@ public class EntityRedDragon extends EntityDragon {
 
     public EntityRedDragon(World par1World) {
         super(par1World);
+        this.noClip = false;
     }
 
     @Override
@@ -35,6 +38,7 @@ public class EntityRedDragon extends EntityDragon {
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(150.0D);
         this.noClip = false;
+        //this.persistenceRequired = false;
     }
 
     @Override
@@ -488,5 +492,51 @@ public class EntityRedDragon extends EntityDragon {
     @Override
     public boolean canDespawn() {
         return true;
+    }
+
+    @Override
+    protected void despawnEntity()
+    {
+        Event.Result result = null;
+        if ((this.entityAge & 0x1F) == 0x1F && (result = ForgeEventFactory.canEntityDespawn(this)) != Event.Result.DEFAULT)
+        {
+            if (result == Event.Result.DENY)
+            {
+                this.entityAge = 0;
+            }
+            else
+            {
+                this.setDead();
+                System.out.println("DESPAWN RED DRAGON, COORDINATES: x=" + this.posX + " y=" + this.posY + " z=" + this.posZ);
+            }
+        }
+        else
+        {
+            EntityPlayer entityplayer = this.worldObj.getClosestPlayerToEntity(this, -1.0D);
+
+            if (entityplayer != null)
+            {
+                double d0 = entityplayer.posX - this.posX;
+                double d1 = entityplayer.posY - this.posY;
+                double d2 = entityplayer.posZ - this.posZ;
+                double d3 = d0 * d0 + d1 * d1 + d2 * d2;
+
+                if (this.canDespawn() && d3 > 16384.0D)
+                {
+                    this.setDead();
+                    System.out.println("DESPAWN RED DRAGON, COORDINATES: x=" + this.posX + " y=" + this.posY + " z=" + this.posZ);
+                }
+
+                if (this.entityAge > 600 && this.rand.nextInt(800) == 0 && d3 > 1024.0D && this.canDespawn())
+                {
+                    this.setDead();
+                    System.out.println("DESPAWN RED DRAGON, COORDINATES: x=" + this.posX + " y=" + this.posY + " z=" + this.posZ);
+                }
+                else if (d3 < 1024.0D)
+                {
+                    this.entityAge = 0;
+                }
+            }
+        }
     }
 }

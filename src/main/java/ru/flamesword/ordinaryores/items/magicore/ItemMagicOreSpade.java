@@ -12,7 +12,7 @@ import net.minecraft.world.World;
 import ru.flamesword.ordinaryores.util.ConfigHelper;
 import ru.flamesword.ordinaryores.OrdinaryOresBase;
 
-public class ItemMagicOreSpade extends ItemSpade{
+public class ItemMagicOreSpade extends ItemSpade {
 
 	public ItemMagicOreSpade() {
         super(OrdinaryOresBase.MAGICORETOOL);

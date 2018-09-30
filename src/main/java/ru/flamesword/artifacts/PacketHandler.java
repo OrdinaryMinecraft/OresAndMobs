@@ -42,7 +42,7 @@ public class PacketHandler {
             int y = Integer.parseInt(parts[4]);
             int z = Integer.parseInt(parts[5]);
             String localizedName = parts[6];
-            ItemStack artifact = ArtifactsUtils.getArtifact(level, localizedName, itemId, from);
+            ItemStack artifact = ArtifactsUtils.getArtifact(level, localizedName, itemId, from, entityPlayerMP.getDisplayName());
             EntityItem entityAftifact = new EntityItem(entityPlayerMP.worldObj, x, y, z, artifact);
             entityPlayerMP.worldObj.spawnEntityInWorld(entityAftifact);
         }

@@ -17,6 +17,7 @@ import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.oredict.OreDictionary;
 import ru.flamesword.ordinaryores.blocks.BlockRegistry;
 import ru.flamesword.ordinaryores.entities.*;
+import ru.flamesword.ordinaryores.handlers.EventsEventHandler;
 import ru.flamesword.ordinaryores.handlers.OrdinaryOresEventHandler;
 import ru.flamesword.ordinaryores.handlers.PlayerEventHandler;
 import ru.flamesword.ordinaryores.items.*;
@@ -80,6 +81,7 @@ public class OrdinaryOresBase {
 		ConfigHelper.setupConfig(new Configuration(event.getSuggestedConfigurationFile()));
 
 		MinecraftForge.EVENT_BUS.register(new PlayerEventHandler());
+		FMLCommonHandler.instance().bus().register(new EventsEventHandler());
 
         EntityRegistry.registerGlobalEntityID(EntityHerobrine.class, "Herobrine", EntityRegistry.findGlobalUniqueEntityId(), 0x191970, 0x00FFFF);
 		EntityRegistry.registerGlobalEntityID(EntitySuperSlime.class, "Super Slime", EntityRegistry.findGlobalUniqueEntityId(), Color.GREEN.getRGB(), 0x006400);

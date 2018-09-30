@@ -2,8 +2,11 @@ package ru.flamesword.ordinaryores.items.magicore;
 
 import java.util.List;
 
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
@@ -30,7 +33,7 @@ public class ItemMagicOrePickaxe extends ItemPickaxe {
 	          }
 	     }
 	}
-	
+
 	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean show) {
 		list.add(ConfigHelper.digSpeedEffectName + " I " + ConfigHelper.effectIndicator);
 	}

@@ -38,7 +38,7 @@ public class PlayerInteractHandler {
                 level = 4;
             }
             // Вероятность выпадения зависит от хп моба
-            if (Math.random() <= 0.02 * level) {
+            if (Math.random() <= 0.01 * level) {
                 if (!killedMob.worldObj.isRemote) {
                     // Сила предмета так же зависит от хп моба
                     String mobName = killedMob.getCommandSenderName();

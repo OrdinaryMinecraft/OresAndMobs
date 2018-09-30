@@ -65,7 +65,6 @@ public class EntityBandit extends EntityMob {
         this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(.35D);
     }
 
-    //c �����
     public int getTotalArmorValue()
     {
         int i = super.getTotalArmorValue() + 2;

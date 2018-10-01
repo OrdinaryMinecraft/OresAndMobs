@@ -465,8 +465,7 @@ public class OrdinaryOresEventHandler {
 			EntityArrow arrow = (EntityArrow) event.entity;
 			if (arrow.shootingEntity instanceof EntityPlayer) {
 				EntityPlayer archer = (EntityPlayer) arrow.shootingEntity;
-
-				if (event.entity.getClass().getName().equals(EntityArrow.class.getName())) {
+				if (event.entity.getClass().getName().equals(EntityArrow.class.getName()) || event.entity.getClass().getName().equals("imc.entities.EntityIMCArrow")) {
 					if (archer.getHeldItem() != null) {
 
 						boolean isFrostBow = false;

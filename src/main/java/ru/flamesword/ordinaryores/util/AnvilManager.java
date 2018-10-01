@@ -70,21 +70,21 @@ public class AnvilManager
                 ItemRegistry.dragonessense,
                 1,
                 ItemRegistry.dragonictoolcharged,
-                50
+                35
         );
         this.addItemRecipe(
                 ItemRegistry.dragonicbow,
                 ItemRegistry.dragonessense,
-            1,
+                1,
                 ItemRegistry.dragonicbowcharged,
-            50
+                35
         );
         this.addItemRecipe(
                 ItemRegistry.dragonicspear,
                 ItemRegistry.dragonessense,
                 1,
                 ItemRegistry.dragonicspearcharged,
-                50
+                35
         );
     }
 

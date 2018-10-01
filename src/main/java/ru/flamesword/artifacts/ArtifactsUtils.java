@@ -35,27 +35,27 @@ public class ArtifactsUtils {
             Item item = Item.getItemById(itemId);
             // Проверки. Стараюсь сгенерировать предмет качества по уровню
             if (item instanceof ItemTool) {
-                System.out.println("Try " + i + " durability:" + ((ItemTool) item).func_150913_i().getMaxUses());
-                if (level > 2 && item.getMaxDamage() > 800) {
+                Integer durability = ((ItemTool) item).func_150913_i().getMaxUses();
+                if (level > 2 && durability > 800) {
                     break;
                 }
-                if (level <= 2 && item.getMaxDamage() <= 800) {
+                if (level <= 2 && durability <= 800) {
                     break;
                 }
             } else if (item instanceof ItemSword) {
-                System.out.println("Try " + i + " damage:" + ((ItemSword) item).func_150931_i());
-                if (level > 2 && item.getMaxDamage() > 800) {
+                Float damage = ((ItemSword) item).func_150931_i();
+                if (level > 2 && damage > 2.5) {
                     break;
                 }
-                if (level <= 2 && item.getMaxDamage() <= 800) {
+                if (level <= 2 && damage <= 2.5) {
                     break;
                 }
             } else if (item instanceof ItemArmor) {
-                System.out.println("Try " + i + " arm dur:" + ((ItemArmor) item).getArmorMaterial().getDurability(1));
-                if (level > 2 && item.getMaxDamage() > 300) {
+                Integer durability = ((ItemArmor) item).getArmorMaterial().getDurability(1);
+                if (level > 2 && durability > 300) {
                     break;
                 }
-                if (level <= 2 && item.getMaxDamage() <= 300) {
+                if (level <= 2 && durability <= 300) {
                     break;
                 }
             } else {

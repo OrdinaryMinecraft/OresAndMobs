@@ -25,6 +25,7 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import org.lwjgl.Sys;
 import ru.flamesword.ordinaryores.OrdinaryOresBase;
 
 import static net.minecraftforge.common.util.ForgeDirection.*;
@@ -368,9 +369,9 @@ public class BlockDragonChest extends BlockContainer
         }
     }
 
-    public void breakBlock(World p_149749_1_, int p_149749_2_, int p_149749_3_, int p_149749_4_, Block p_149749_5_, int p_149749_6_)
+    public void breakBlock(World world, int x, int y, int z, Block block, int p_149749_6_)
     {
-        TileEntityDragonChest TileEntityDragonChest = (TileEntityDragonChest)p_149749_1_.getTileEntity(p_149749_2_, p_149749_3_, p_149749_4_);
+        TileEntityDragonChest TileEntityDragonChest = (TileEntityDragonChest)world.getTileEntity(x, y, z);
 
         if (TileEntityDragonChest != null)
         {
@@ -379,12 +380,12 @@ public class BlockDragonChest extends BlockContainer
                 ItemStack itemstack = TileEntityDragonChest.getStackInSlot(i1);
 
                 if (itemstack != null)
-                {
+                try {
                     float f = this.field_149955_b.nextFloat() * 0.8F + 0.1F;
                     float f1 = this.field_149955_b.nextFloat() * 0.8F + 0.1F;
                     EntityItem entityitem;
 
-                    for (float f2 = this.field_149955_b.nextFloat() * 0.8F + 0.1F; itemstack.stackSize > 0; p_149749_1_.spawnEntityInWorld(entityitem))
+                    for (float f2 = this.field_149955_b.nextFloat() * 0.8F + 0.1F; itemstack.stackSize > 0; world.spawnEntityInWorld(entityitem))
                     {
                         int j1 = this.field_149955_b.nextInt(21) + 10;
 
@@ -394,7 +395,13 @@ public class BlockDragonChest extends BlockContainer
                         }
 
                         itemstack.stackSize -= j1;
-                        entityitem = new EntityItem(p_149749_1_, (double)((float)p_149749_2_ + f), (double)((float)p_149749_3_ + f1), (double)((float)p_149749_4_ + f2), new ItemStack(itemstack.getItem(), j1, itemstack.getItemDamage()));
+                        entityitem = new EntityItem(
+                                world,
+                                (double)((float)x + f),
+                                (double)((float)y + f1),
+                                (double)((float)z + f2),
+                                new ItemStack(itemstack.getItem(), j1, itemstack.getItemDamage())
+                        );
                         float f3 = 0.05F;
                         entityitem.motionX = (double)((float)this.field_149955_b.nextGaussian() * f3);
                         entityitem.motionY = (double)((float)this.field_149955_b.nextGaussian() * f3 + 0.2F);
@@ -405,13 +412,15 @@ public class BlockDragonChest extends BlockContainer
                             entityitem.getEntityItem().setTagCompound((NBTTagCompound)itemstack.getTagCompound().copy());
                         }
                     }
+                } catch (Exception e) {
+                    System.out.println("ERROR: dragon chest item drop, item=" + itemstack.getDisplayName() + " error=" + e.getMessage());
                 }
             }
 
-            p_149749_1_.func_147453_f(p_149749_2_, p_149749_3_, p_149749_4_, p_149749_5_);
+            world.func_147453_f(x, y, z, block);
         }
 
-        super.breakBlock(p_149749_1_, p_149749_2_, p_149749_3_, p_149749_4_, p_149749_5_, p_149749_6_);
+        super.breakBlock(world, x, y, z, block, p_149749_6_);
     }
 
     /**

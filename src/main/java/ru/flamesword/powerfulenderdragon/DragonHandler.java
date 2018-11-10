@@ -1,12 +1,13 @@
 package ru.flamesword.powerfulenderdragon;
 
+import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 
 public class DragonHandler {
 	
-	@SubscribeEvent
+	@SubscribeEvent(priority = EventPriority.HIGHEST)
 	public void onEntitySpawn(EntityJoinWorldEvent event) {
 		if(event.entity.getClass().equals(EntityDragon.class)){
         	if	(!event.world.isRemote && event.world.provider.dimensionId == 1)	{
@@ -14,6 +15,7 @@ public class DragonHandler {
 				dragon.setPosition(event.entity.posX, event.entity.posY, event.entity.posZ);
 				event.world.spawnEntityInWorld(dragon);
         	}
+			event.world.onEntityRemoved(event.entity);
         	event.setCanceled(true);
 		}
 	}

@@ -216,7 +216,7 @@ public class OrdinaryOresEventHandler {
 		}
 	}
 
-	@SubscribeEvent
+	@SubscribeEvent(priority = EventPriority.HIGHEST)
 	public void onEntitySpawn(EntityJoinWorldEvent event) {
 		if (event.entity.getClass().equals(EntityZombie.class)){
 			if (!event.world.isRemote)	{
@@ -231,6 +231,7 @@ public class OrdinaryOresEventHandler {
 					EntityIceElemental iceElemental = new EntityIceElemental(event.world);
 					iceElemental.setPosition(event.entity.posX, event.entity.posY, event.entity.posZ);
 					event.world.spawnEntityInWorld(iceElemental);
+					event.world.onEntityRemoved(event.entity);
 					event.setCanceled(true);
 				} else {
 					if (Math.random() <= 0.1) {
@@ -244,6 +245,7 @@ public class OrdinaryOresEventHandler {
 							ghost.setPosition(event.entity.posX, event.entity.posY, event.entity.posZ);
 							event.world.spawnEntityInWorld(ghost);
 						}
+						event.world.onEntityRemoved(event.entity);
 						event.setCanceled(true);
 					}
 				}
@@ -263,6 +265,7 @@ public class OrdinaryOresEventHandler {
 						EntityZigomoreSkeleton zigomore = new EntityZigomoreSkeleton(event.world);
 						zigomore.setPosition(event.entity.posX, event.entity.posY, event.entity.posZ);
 						event.world.spawnEntityInWorld(zigomore);
+						event.world.onEntityRemoved(event.entity);
 						event.setCanceled(true);
 					}
 				} else {
@@ -270,6 +273,7 @@ public class OrdinaryOresEventHandler {
 						EntityEnderSkeleton skeleton = new EntityEnderSkeleton(event.world);
 						skeleton.setPosition(event.entity.posX, event.entity.posY, event.entity.posZ);
 						event.world.spawnEntityInWorld(skeleton);
+						event.world.onEntityRemoved(event.entity);
 						event.setCanceled(true);
 					}
 				}
@@ -281,6 +285,7 @@ public class OrdinaryOresEventHandler {
 					EntityEnderCreeper creeper = new EntityEnderCreeper(event.world);
 					creeper.setPosition(event.entity.posX, event.entity.posY, event.entity.posZ);
 					event.world.spawnEntityInWorld(creeper);
+					event.world.onEntityRemoved(event.entity);
 					event.setCanceled(true);
 				}
 			}
@@ -470,7 +475,6 @@ public class OrdinaryOresEventHandler {
 
 						boolean isFrostBow = false;
 						if (archer.getHeldItem().getItem() instanceof ItemDragonicBow) {
-							System.out.println("DRAGON");
 							boolean charged = false;
 							if (archer.getHeldItem().getItem() instanceof ItemDragonicBowCharged) {
 								charged = true;
@@ -480,7 +484,6 @@ public class OrdinaryOresEventHandler {
 								damageBonus = 0.1 + ((double) ((ItemDragonicBowCharged)archer.getHeldItem().getItem()).getBonusValue(archer.getHeldItem()) * 0.01);
 								arrow.setFire(10);
 							}
-							System.out.println(damageBonus);
 							arrow.setDamage(arrow.getDamage() * ((double) 1 + damageBonus));
 							// + 50% range
 							arrow.motionX *= 1.0F + 50 / 100F;
@@ -489,7 +492,6 @@ public class OrdinaryOresEventHandler {
 
 						} else if (archer.getHeldItem().getItem() == ItemRegistry.frostbow) {
 							// + 5% damage
-							System.out.println("FROST");
 							isFrostBow = true;
 							arrow.setDamage(arrow.getDamage() * 1.05);
 						}

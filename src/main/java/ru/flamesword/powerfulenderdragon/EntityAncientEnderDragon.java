@@ -13,6 +13,8 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
+import java.util.Objects;
+
 public class EntityAncientEnderDragon extends EntityDragon {
 	
     private int explosionStrength = 1;
@@ -161,10 +163,11 @@ public class EntityAncientEnderDragon extends EntityDragon {
             if (Math.random() <= 0.3) {
                 int index = this.rand.nextInt(ConfigHelper.dragonChestloot.size());
                 Item item = Item.getItemById(Integer.parseInt(ConfigHelper.dragonChestloot.get(index)));
-                ItemStack stack = new ItemStack(item, 1);
-                te.setInventorySlotContents(i, stack);
+                if (Objects.nonNull(item)) {
+                    ItemStack stack = new ItemStack(item, 1);
+                    te.setInventorySlotContents(i, stack);
+                }
             }
-
         }
     }
 }

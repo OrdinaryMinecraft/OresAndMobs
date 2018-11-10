@@ -13,6 +13,9 @@ public class RecipeResistry {
 
     public static void registerRecipes() {
         GameRegistry.addShapelessRecipe(new ItemStack(malachiteitem, 9), new Object[] {malachiteblock});
+        GameRegistry.addRecipe(new ItemStack(malachiteblock, 1),
+                new Object[]{ "AAA", "AAA", "AAA",
+                        ('A'), malachiteitem});
         GameRegistry.addRecipe(new ItemStack(malachitepickaxe, 1),
                 new Object[]{ "AAA", " B ", " B ",
                         ('A'), malachiteitem, ('B'), Items.stick});

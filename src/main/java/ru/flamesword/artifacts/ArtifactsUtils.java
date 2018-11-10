@@ -28,7 +28,6 @@ public class ArtifactsUtils {
     // Инкостыляция 80 лвла
     public static void createRandomArtifact(short level, String from, EntityPlayer player, int x, int y, int z) {
         Integer itemId = null;
-        System.out.println(level);
         for (int i = 0; i < 50; i++) {
             Integer number = randomBetween(0, ConfigHelper.itemsForDrop.size() - 1);
             itemId = Integer.parseInt(ConfigHelper.itemsForDrop.get(number));

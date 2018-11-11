@@ -20,7 +20,7 @@ public class PlayerInteractHandler {
     private static Random random = new Random();
 
     @SubscribeEvent
-    public void onAnvilRepair(LivingDeathEvent event) {
+    public void onMobDeath(LivingDeathEvent event) {
         if (event.entityLiving instanceof EntityMob && event.source.getEntity() != null && event.source.getEntity() instanceof EntityPlayer) {
             EntityPlayer player = (EntityPlayer) event.source.getEntity();
             EntityMob killedMob = (EntityMob) event.entityLiving;

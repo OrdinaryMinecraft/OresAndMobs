@@ -27,11 +27,9 @@ public class EventsEventHandler {
     final int [] negativeEffects = {2, 4, 9, 15, 17, 18, 19, 20};
 
     @SubscribeEvent
-    public void periodicalPlayerEvent(TickEvent.PlayerTickEvent event)
-    {
+    public void periodicalPlayerEvent(TickEvent.PlayerTickEvent event) {
         EntityPlayer player = event.player;
-        if (event.phase != TickEvent.Phase.START || player.worldObj.isRemote)
-        {
+        if (event.phase != TickEvent.Phase.START || player.worldObj.isRemote) {
             return;
         }
 

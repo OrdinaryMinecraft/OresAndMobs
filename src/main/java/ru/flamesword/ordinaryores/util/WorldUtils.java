@@ -41,6 +41,17 @@ public class WorldUtils {
         teleportToDimension(player, dimensionId, null, null);
     }
 
+    public static WorldServer getWorldServerByDimensionId(int dimensionId) {
+        WorldServer worldServer = null;
+        for (WorldServer ws : MinecraftServer.getServer().worldServers) {
+            if (dimensionId == ws.provider.dimensionId) {
+                worldServer = ws;
+                break;
+            }
+        }
+        return worldServer;
+    }
+
     public static void teleportToDimension(EntityPlayerMP player, int dimensionId, Integer x, Integer z) {
 
         World world = DimensionManager.getWorld(dimensionId);

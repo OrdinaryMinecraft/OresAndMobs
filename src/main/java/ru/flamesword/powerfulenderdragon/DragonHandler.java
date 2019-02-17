@@ -8,7 +8,7 @@ import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 
 public class DragonHandler {
 	
-	@SubscribeEvent(priority = EventPriority.LOW)
+	@SubscribeEvent(priority = EventPriority.HIGHEST)
 	public void onEntitySpawn(EntityJoinWorldEvent event) {
 		if (event.world.isRemote) {
 			return;

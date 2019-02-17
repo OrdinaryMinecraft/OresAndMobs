@@ -212,7 +212,7 @@ public class OrdinaryOresEventHandler {
 		}
 	}
 
-	@SubscribeEvent(priority = EventPriority.LOW)
+	@SubscribeEvent(priority = EventPriority.HIGHEST)
 	public void onEntitySpawn(EntityJoinWorldEvent event) {
 		if (event.world.isRemote) {
 			return;

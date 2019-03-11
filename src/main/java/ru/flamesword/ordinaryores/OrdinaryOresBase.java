@@ -102,6 +102,7 @@ public class OrdinaryOresBase {
 		EntityRegistry.registerGlobalEntityID(EntityRedDragon.class, "Red Dragon", EntityRegistry.findGlobalUniqueEntityId(), Color.red.getRGB(), Color.red.getRGB());
 		EntityRegistry.registerGlobalEntityID(EntityFrostArrow.class, "FrostArrow", EntityRegistry.findGlobalUniqueEntityId());
 		EntityRegistry.registerGlobalEntityID(EntityZigomoreSkeleton.class, "Zigomore Skeleton", EntityRegistry.findGlobalUniqueEntityId(), Color.WHITE.getRGB(), Color.CYAN.getRGB());
+		EntityRegistry.registerGlobalEntityID(EntityMinionSprout.class, "MinionSprout", EntityRegistry.findGlobalUniqueEntityId());
 
 		EntityRegistry.addSpawn(EntityHerobrine.class, ConfigHelper.herobrineSpawnRate, 1, 1, EnumCreatureType.monster, BiomeDictionary.getBiomesForType(Type.PLAINS));
 		EntityRegistry.addSpawn(EntityUndeadSpider.class, ConfigHelper.undeadSpiderSpawnRate, 1, 1, EnumCreatureType.monster, BiomeDictionary.getBiomesForType(Type.DEAD));

@@ -1,17 +1,21 @@
 package ru.flamesword.artifacts;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.StatCollector;
 import net.minecraft.util.StringUtils;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 
+import java.util.Objects;
 import java.util.Random;
 
 
@@ -24,6 +28,12 @@ public class PlayerInteractHandler {
         if (event.entityLiving instanceof EntityMob && event.source.getEntity() != null && event.source.getEntity() instanceof EntityPlayer) {
             EntityPlayer player = (EntityPlayer) event.source.getEntity();
             EntityMob killedMob = (EntityMob) event.entityLiving;
+
+            if (killedMob.getMaxHealth() <= 10 || entityIsFromSpawner(killedMob)) {
+                System.out.println("Skip entity: " + killedMob.toString());
+                return;
+            }
+
             int level = 0;
             if (killedMob.getMaxHealth() < 20) {
                 level = 1;
@@ -52,6 +62,18 @@ public class PlayerInteractHandler {
                 }
             }
         }
+    }
+
+    private boolean entityIsFromSpawner(Entity entity) {
+        NBTTagCompound data = new NBTTagCompound();
+        entity.writeToNBT(data);
+
+        NBTTagCompound forgeData = data.getCompoundTag("ForgeData");
+        if (Objects.nonNull(forgeData)) {
+            return forgeData.getBoolean("spawner");
+        }
+
+        return false;
     }
 
     @SubscribeEvent

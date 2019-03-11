@@ -107,6 +107,7 @@ public class ItemRegistry {
     public static Item purplemace;
     public static Item raingodspear;
     public static Item natureboots;
+    public static Item hoeofnature;
 
     public static Item dragonicbow;
     public static Item dragonicbowcharged;
@@ -325,6 +326,8 @@ public class ItemRegistry {
         GameRegistry.registerItem(catacombsword, "catacombsword");
         natureboots = new ItemNatureBoots(0, 3).setUnlocalizedName("natureboots").setTextureName("ordinaryores:NatureBoots");
         GameRegistry.registerItem(natureboots, "natureboots");
+        hoeofnature = new ItemHoeOfNature().setUnlocalizedName("hoeofnature");
+        GameRegistry.registerItem(hoeofnature, "hoeofnature");
 
         necromanthelmet = new NecromantArmor(0, 0).setUnlocalizedName("necromanthelmet").setTextureName("ordinaryores:NecromantHelmet");
         necromantplate = new NecromantArmor(0, 1).setUnlocalizedName("necromantplate").setTextureName("ordinaryores:NecromantChestplate");

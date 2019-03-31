@@ -52,7 +52,7 @@ public class ItemChestplateOfRegeneration extends ItemArmor {
 
   	  public void onArmorTick(World world, EntityPlayer player, ItemStack armor) {
   			  if(armor.getItem() == ItemRegistry.regenerationchest) {
-  				  	player.addPotionEffect(new PotionEffect(Potion.regeneration.id, 20));
+  				  	player.addPotionEffect(new PotionEffect(Potion.regeneration.id, 80));
   			  }
   	  }
 }

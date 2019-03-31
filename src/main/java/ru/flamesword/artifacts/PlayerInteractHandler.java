@@ -25,12 +25,12 @@ public class PlayerInteractHandler {
 
     @SubscribeEvent
     public void onMobDeath(LivingDeathEvent event) {
-        if (event.entityLiving instanceof EntityMob && event.source.getEntity() != null && event.source.getEntity() instanceof EntityPlayer) {
+        if ((event.entityLiving instanceof EntityMob || event.entityLiving.getClass().getName().toLowerCase().contains("custom")) && event.source.getEntity() != null && event.source.getEntity() instanceof EntityPlayer) {
             EntityPlayer player = (EntityPlayer) event.source.getEntity();
             EntityMob killedMob = (EntityMob) event.entityLiving;
 
-            if (killedMob.getMaxHealth() <= 10 || entityIsFromSpawner(killedMob)) {
-                System.out.println("Skip entity: " + killedMob.toString());
+            if (killedMob.getMaxHealth() <= 10 || ArtifactsUtils.entityIsFromSpawner(killedMob)) {
+                //System.out.println("Skip entity: " + killedMob.toString());
                 return;
             }
 
@@ -62,18 +62,6 @@ public class PlayerInteractHandler {
                 }
             }
         }
-    }
-
-    private boolean entityIsFromSpawner(Entity entity) {
-        NBTTagCompound data = new NBTTagCompound();
-        entity.writeToNBT(data);
-
-        NBTTagCompound forgeData = data.getCompoundTag("ForgeData");
-        if (Objects.nonNull(forgeData)) {
-            return forgeData.getBoolean("spawner");
-        }
-
-        return false;
     }
 
     @SubscribeEvent

@@ -4,13 +4,16 @@ import cpw.mods.fml.common.network.internal.FMLProxyPacket;
 import cpw.mods.fml.relauncher.Side;
 import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.*;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.StatCollector;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
 public class ArtifactsUtils {
@@ -65,11 +68,15 @@ public class ArtifactsUtils {
         ArtifactsBase.otherChannel.sendTo(packet, (EntityPlayerMP) player);
     }
 
-
     public static ItemStack getArtifact(short level, String name, int itemId, String from, String playername) {
         ItemStack result = null;
         Item item = Item.getItemById(itemId);
         result = new ItemStack(item, 1);
+
+        if (result.getDisplayName().toLowerCase().contains("null")) {
+            result.setStackDisplayName(StatCollector.translateToLocal("item.unknown.name"));
+        }
+
         String word1 = "";
         int number = 0;
         if (getLastSybmol(name).equals("а") || getLastSybmol(name).equals("я")) {
@@ -141,7 +148,9 @@ public class ArtifactsUtils {
 
         result.setItemDamage(randomBetween(0, (int) (result.getMaxDamage() * (0.4 - 0.1 * level) * 2)));
 
-        System.out.println("CREATED ARTIFACT level:" + level + " item:" + item.getUnlocalizedName() + " from:" + from + " name:" + result.getDisplayName() + " player:" + playername);
+        result.hasEffect(1);
+
+        System.out.println("CREATED ARTIFACT level:" + level + " player:" + playername + " item:" + item.getUnlocalizedName() + " from:" + from + " name:" + result.getDisplayName());
         return result;
     }
 
@@ -169,5 +178,17 @@ public class ArtifactsUtils {
 
     public static String getLastSybmol(String string) {
         return string.substring(string.length() - 1);
+    }
+
+    public static boolean entityIsFromSpawner(Entity entity) {
+        NBTTagCompound data = new NBTTagCompound();
+        entity.writeToNBT(data);
+
+        NBTTagCompound forgeData = data.getCompoundTag("ForgeData");
+        if (Objects.nonNull(forgeData)) {
+            return forgeData.getBoolean("spawner");
+        }
+
+        return false;
     }
 }

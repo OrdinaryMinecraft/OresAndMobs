@@ -46,7 +46,9 @@ public class ItemDragonicSpear extends ItemSword {
     @Override
     public IIcon getIconIndex(ItemStack item) {
         return this.getIcon(item,0);
-    }    public static int getEnemiesKilled(ItemStack item) {
+    }
+
+    public static int getEnemiesKilled(ItemStack item) {
         NBTTagCompound tagCompound = item.getTagCompound();
         if (tagCompound == null) {
             tagCompound = new NBTTagCompound();

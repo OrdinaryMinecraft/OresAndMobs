@@ -10,6 +10,7 @@ import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.world.World;
 
@@ -23,6 +24,8 @@ public class EntitySprout extends EntityMob {
 		this.tasks.addTask(3, new EntityAILookIdle(this));
 		this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
 		this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
+		this.setSize(0.7F, 0.7F);
+		this.experienceValue = 0;
 	}
 	
 	@Override
@@ -40,6 +43,10 @@ public class EntitySprout extends EntityMob {
 	
 	@Override
 	public void dropFewItems(boolean hitRecently, int looting) {
+	}
+
+	@Override
+	public void dropRareDrop(int looting) {
 		dropItem(Item.getItemFromBlock(Blocks.sapling), 1);
 	}
 }

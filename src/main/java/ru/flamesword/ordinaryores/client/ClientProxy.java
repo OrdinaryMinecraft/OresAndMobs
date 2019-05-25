@@ -1,19 +1,12 @@
 package ru.flamesword.ordinaryores.client;
 
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.relauncher.Side;
 import net.minecraft.client.model.ModelSlime;
 import net.minecraft.client.renderer.entity.RenderSlime;
-import net.minecraft.entity.projectile.EntityArrow;
-import net.minecraft.world.World;
 import net.minecraftforge.client.MinecraftForgeClient;
 import ru.flamesword.ordinaryores.CommonProxy;
-import ru.flamesword.ordinaryores.OrdinaryOresBase;
 import ru.flamesword.ordinaryores.entities.*;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import ru.flamesword.ordinaryores.items.ItemRegistry;
-
-import java.util.Random;
 
 public class ClientProxy extends CommonProxy {
 
@@ -40,7 +33,8 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityBanditLeader.class, new RenderBanditLeader());
 		RenderingRegistry.registerEntityRenderingHandler(EntityRedDragon.class, new RenderRedDragon());
 		RenderingRegistry.registerEntityRenderingHandler(EntityZigomoreSkeleton.class, new RenderZigomoreSkeleton());
-		RenderingRegistry.registerEntityRenderingHandler(EntityMinionSprout.class, new RenderSprout());
+		RenderingRegistry.registerEntityRenderingHandler(EntitySentinelTree.class, new RenderSentinelTree());
+		RenderingRegistry.registerEntityRenderingHandler(EntityBear.class, new RenderBear());
 		MinecraftForgeClient.registerItemRenderer(ItemRegistry.raingodspear, new ItemRendererSpear());
 		MinecraftForgeClient.registerItemRenderer(ItemRegistry.dragonicbow, new ItemRendererBow());
 		MinecraftForgeClient.registerItemRenderer(ItemRegistry.dragonicbowcharged, new ItemRendererBow());

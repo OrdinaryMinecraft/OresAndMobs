@@ -23,7 +23,6 @@ public class EventsEventHandler {
 
     private final Random random = new Random();
 
-
     final int [] negativeEffects = {2, 4, 9, 15, 17, 18, 19, 20};
 
     @SubscribeEvent
@@ -68,22 +67,13 @@ public class EventsEventHandler {
                                 }
                             }
                         }
+
                         tryCount++;
                         if (tryCount > 100) {
                             break;
                         }
                     }
                     if (pointFound) {
-                        player.addChatMessage(new ChatComponentTranslation("event.bandit.start"));
-                        System.out.println("------------------------");
-                        System.out.println("BANDIT EVENT. Player: " + player.getDisplayName());
-                        System.out.println("Player coordinates: " + player.posX + " " + player.posY + " " + player.posZ);
-                        System.out.println("Player level: " + WorldUtils.getPlayerLevel(player));
-                        System.out.println("Player world: " + player.worldObj.provider.getDimensionName() + " "  + player.worldObj.provider.dimensionId);
-                        System.out.println("Bandit coordinates: " + x + " " + y + " " + z);
-                        System.out.println("Dist: " + Math.sqrt(Math.pow((x - player.posX), 2) + Math.pow((z - player.posZ), 2)));
-                        System.out.println("Bandit lightlevel: " + player.worldObj.getLightBrightness(x, y, z));
-                        System.out.println("------------------------");
                         int count = 1;
                         if (WorldUtils.getPlayerLevel(player) > 10) {
                             count = WorldUtils.getPlayerLevel(player) / 5;
@@ -106,6 +96,19 @@ public class EventsEventHandler {
                             player.worldObj.spawnEntityInWorld(banditLeader);
                             banditLeader.setRevengeTarget(player);
                             banditLeader.onUpdate();
+                        }
+
+                        if (WorldUtils.entityExist(EntityBandit.class, player.worldObj, x, y, z)) {
+                            player.addChatMessage(new ChatComponentTranslation("event.bandit.start"));
+                            System.out.println("------------------------");
+                            System.out.println("BANDIT EVENT. Player: " + player.getDisplayName());
+                            System.out.println("Player coordinates: " + player.posX + " " + player.posY + " " + player.posZ);
+                            System.out.println("Player level: " + WorldUtils.getPlayerLevel(player));
+                            System.out.println("Player world: " + player.worldObj.provider.getDimensionName() + " "  + player.worldObj.provider.dimensionId);
+                            System.out.println("Bandit coordinates: " + x + " " + y + " " + z);
+                            System.out.println("Dist: " + Math.sqrt(Math.pow((x - player.posX), 2) + Math.pow((z - player.posZ), 2)));
+                            System.out.println("Bandit lightlevel: " + player.worldObj.getLightBrightness(x, y, z));
+                            System.out.println("------------------------");
                         }
                     }
                     return;
@@ -149,21 +152,24 @@ public class EventsEventHandler {
                             }
                         }
                         if (pointFound) {
-                            MinecraftServer.getServer().getConfigurationManager().sendChatMsg(new ChatComponentTranslation("event.dragon.start", player.getDisplayName()));
-                            System.out.println("------------------------");
-                            System.out.println("DRAGON EVENT. Player: " + player.getDisplayName());
-                            System.out.println("Player coordinates: " + player.posX + " " + player.posY + " " + player.posZ);
-                            System.out.println("Player level: " + WorldUtils.getPlayerLevel(player));
-                            System.out.println("Player world: " + player.worldObj.provider.getDimensionName() + " "  + player.worldObj.provider.dimensionId);
-                            System.out.println("Dragon coordinates: " + x + " " + y + " " + z);
-                            System.out.println("Dist: " + Math.sqrt(Math.pow((x - player.posX), 2) + Math.pow((z - player.posZ), 2)));
-                            System.out.println("Time: " + player.worldObj.getWorldTime());
-                            System.out.println("------------------------");
                             EntityRedDragon dragon = new EntityRedDragon(player.worldObj);
                             dragon.setPosition(x, y, z);
                             player.worldObj.spawnEntityInWorld(dragon);
                             dragon.setRevengeTarget(player);
                             dragon.onUpdate();
+
+                            if (WorldUtils.entityExist(EntityRedDragon.class, player.worldObj, x, y, z)) {
+                                MinecraftServer.getServer().getConfigurationManager().sendChatMsg(new ChatComponentTranslation("event.dragon.start", player.getDisplayName()));
+                                System.out.println("------------------------");
+                                System.out.println("DRAGON EVENT. Player: " + player.getDisplayName());
+                                System.out.println("Player coordinates: " + player.posX + " " + player.posY + " " + player.posZ);
+                                System.out.println("Player level: " + WorldUtils.getPlayerLevel(player));
+                                System.out.println("Player world: " + player.worldObj.provider.getDimensionName() + " "  + player.worldObj.provider.dimensionId);
+                                System.out.println("Dragon coordinates: " + x + " " + y + " " + z);
+                                System.out.println("Dist: " + Math.sqrt(Math.pow((x - player.posX), 2) + Math.pow((z - player.posZ), 2)));
+                                System.out.println("Time: " + player.worldObj.getWorldTime());
+                                System.out.println("------------------------");
+                            }
                         }
                         return;
                     }
@@ -206,18 +212,21 @@ public class EventsEventHandler {
                         }
                     }
                     if (pointFound) {
-                        player.addChatMessage(new ChatComponentTranslation("event.herobrine.start"));
-                        System.out.println("------------------------");
-                        System.out.println("HEROBRINE EVENT. Player: " + player.getDisplayName());
-                        System.out.println("Player coordinates: " + player.posX + " " + player.posY + " " + player.posZ);
-                        System.out.println("Player world: " + player.worldObj.provider.getDimensionName() + " "  + player.worldObj.provider.dimensionId);
-                        System.out.println("Herobrine coordinates: " + x + " " + y + " " + z);
-                        System.out.println("Dist: " + Math.sqrt(Math.pow((x - player.posX), 2) + Math.pow((z - player.posZ), 2)));
-                        System.out.println("Time: " + player.worldObj.getWorldTime());
-                        System.out.println("------------------------");
                         EntityHerobrine herobrine = new EntityHerobrine(player.worldObj);
                         herobrine.setPosition(x, y, z);
                         player.worldObj.spawnEntityInWorld(herobrine);
+
+                        if (WorldUtils.entityExist(EntityHerobrine.class, player.worldObj, x, y, z)) {
+                            player.addChatMessage(new ChatComponentTranslation("event.herobrine.start"));
+                            System.out.println("------------------------");
+                            System.out.println("HEROBRINE EVENT. Player: " + player.getDisplayName());
+                            System.out.println("Player coordinates: " + player.posX + " " + player.posY + " " + player.posZ);
+                            System.out.println("Player world: " + player.worldObj.provider.getDimensionName() + " "  + player.worldObj.provider.dimensionId);
+                            System.out.println("Herobrine coordinates: " + x + " " + y + " " + z);
+                            System.out.println("Dist: " + Math.sqrt(Math.pow((x - player.posX), 2) + Math.pow((z - player.posZ), 2)));
+                            System.out.println("Time: " + player.worldObj.getWorldTime());
+                            System.out.println("------------------------");
+                        }
                     }
                     return;
                 }

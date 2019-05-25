@@ -33,7 +33,6 @@ public class Main {
 
 		ConfigHelper.setupConfig(new Configuration(event.getSuggestedConfigurationFile()));
 
-		FMLCommonHandler.instance().bus().register(eventHandler);
 		MinecraftForge.EVENT_BUS.register(eventHandler);
 		EntityRegistry.registerGlobalEntityID(EntityAncientEnderDragon.class, "ancientenderdragon", EntityRegistry.findGlobalUniqueEntityId());
 		GameRegistry.registerWorldGenerator(new WorldGenerator(), 1);

@@ -8,6 +8,10 @@ import ru.flamesword.ordinaryores.items.ItemRegistry;
 
 public class EntityFrostArrow extends EntityArrow {
 
+    public EntityFrostArrow(World world) {
+        super(world);
+    }
+
     public EntityFrostArrow(World world, EntityPlayer player, float f) {
         super(world, player, f);
     }

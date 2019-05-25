@@ -22,26 +22,16 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldServer;
-import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.event.AnvilUpdateEvent;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
-import net.minecraftforge.event.entity.living.LivingAttackEvent;
-import net.minecraftforge.event.entity.living.LivingDeathEvent;
-import net.minecraftforge.event.entity.living.LivingEvent;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.event.world.BlockEvent.BreakEvent;
 import ru.flamesword.ordinaryores.items.dragonic.ItemDragonicBow;
 import ru.flamesword.ordinaryores.items.ItemRegistry;
-import ru.flamesword.ordinaryores.items.dragonic.ItemDragonicBowCharged;
 import ru.flamesword.ordinaryores.util.AnvilManager;
 import ru.flamesword.ordinaryores.util.ConfigHelper;
 import ru.flamesword.ordinaryores.OrdinaryOresUtil;
@@ -84,8 +74,14 @@ public class OrdinaryOresEventHandler {
 		if (event.entityLiving.getClass() == EntityEnderSkeleton.class) {
 			if (this.random.nextInt(1)+1 == 1) {
 				EntityEnderSkeleton entity = (EntityEnderSkeleton) event.entityLiving;
-				if (entity.teleportRandomly())
-				event.setCanceled(true);
+				if (entity.teleportRandomly()) {
+					event.entityLiving.hurtTime = event.entityLiving.maxHurtTime = 0;
+					event.entityLiving.hurtResistantTime = 0;
+					event.entityLiving.motionX = 0;
+					event.entityLiving.motionY = 0;
+					event.entityLiving.motionZ = 0;
+					event.entityLiving.setAbsorptionAmount(event.ammount);
+				}
 			}
 		}
 		if (event.source.isProjectile()) {
@@ -212,143 +208,6 @@ public class OrdinaryOresEventHandler {
 		}
 	}
 
-	@SubscribeEvent(priority = EventPriority.HIGHEST)
-	public void onEntitySpawn(EntityJoinWorldEvent event) {
-		if (event.world.isRemote) {
-			return;
-		}
-		if (event.entity.getClass().equals(EntityZombie.class)){
-			if (!event.world.isRemote)	{
-				boolean isColdBiome = false;
-				for (BiomeGenBase biome : BiomeDictionary.getBiomesForType(BiomeDictionary.Type.SNOWY)) {
-					if (biome == event.world.getBiomeGenForCoords((int) event.entity.posX, (int) event.entity.posZ)) {
-						isColdBiome = true;
-						break;
-					}
-				}
-				if (isColdBiome) {
-					EntityIceElemental iceElemental = new EntityIceElemental(event.world);
-					iceElemental.setPosition(event.entity.posX, event.entity.posY, event.entity.posZ);
-					event.world.spawnEntityInWorld(iceElemental);
-					event.setCanceled(true);
-				} else {
-					if (Math.random() <= 0.1) {
-						double random = Math.random();
-						if (random < 0.5) {
-							EntityGhoul ghoul = new EntityGhoul(event.world);
-							ghoul.setPosition(event.entity.posX, event.entity.posY, event.entity.posZ);
-							event.world.spawnEntityInWorld(ghoul);
-						} else {
-							EntityGhost ghost = new EntityGhost(event.world);
-							ghost.setPosition(event.entity.posX, event.entity.posY, event.entity.posZ);
-							event.world.spawnEntityInWorld(ghost);
-						}
-						event.setCanceled(true);
-					}
-				}
-			}
-		} else if (event.entity.getClass().equals(EntitySkeleton.class)){
-			if (!event.world.isRemote)	{
-				boolean isColdBiome = false;
-				for (BiomeGenBase biome : BiomeDictionary.getBiomesForType(BiomeDictionary.Type.SNOWY)) {
-					if (biome == event.world.getBiomeGenForCoords((int) event.entity.posX, (int) event.entity.posZ)) {
-						isColdBiome = true;
-						break;
-					}
-				}
-				if (isColdBiome) {
-					if (Math.random() <= 0.8) {
-						EntityZigomoreSkeleton zigomore = new EntityZigomoreSkeleton(event.world);
-						zigomore.setPosition(event.entity.posX, event.entity.posY, event.entity.posZ);
-						event.world.spawnEntityInWorld(zigomore);
-						event.setCanceled(true);
-					}
-				} else {
-					if (Math.random() <= 0.05) {
-						EntityEnderSkeleton skeleton = new EntityEnderSkeleton(event.world);
-						skeleton.setPosition(event.entity.posX, event.entity.posY, event.entity.posZ);
-						event.world.spawnEntityInWorld(skeleton);
-						event.setCanceled(true);
-					}
-				}
-			}
-		} else if (event.entity.getClass().equals(EntityCreeper.class)){
-			if (!event.world.isRemote)	{
-				if (Math.random() <= 0.05) {
-					EntityEnderCreeper creeper = new EntityEnderCreeper(event.world);
-					creeper.setPosition(event.entity.posX, event.entity.posY, event.entity.posZ);
-					event.world.spawnEntityInWorld(creeper);
-					event.setCanceled(true);
-				}
-			}
-		} else if (event.entity instanceof EntityArrow) {
-			EntityArrow arrow = (EntityArrow) event.entity;
-			if (arrow.shootingEntity instanceof EntityPlayer) {
-				EntityPlayer archer = (EntityPlayer) arrow.shootingEntity;
-				if (event.entity.getClass().getName().equals(EntityArrow.class.getName()) || event.entity.getClass().getName().equals("imc.entities.EntityIMCArrow")) {
-					if (archer.getHeldItem() != null) {
-
-						boolean isFrostBow = false;
-						if (archer.getHeldItem().getItem() instanceof ItemDragonicBow) {
-							boolean charged = false;
-							if (archer.getHeldItem().getItem() instanceof ItemDragonicBowCharged) {
-								charged = true;
-							}
-							double damageBonus = 0.1;
-							if (charged) {
-								damageBonus = 0.1 + ((double) ((ItemDragonicBowCharged)archer.getHeldItem().getItem()).getBonusValue(archer.getHeldItem()) * 0.01);
-								arrow.setFire(10);
-							}
-							arrow.setDamage(arrow.getDamage() * ((double) 1 + damageBonus));
-							// + 50% range
-							arrow.motionX *= 1.0F + 50 / 100F;
-							arrow.motionY *= 1.0F + 50 / 100F;
-							arrow.motionZ *= 1.0F + 50 / 100F;
-
-						} else if (archer.getHeldItem().getItem() == ItemRegistry.frostbow) {
-							// + 5% damage
-							isFrostBow = true;
-							arrow.setDamage(arrow.getDamage() * 1.05);
-						}
-
-						int countFrostArrows = 0;
-						for (ItemStack s : archer.inventory.mainInventory)
-						{
-							if (s != null && s.getItem() == ItemRegistry.frostarrow) {
-								countFrostArrows = countFrostArrows + s.stackSize;
-							}
-						}
-
-						if (countFrostArrows > 0 || isFrostBow) {
-							EntityFrostArrow frostArrow = new EntityFrostArrow(arrow.worldObj, archer, 0);
-							frostArrow.setDamage(arrow.getDamage());
-							frostArrow.posX = arrow.posX + 0.1 + random.nextFloat() * (-0.1 - 0.1);
-							frostArrow.posY = arrow.posY + 0.1 + random.nextFloat() * (-0.1 - 0.1);
-							frostArrow.posZ = arrow.posZ + 0.1 + random.nextFloat() * (-0.1 - 0.1);
-							frostArrow.rotationPitch = arrow.rotationPitch;
-							frostArrow.rotationYaw = arrow.rotationYaw;
-							frostArrow.motionX = arrow.motionX + 0.1 + random.nextFloat() * (-0.1 - 0.1);
-							frostArrow.motionY = arrow.motionY + 0.1 + random.nextFloat() * (-0.1 - 0.1);
-							frostArrow.motionZ = arrow.motionZ + 0.1 + random.nextFloat() * (-0.1 - 0.1);
-							frostArrow.setIsCritical(arrow.getIsCritical());
-
-							if (!archer.capabilities.isCreativeMode && !isFrostBow) {
-								archer.inventory.consumeInventoryItem(ItemRegistry.frostarrow);
-								archer.inventory.addItemStackToInventory(new ItemStack(Items.arrow, 1));
-							}
-
-							arrow.worldObj.spawnEntityInWorld(frostArrow);
-
-							if (arrow.isEntityAlive()) {
-								arrow.setDead();
-							}
-						}
-					}
-				}
-			}
-		}
-	}
-
 	@SubscribeEvent
 	public void onPlayerChangeDimension(PlayerEvent.PlayerChangedDimensionEvent event) {
 		WorldUtils.ckeckAndRemovePortals(event.player, event.fromDim, event.toDim);
@@ -443,7 +302,7 @@ public class OrdinaryOresEventHandler {
 					if (Math.random() <= 0.1) {
 						player.getEntityWorld().playAuxSFX(2003, (int) player.posX-1, (int) player.posY+1, (int) player.posZ, 15);
 						player.worldObj.playSoundEffect(player.posX, player.posY, player.posZ, "mob.endermen.portal", 1.0F, 1.5F + random.nextFloat() * 0.2F);
-						event.setCanceled(true);
+						player.setAbsorptionAmount(event.ammount);
 					}
 				}
 			}

@@ -49,7 +49,7 @@ public class EntityZigomoreSkeleton extends EntitySkeleton {
     public void onLivingUpdate() {
         super.onLivingUpdate();
 
-        if(FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) {
+        if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) {
             if (Math.random() <= 0.15) {
                 this.worldObj.spawnParticle("fireworksSpark", this.posX + rand.nextFloat() * (0.8) - 0.4, this.posY + rand.nextFloat() * (2) + 0.5, this.posZ + rand.nextFloat() * (0.8) - 0.4, 0, 0, 0);
             }

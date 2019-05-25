@@ -3,6 +3,8 @@ package ru.flamesword.ordinaryores.util;
 import cpw.mods.fml.common.FMLCommonHandler;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
@@ -13,20 +15,13 @@ import net.minecraft.network.play.server.S07PacketRespawn;
 import net.minecraft.network.play.server.S1DPacketEntityEffect;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.ChatComponentTranslation;
-import net.minecraft.util.ChunkCoordinates;
-import net.minecraft.util.MathHelper;
-import net.minecraft.world.Teleporter;
-import net.minecraft.world.World;
-import net.minecraft.world.WorldProvider;
-import net.minecraft.world.WorldServer;
+import net.minecraft.util.*;
+import net.minecraft.world.*;
 import net.minecraftforge.common.DimensionManager;
 import ru.flamesword.ordinaryores.OrdinaryOresBase;
 import ru.flamesword.ordinaryores.items.ItemRegistry;
 
-import java.util.Iterator;
-import java.util.Objects;
-import java.util.Random;
+import java.util.*;
 
 public class WorldUtils {
 
@@ -304,5 +299,64 @@ public class WorldUtils {
 
     public static boolean blockIsInShadow (World world, int x, int y, int z) {
         return world.getLightBrightness(x, y, z) <= 0.5;
+    }
+
+    public static void unloadEntity(Entity entity) {
+        if (entity.worldObj.isRemote) {
+            return;
+        }
+        entity.setDead();
+        entity.worldObj.removeEntity(entity);
+        entity.worldObj.onEntityRemoved(entity);
+        entity.worldObj.unloadEntities(Arrays.asList(entity));
+        //WorldServer worldServer = (WorldServer) entity.worldObj;
+        //worldServer.getEntityTracker().removeEntityFromAllTrackingPlayers(entity);
+        //WorldManager worldManager = new WorldManager(MinecraftServer.getServer(), (WorldServer) entity.worldObj);
+        //worldManager.onEntityDestroy(entity);
+    }
+
+    public static boolean entityExist(Class entityClass, World world, int x, int y, int z) {
+        int radius = 1;
+        List entityList = world.getEntitiesWithinAABB(
+                entityClass,
+                AxisAlignedBB.getBoundingBox(
+                        x-radius,
+                        y-radius,
+                        z-radius,
+                        (x + radius),
+                        (y + radius),
+                        (z + radius)
+                )
+        );
+
+        if (entityList.isEmpty()) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public static MovingObjectPosition getMovingObjectPositionFromPlayer(World p_77621_1_, EntityPlayer p_77621_2_, boolean p_77621_3_)
+    {
+        float f = 1.0F;
+        float f1 = p_77621_2_.prevRotationPitch + (p_77621_2_.rotationPitch - p_77621_2_.prevRotationPitch) * f;
+        float f2 = p_77621_2_.prevRotationYaw + (p_77621_2_.rotationYaw - p_77621_2_.prevRotationYaw) * f;
+        double d0 = p_77621_2_.prevPosX + (p_77621_2_.posX - p_77621_2_.prevPosX) * (double)f;
+        double d1 = p_77621_2_.prevPosY + (p_77621_2_.posY - p_77621_2_.prevPosY) * (double)f + (double)(p_77621_1_.isRemote ? p_77621_2_.getEyeHeight() - p_77621_2_.getDefaultEyeHeight() : p_77621_2_.getEyeHeight()); // isRemote check to revert changes to ray trace position due to adding the eye height clientside and player yOffset differences
+        double d2 = p_77621_2_.prevPosZ + (p_77621_2_.posZ - p_77621_2_.prevPosZ) * (double)f;
+        Vec3 vec3 = Vec3.createVectorHelper(d0, d1, d2);
+        float f3 = MathHelper.cos(-f2 * 0.017453292F - (float)Math.PI);
+        float f4 = MathHelper.sin(-f2 * 0.017453292F - (float)Math.PI);
+        float f5 = -MathHelper.cos(-f1 * 0.017453292F);
+        float f6 = MathHelper.sin(-f1 * 0.017453292F);
+        float f7 = f4 * f5;
+        float f8 = f3 * f5;
+        double d3 = 5.0D;
+        if (p_77621_2_ instanceof EntityPlayerMP)
+        {
+            d3 = ((EntityPlayerMP)p_77621_2_).theItemInWorldManager.getBlockReachDistance();
+        }
+        Vec3 vec31 = vec3.addVector((double)f7 * d3, (double)f6 * d3, (double)f8 * d3);
+        return p_77621_1_.func_147447_a(vec3, vec31, p_77621_3_, !p_77621_3_, false);
     }
 }

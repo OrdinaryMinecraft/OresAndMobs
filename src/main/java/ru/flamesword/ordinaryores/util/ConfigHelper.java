@@ -27,13 +27,13 @@ public class ConfigHelper {
 	public static int forestGuardSpawnRate;
 	public static int iceElementalSpawnRate;
 	public static int superSlimeSpawnRate;
-	public static int stealthCreeperSpawnRate;
 	public static int infernoGolemSpawnRate;
 	public static int enderCreeperSpawnRate;
 	public static int undeadSpiderSpawnRate;
 	public static int enderSkeletonSpawnRate;
 	public static int ghoulSpawnRate;
 	public static int ghostSpawnRate;
+	public static int bearSpawnRate;
 
 	//public static boolean addMobsToDungeons;
 	public static boolean addLootToDungeons;
@@ -69,6 +69,9 @@ public class ConfigHelper {
 	public static Object effectNecromant2 = StatCollector.translateToLocal("tooltip.item.effect.necromant2");
 	public static Object effectNecromant3 = StatCollector.translateToLocal("tooltip.item.effect.necromant3");
 	public static String growthEffectName = StatCollector.translateToLocal("tooltip.item.effect.growth");
+	public static Object effectHoeOfNature1 = StatCollector.translateToLocal("tooltip.item.effect.hoeofnature1");
+	public static Object effectHoeOfNature2 = StatCollector.translateToLocal("tooltip.item.effect.hoeofnature2");
+	public static String animalCrateIndicator = StatCollector.translateToLocal("tooltip.item.animalcrate");
 	
 	
 	
@@ -85,6 +88,7 @@ public class ConfigHelper {
 			enderSkeletonSpawnRate = config.get("Spawning", "enderSkeletonSpawnRate", 5).getInt(5);
 			ghoulSpawnRate = config.get("Spawning", "ghoulSpawnRate", 5).getInt(5);
 			ghostSpawnRate = config.get("Spawning", "ghostSpawnRate", 5).getInt(5);
+			bearSpawnRate = config.get("Spawning", "bearSpawnRate", 10).getInt(10);
 			//addMobsToDungeons = config.get("General", "addMobsToDungeons", true).getBoolean(true);
 			addLootToDungeons = config.get("General", "addLootToDungeons", true).getBoolean(true);
 			addMalachiteArmor = config.get("General", "addMalachiteArmor", false).getBoolean(false);

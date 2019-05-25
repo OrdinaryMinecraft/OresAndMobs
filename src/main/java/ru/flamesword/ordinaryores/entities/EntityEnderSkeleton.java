@@ -62,14 +62,12 @@ public class EntityEnderSkeleton extends EntitySkeleton {
 		if (this.isBurning()) {
 			this.extinguish();
 		}
-		if(FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) {
+		if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) {
 			this.worldObj.spawnParticle("portal", this.posX+rand.nextFloat()*(0.8)-0.4, this.posY+rand.nextFloat()*(2)-0.5, this.posZ+rand.nextFloat()*(0.8)-0.4, 0, 0, 0);
 		}
 	}
-	
 
-    public boolean teleportRandomly()
-    {
+    public boolean teleportRandomly() {
 		for (int i = 0; i < 10; i++) {
 	        double d0 = this.posX + (this.rand.nextDouble() - 0.5D) * 8.0D;
 	        double d1 = this.posY + (double)(this.rand.nextInt(8) - 4);
@@ -78,10 +76,8 @@ public class EntityEnderSkeleton extends EntitySkeleton {
 		}
 		return false;
     }
-    
 
-    protected boolean teleportTo(double p_70825_1_, double p_70825_3_, double p_70825_5_)
-    {
+    private boolean teleportTo(double p_70825_1_, double p_70825_3_, double p_70825_5_) {
         EnderTeleportEvent event = new EnderTeleportEvent(this, p_70825_1_, p_70825_3_, p_70825_5_, 0);
 
         double d3 = this.posX;

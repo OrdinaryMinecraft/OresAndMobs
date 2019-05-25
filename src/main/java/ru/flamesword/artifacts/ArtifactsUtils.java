@@ -148,7 +148,18 @@ public class ArtifactsUtils {
 
         result.setItemDamage(randomBetween(0, (int) (result.getMaxDamage() * (0.4 - 0.1 * level) * 2)));
 
-        result.hasEffect(1);
+        if (!result.isItemEnchanted()) {
+            try {
+                NBTTagCompound compound = result.getTagCompound();
+                if (compound == null) {
+                    compound = new NBTTagCompound();
+                }
+                compound.setTag("ench", new NBTTagCompound());
+                result.setTagCompound(compound);
+            } catch (Exception e) {
+                System.out.println("CREATED ARTIFACT ERROR: error adding empty enchantment!");
+            }
+        }
 
         System.out.println("CREATED ARTIFACT level:" + level + " player:" + playername + " item:" + item.getUnlocalizedName() + " from:" + from + " name:" + result.getDisplayName());
         return result;

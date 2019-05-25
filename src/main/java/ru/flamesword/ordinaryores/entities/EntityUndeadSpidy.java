@@ -26,6 +26,7 @@ public class EntityUndeadSpidy extends EntityMob {
 		this.tasks.addTask(3, new EntityAILookIdle(this));
 		this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
 		this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
+		this.experienceValue = 0;
 	}
 	
 	@Override

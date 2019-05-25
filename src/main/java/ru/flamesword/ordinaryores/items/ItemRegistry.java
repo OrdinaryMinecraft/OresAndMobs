@@ -90,6 +90,7 @@ public class ItemRegistry {
     public static Item dragonessense;
     public static Item dragoniteingot;
     public static Item repairtool;
+    public static Item animalcrate;
 
     public static Item netherstone;
     public static Item endstone;
@@ -169,7 +170,7 @@ public class ItemRegistry {
         malachitesword = new ItemMalachiteSword().setUnlocalizedName("malachitesword");
         GameRegistry.registerItem(malachitesword, "malachitesword");
 
-        if(ConfigHelper.addMalachiteArmor) {
+        if (ConfigHelper.addMalachiteArmor) {
             malachitehelmet = new MalachiteArmor(0, 0).setUnlocalizedName("malachitehelmet").setTextureName("ordinaryores:MalachiteHelmet");
             malachiteplate = new MalachiteArmor(0, 1).setUnlocalizedName("malachiteplate").setTextureName("ordinaryores:MalachiteChestplate");
             malachitepants = new MalachiteArmor(0, 2).setUnlocalizedName("malachitepants").setTextureName("ordinaryores:MalachiteLeggings");
@@ -293,6 +294,8 @@ public class ItemRegistry {
         GameRegistry.registerItem(dragoniteingot, "dragoniteingot");
         repairtool = new ItemRepairTool().setUnlocalizedName("repairtool");
         GameRegistry.registerItem(repairtool, "repairtool");
+        animalcrate = new ItemAnimalCrate().setUnlocalizedName("animalcrate");
+        GameRegistry.registerItem(animalcrate, "animalcrate");
         frostarrow = new ItemFrostArrow().setUnlocalizedName("frostarrow");
         GameRegistry.registerItem(frostarrow, "frostarrow");
 

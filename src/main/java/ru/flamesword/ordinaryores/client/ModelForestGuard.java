@@ -7,96 +7,234 @@ import net.minecraft.util.MathHelper;
 
 
 public class ModelForestGuard extends ModelBase {
-    ModelRenderer head;
+    //fields
+    ModelRenderer penek1;
+    ModelRenderer penek2;
+    ModelRenderer penek3;
+    ModelRenderer penek4;
+    ModelRenderer penek5;
+    ModelRenderer penek6;
+    ModelRenderer penek7;
+    ModelRenderer palka1;
+    ModelRenderer palka2;
+    ModelRenderer palka3;
+    ModelRenderer palka4;
+    ModelRenderer palka5;
+    ModelRenderer palka6;
+    ModelRenderer listva1;
+    ModelRenderer listva2;
+    ModelRenderer listva3;
+    ModelRenderer listva4;
+    ModelRenderer listva5;
+    ModelRenderer listva6;
+    ModelRenderer body1;
+    ModelRenderer body2;
     ModelRenderer leg3;
     ModelRenderer leg4;
     ModelRenderer leg1;
     ModelRenderer leg2;
-    ModelRenderer trunk;
-    ModelRenderer branchLeft;
-    ModelRenderer branchRight;
-  
-  public ModelForestGuard() {
-      textureWidth = 64;
-      textureHeight = 32;
-    
-      head = new ModelRenderer(this, 32, 0);
-      head.addBox(-4F, -8F, -4F, 8, 8, 8);
-      head.setRotationPoint(0F, 6F, -13F);
-      head.setTextureSize(64, 32);
-      head.mirror = true;
-      setRotation(head, 0F, 0F, 0F);
-      leg3 = new ModelRenderer(this, 53, 22);
-      leg3.addBox(-2F, 0F, -2F, 4, 6, 4);
-      leg3.setRotationPoint(-2F, 18F, -4F);
-      leg3.setTextureSize(64, 32);
-      leg3.mirror = true;
-      setRotation(leg3, 0F, 0F, 0F);
-      leg4 = new ModelRenderer(this, 53, 22);
-      leg4.addBox(-2F, 0F, -2F, 4, 6, 4);
-      leg4.setRotationPoint(2F, 18F, -4F);
-      leg4.setTextureSize(64, 32);
-      leg4.mirror = true;
-      setRotation(leg4, 0F, 0F, 0F);
-      leg1 = new ModelRenderer(this, 53, 22);
-      leg1.addBox(0F, 0F, -2F, 4, 6, 4);
-      leg1.setRotationPoint(-4F, 18F, 4F);
-      leg1.setTextureSize(64, 32);
-      leg1.mirror = true;
-      setRotation(leg1, 0F, 0F, 0F);
-      leg2 = new ModelRenderer(this, 53, 22);
-      leg2.addBox(-2F, 0F, -2F, 4, 6, 4);
-      leg2.setRotationPoint(2F, 18F, 4F);
-      leg2.setTextureSize(64, 32);
-      leg2.mirror = true;
-      setRotation(leg2, 0F, 0F, 0F);
-      trunk = new ModelRenderer(this, 0, 0);
-      trunk.addBox(0F, 0F, 0F, 8, 25, 8);
-      trunk.setRotationPoint(-4F, -7F, -3F);
-      trunk.setTextureSize(64, 32);
-      trunk.mirror = true;
-      setRotation(trunk, 0F, 0F, 0F);
-      branchLeft = new ModelRenderer(this, 4, 0);
-      branchLeft.addBox(0F, 0F, 0F, 3, 3, 11);
-      branchLeft.setRotationPoint(-7F, 0F, -11F);
-      branchLeft.setTextureSize(64, 32);
-      branchLeft.mirror = true;
-      setRotation(branchLeft, 0F, 0F, 0F);
-      branchRight = new ModelRenderer(this, 4, 0);
-      branchRight.addBox(0F, 0F, 0F, 3, 3, 11);
-      branchRight.setRotationPoint(4F, 0F, -11F);
-      branchRight.setTextureSize(64, 32);
-      branchRight.mirror = true;
-      setRotation(branchRight, 0F, 0F, 0F);
-  }
-  
-  @Override
-  public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-    super.render(entity, f, f1, f2, f3, f4, f5);
-    setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-    head.render(f5);
-    leg3.render(f5);
-    leg4.render(f5);
-    leg1.render(f5);
-    leg2.render(f5);
-    trunk.render(f5);
-    branchLeft.render(f5);
-    branchRight.render(f5);
-  }
-  
-  private void setRotation(ModelRenderer model, float x, float y, float z) {
-    model.rotateAngleX = x;
-    model.rotateAngleY = y;
-    model.rotateAngleZ = z;
-  }
-  
-  @Override
-  public void setRotationAngles(float time, float moveSpeed, float par3, float yaw, float pitch, float par6, Entity entity) {
-    super.setRotationAngles(time, moveSpeed, par3, yaw, pitch, par6, entity);
-    this.leg1.rotateAngleX = MathHelper.cos(time * 0.6662F) * 1.4F * moveSpeed;
-    this.leg2.rotateAngleX = MathHelper.cos(time * 0.6662F + (float)Math.PI) * 1.4F * moveSpeed;
-    this.leg3.rotateAngleX = MathHelper.cos(time * 0.6662F + (float)Math.PI) * 1.4F * moveSpeed;
-    this.leg4.rotateAngleX = MathHelper.cos(time * 0.6662F) * 1.4F * moveSpeed;
-  }
 
+    public ModelForestGuard()
+    {
+        textureWidth = 64;
+        textureHeight = 32;
+
+        penek1 = new ModelRenderer(this, 0, 0);
+        penek1.addBox(-1F, 0F, 0F, 5, 2, 1);
+        penek1.setRotationPoint(-1F, 5F, 3F);
+        penek1.setTextureSize(64, 32);
+        penek1.mirror = true;
+        setRotation(penek1, 0F, 0F, 0F);
+        penek2 = new ModelRenderer(this, 0, 0);
+        penek2.addBox(0F, 0F, 0F, 3, 1, 1);
+        penek2.setRotationPoint(0F, 4F, 3F);
+        penek2.setTextureSize(64, 32);
+        penek2.mirror = true;
+        setRotation(penek2, 0F, 0F, 0F);
+        penek3 = new ModelRenderer(this, 0, 0);
+        penek3.addBox(0F, 0F, 0F, 1, 1, 4);
+        penek3.setRotationPoint(3F, 5F, -1F);
+        penek3.setTextureSize(64, 32);
+        penek3.mirror = true;
+        setRotation(penek3, 0F, 0F, 0F);
+        penek4 = new ModelRenderer(this, 0, 0);
+        penek4.addBox(-2F, 0F, 0F, 5, 1, 1);
+        penek4.setRotationPoint(0F, 6F, -4F);
+        penek4.setTextureSize(64, 32);
+        penek4.mirror = true;
+        setRotation(penek4, 0F, 0F, 0F);
+        penek5 = new ModelRenderer(this, 0, 0);
+        penek5.addBox(0F, 0F, 0F, 1, 1, 2);
+        penek5.setRotationPoint(3F, 4F, 1F);
+        penek5.setTextureSize(64, 32);
+        penek5.mirror = true;
+        setRotation(penek5, 0F, 0F, 0F);
+        penek6 = new ModelRenderer(this, 0, 0);
+        penek6.addBox(0F, 0F, 0F, 2, 1, 2);
+        penek6.setRotationPoint(1F, 5F, 1F);
+        penek6.setTextureSize(64, 32);
+        penek6.mirror = true;
+        setRotation(penek6, 0F, 0F, 0F);
+        penek7 = new ModelRenderer(this, 0, 0);
+        penek7.addBox(0F, 0F, 0F, 2, 1, 1);
+        penek7.setRotationPoint(1F, 3F, 3F);
+        penek7.setTextureSize(64, 32);
+        penek7.mirror = true;
+        setRotation(penek7, 0F, 0F, 0F);
+        palka1 = new ModelRenderer(this, 0, 0);
+        palka1.addBox(0F, -2F, -1F, 1, 10, 1);
+        palka1.setRotationPoint(-3F, 11.4F, -1F);
+        palka1.setTextureSize(64, 32);
+        palka1.mirror = true;
+        setRotation(palka1, 0.4461433F, -0.6494897F, 2.714039F);
+        palka2 = new ModelRenderer(this, 0, 0);
+        palka2.addBox(0F, -5F, 0F, 1, 7, 1);
+        palka2.setRotationPoint(4F, 10F, 0F);
+        palka2.setTextureSize(64, 32);
+        palka2.mirror = true;
+        setRotation(palka2, -0.669215F, 1.07818F, 0F);
+        palka3 = new ModelRenderer(this, 0, 0);
+        palka3.addBox(0F, -5F, 0F, 1, 5, 1);
+        palka3.setRotationPoint(6.5F, 6.5F, 1.4F);
+        palka3.setTextureSize(64, 32);
+        palka3.mirror = true;
+        setRotation(palka3, -0.1206205F, 1.097903F, 0.0371786F);
+        palka4 = new ModelRenderer(this, 0, 0);
+        palka4.addBox(0F, -6F, 0F, 1, 6, 1);
+        palka4.setRotationPoint(6.8F, 6.8F, 0.5F);
+        palka4.setTextureSize(64, 32);
+        palka4.mirror = true;
+        setRotation(palka4, 0.2518851F, -0.3634209F, -0.5205006F);
+        palka5 = new ModelRenderer(this, 0, 0);
+        palka5.addBox(0F, -5F, 0F, 1, 5, 1);
+        palka5.setRotationPoint(-6.9F, 6F, -1.5F);
+        palka5.setTextureSize(64, 32);
+        palka5.mirror = true;
+        setRotation(palka5, -0.5007752F, -0.0371786F, 0.7261189F);
+        palka6 = new ModelRenderer(this, 0, 0);
+        palka6.addBox(0F, -5F, 0F, 1, 7, 1);
+        palka6.setRotationPoint(-4F, 14F, 0F);
+        palka6.setTextureSize(64, 32);
+        palka6.mirror = true;
+        setRotation(palka6, -0.5205006F, -1.07818F, 0.1115358F);
+        listva1 = new ModelRenderer(this, 40, 0);
+        listva1.addBox(-2F, -4F, -2F, 4, 4, 4);
+        listva1.setRotationPoint(5F, 1.8F, -1F);
+        listva1.setTextureSize(64, 32);
+        listva1.mirror = true;
+        setRotation(listva1, -0.4461433F, -0.3717861F, -0.2602503F);
+        listva2 = new ModelRenderer(this, 40, 0);
+        listva2.addBox(-1F, -4F, -1F, 5, 5, 4);
+        listva2.setRotationPoint(6F, 2F, 1F);
+        listva2.setTextureSize(64, 32);
+        listva2.mirror = true;
+        setRotation(listva2, -0.5030473F, 0.8922867F, -0.4833219F);
+        listva3 = new ModelRenderer(this, 40, 0);
+        listva3.addBox(-2F, -4F, -2F, 4, 6, 4);
+        listva3.setRotationPoint(7F, 1F, -1F);
+        listva3.setTextureSize(64, 32);
+        listva3.mirror = true;
+        setRotation(listva3, 0.4461433F, -0.5576792F, 0F);
+        listva4 = new ModelRenderer(this, 40, 0);
+        listva4.addBox(-1F, -3F, -2F, 3, 3, 3);
+        listva4.setRotationPoint(-8F, 6F, -1F);
+        listva4.setTextureSize(64, 32);
+        listva4.mirror = true;
+        setRotation(listva4, -0.2974289F, -0.5576792F, 0.2974289F);
+        listva5 = new ModelRenderer(this, 40, 0);
+        listva5.addBox(-2F, -4F, -3F, 4, 4, 5);
+        listva5.setRotationPoint(-4F, 4F, 2F);
+        listva5.setTextureSize(64, 32);
+        listva5.mirror = true;
+        setRotation(listva5, -0.4461433F, -0.5007752F, 0F);
+        listva6 = new ModelRenderer(this, 40, 0);
+        listva6.addBox(-2F, -3F, -2F, 3, 3, 3);
+        listva6.setRotationPoint(-5F, 10F, 2.466667F);
+        listva6.setTextureSize(64, 32);
+        listva6.mirror = true;
+        setRotation(listva6, -0.4461433F, 0F, -0.7807508F);
+        body1 = new ModelRenderer(this, 2, 2);
+        body1.addBox(-4F, 0F, -3F, 8, 12, 6);
+        body1.setRotationPoint(0F, 6F, 0F);
+        body1.setTextureSize(64, 32);
+        body1.mirror = true;
+        setRotation(body1, 0F, 0F, 0F);
+        body2 = new ModelRenderer(this, 1, 0);
+        body2.addBox(-3F, 0F, -4F, 6, 11, 8);
+        body2.setRotationPoint(0F, 7F, 0F);
+        body2.setTextureSize(64, 32);
+        body2.mirror = true;
+        setRotation(body2, 0F, 0F, 0F);
+        leg3 = new ModelRenderer(this, 0, 16);
+        leg3.addBox(-2F, 0F, -2F, 4, 6, 4);
+        leg3.setRotationPoint(-2F, 18F, -4F);
+        leg3.setTextureSize(64, 32);
+        leg3.mirror = true;
+        setRotation(leg3, 0F, 0F, 0F);
+        leg4 = new ModelRenderer(this, 0, 16);
+        leg4.addBox(-2F, 0F, -2F, 4, 6, 4);
+        leg4.setRotationPoint(2F, 18F, -4F);
+        leg4.setTextureSize(64, 32);
+        leg4.mirror = true;
+        setRotation(leg4, 0F, 0F, 0F);
+        leg1 = new ModelRenderer(this, 0, 16);
+        leg1.addBox(0F, 0F, -2F, 4, 6, 4);
+        leg1.setRotationPoint(-4F, 18F, 4F);
+        leg1.setTextureSize(64, 32);
+        leg1.mirror = true;
+        setRotation(leg1, 0F, 0F, 0F);
+        leg2 = new ModelRenderer(this, 0, 16);
+        leg2.addBox(-2F, 0F, -2F, 4, 6, 4);
+        leg2.setRotationPoint(2F, 18F, 4F);
+        leg2.setTextureSize(64, 32);
+        leg2.mirror = true;
+        setRotation(leg2, 0F, 0F, 0F);
+    }
+
+    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
+    {
+        super.render(entity, f, f1, f2, f3, f4, f5);
+        setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+        penek1.render(f5);
+        penek2.render(f5);
+        penek3.render(f5);
+        penek4.render(f5);
+        penek5.render(f5);
+        penek6.render(f5);
+        penek7.render(f5);
+        palka1.render(f5);
+        palka2.render(f5);
+        palka3.render(f5);
+        palka4.render(f5);
+        palka5.render(f5);
+        palka6.render(f5);
+        listva1.render(f5);
+        listva2.render(f5);
+        listva3.render(f5);
+        listva4.render(f5);
+        listva5.render(f5);
+        listva6.render(f5);
+        body1.render(f5);
+        body2.render(f5);
+        leg3.render(f5);
+        leg4.render(f5);
+        leg1.render(f5);
+        leg2.render(f5);
+    }
+
+    private void setRotation(ModelRenderer model, float x, float y, float z)
+    {
+        model.rotateAngleX = x;
+        model.rotateAngleY = y;
+        model.rotateAngleZ = z;
+    }
+
+    @Override
+    public void setRotationAngles(float time, float moveSpeed, float par3, float yaw, float pitch, float par6, Entity entity) {
+        super.setRotationAngles(time, moveSpeed, par3, yaw, pitch, par6, entity);
+        this.leg1.rotateAngleX = MathHelper.cos(time * 0.6662F) * 1.4F * moveSpeed;
+        this.leg2.rotateAngleX = MathHelper.cos(time * 0.6662F + (float)Math.PI) * 1.4F * moveSpeed;
+        this.leg3.rotateAngleX = MathHelper.cos(time * 0.6662F + (float)Math.PI) * 1.4F * moveSpeed;
+        this.leg4.rotateAngleX = MathHelper.cos(time * 0.6662F) * 1.4F * moveSpeed;
+    }
 }

@@ -2,7 +2,9 @@ package ru.flamesword.ordinaryores.handlers;
 
 import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.monster.EntityCreeper;
+import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.player.EntityPlayer;
@@ -31,17 +33,27 @@ public class EntitySpawnHandler {
         if (event.world.isRemote) {
             return;
         }
-        if (EntityUtils.entityHasNoSpawnTime(event.entity)) {
-            EntityUtils.writeEntitySpawnTime(event.entity);
-        } else {
+        if (event.entity instanceof EntityPlayer) {
             return;
         }
+        if (event.entity instanceof EntityCreature) {
+            EntityCreature creature = (EntityCreature) event.entity;
+            if (EntityUtils.entityHasNoSpawnTime(creature)) {
+                EntityUtils.writeEntitySpawnTime(creature);
+            } else {
+                return;
+            }
 
-        if (event.entity instanceof EntityBear || event.entity instanceof EntityForestGuard) {
-            if (event.entity.posY < 50) {
-                WorldUtils.unloadEntity(event.entity);
+            if (event.entity instanceof EntityBear || event.entity instanceof EntityForestGuard) {
+                if (event.entity.posY < 50) {
+                    int x = (int) event.entity.posX;
+                    int z = (int) event.entity.posZ;
+                    int newY = event.world.getTopSolidOrLiquidBlock(x, z) + 1;
+                    ((EntityMob) event.entity).setPositionAndUpdate(x, newY, z);
+                }
             }
         }
+
     }
 
     @SubscribeEvent(priority = EventPriority.NORMAL)
@@ -49,7 +61,7 @@ public class EntitySpawnHandler {
         if (event.world.isRemote) {
             return;
         }
-        if (EntityUtils.entityIsNotNew(event.entity)) {
+        if (event.entity instanceof EntityCreature && EntityUtils.entityIsNotNew((EntityCreature) event.entity)) {
             return;
         }
 

@@ -22,7 +22,7 @@ public class ArtifactsBase {
 	public void initialize(FMLPreInitializationEvent event)
 	{
 		ConfigHelper.setupConfig(new Configuration(event.getSuggestedConfigurationFile()));
-		PlayerInteractHandler eventHandler = new PlayerInteractHandler();
+		ArtifactsEventHandler eventHandler = new ArtifactsEventHandler();
 		MinecraftForge.EVENT_BUS.register(eventHandler);
 
 

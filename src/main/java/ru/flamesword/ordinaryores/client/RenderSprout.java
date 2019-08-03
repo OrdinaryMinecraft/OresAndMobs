@@ -10,13 +10,13 @@ import ru.flamesword.ordinaryores.entities.EntitySprout;
 public class RenderSprout extends RenderLiving {
 
 	public RenderSprout() {
-		super(new ModelSprout(), 1.5F);;
-		this.shadowSize *= 1.0F;
+		super(new ModelSprout(), 0.7F);;
+		this.shadowSize *= 0.7F;
 	}
 
 	protected void preRenderCallback(EntitySprout p_77041_1_, float p_77041_2_)
 	{
-		GL11.glScalef(1.5F, 1.5F, 1.5F);
+		GL11.glScalef(0.7F, 0.7F, 0.7F);
 	}
 
 	protected void preRenderCallback(EntityLivingBase p_77041_1_, float p_77041_2_)

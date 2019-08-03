@@ -12,17 +12,6 @@ public class ConfigHelper {
 		
 	}
 
-	final public static int event_dragon_period = 72000;
-	public static long event_dragon_last_spawn = 0;
-	public static String event_dragon_last_player = "";
-	//12000
-	final public static int event_bandit_period = 36000;
-	public static long event_bandit_last_spawn = 0;
-	public static String event_bandit_last_player = "";
-	final public static int event_herobrine_period = 144000;
-	public static long event_herobrine_last_spawn = 0;
-	public static String event_herobrine_last_player = "";
-
 	public static int herobrineSpawnRate;
 	public static int forestGuardSpawnRate;
 	public static int iceElementalSpawnRate;

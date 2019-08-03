@@ -14,7 +14,7 @@ import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import java.util.Random;
 
 
-public class PlayerInteractHandler {
+public class ArtifactsEventHandler {
 
     private static Random random = new Random();
 
@@ -30,20 +30,25 @@ public class PlayerInteractHandler {
             }
 
             int level = 0;
-            if (killedMob.getMaxHealth() < 20) {
+            if (killedMob.getMaxHealth() <= 20) {
                 level = 1;
-            }
-            if (killedMob.getMaxHealth() >= 20 && killedMob.getMaxHealth() < 50) {
+            } else if (killedMob.getMaxHealth() > 20 && killedMob.getMaxHealth() <= 100) {
                 level = 2;
-            }
-            if (killedMob.getMaxHealth() >= 50 && killedMob.getMaxHealth() < 100) {
+            } else if (killedMob.getMaxHealth() > 100 && killedMob.getMaxHealth() <= 500) {
                 level = 3;
-            }
-            if (killedMob.getMaxHealth() >= 100) {
+            } else if (killedMob.getMaxHealth() > 500) {
                 level = 4;
             }
+
+            if (level < 4) {
+                if (Math.random() <= 0.05) {
+                    level++;
+                }
+            }
+
             // Вероятность выпадения зависит от хп моба
-            if (Math.random() <= 0.01 * level) {
+            // 300 сделать зависимой от левела
+            if (ArtifactsUtils.randomBetween(0, 300) <= level) {
                 if (!killedMob.worldObj.isRemote) {
                     // Сила предмета так же зависит от хп моба
                     String mobName = killedMob.getCommandSenderName();

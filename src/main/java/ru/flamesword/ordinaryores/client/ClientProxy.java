@@ -25,7 +25,7 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityIceElemental.class, new RenderIceElemental());
 		RenderingRegistry.registerEntityRenderingHandler(EntityEnderCreeper.class, new RenderEnderCreeper());
 		RenderingRegistry.registerEntityRenderingHandler(EntityUndeadSpider.class, new RenderUndeadSpider());
-		RenderingRegistry.registerEntityRenderingHandler(EntityUndeadSpidy.class, new RenderUndeadSpiderling());
+		RenderingRegistry.registerEntityRenderingHandler(EntityUndeadSpidy.class, new RenderUndeadSpidy());
 		RenderingRegistry.registerEntityRenderingHandler(EntityEnderSkeleton.class, new RenderEnderSkeleton());
 		RenderingRegistry.registerEntityRenderingHandler(EntityGhoul.class, new RenderGhoul());
 		RenderingRegistry.registerEntityRenderingHandler(EntityGhost.class, new RenderGhost());
@@ -35,6 +35,8 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityZigomoreSkeleton.class, new RenderZigomoreSkeleton());
 		RenderingRegistry.registerEntityRenderingHandler(EntitySentinelTree.class, new RenderSentinelTree());
 		RenderingRegistry.registerEntityRenderingHandler(EntityBear.class, new RenderBear());
+		RenderingRegistry.registerEntityRenderingHandler(EntityEvilEye.class, new RenderEvilEye());
+
 		MinecraftForgeClient.registerItemRenderer(ItemRegistry.raingodspear, new ItemRendererSpear());
 		MinecraftForgeClient.registerItemRenderer(ItemRegistry.dragonicbow, new ItemRendererBow());
 		MinecraftForgeClient.registerItemRenderer(ItemRegistry.dragonicbowcharged, new ItemRendererBow());

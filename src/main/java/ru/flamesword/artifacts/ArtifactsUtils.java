@@ -3,6 +3,7 @@ package ru.flamesword.artifacts;
 import cpw.mods.fml.common.network.internal.FMLProxyPacket;
 import cpw.mods.fml.relauncher.Side;
 import net.minecraft.block.material.Material;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -32,12 +33,13 @@ public class ArtifactsUtils {
     public static void createRandomArtifact(short level, String from, EntityPlayer player, int x, int y, int z) {
         Integer itemId = null;
         for (int i = 0; i < 50; i++) {
-            Integer number = randomBetween(0, ConfigHelper.itemsForDrop.size() - 1);
+            int number = randomBetween(0, ConfigHelper.itemsForDrop.size() - 1);
             itemId = Integer.parseInt(ConfigHelper.itemsForDrop.get(number));
             Item item = Item.getItemById(itemId);
+
             // Проверки. Стараюсь сгенерировать предмет качества по уровню
             if (item instanceof ItemTool) {
-                Integer durability = ((ItemTool) item).func_150913_i().getMaxUses();
+                int durability = ((ItemTool) item).func_150913_i().getMaxUses();
                 if (level > 2 && durability > 800) {
                     break;
                 }
@@ -45,7 +47,7 @@ public class ArtifactsUtils {
                     break;
                 }
             } else if (item instanceof ItemSword) {
-                Float damage = ((ItemSword) item).func_150931_i();
+                float damage = ((ItemSword) item).func_150931_i();
                 if (level > 2 && damage > 2.5) {
                     break;
                 }
@@ -53,11 +55,23 @@ public class ArtifactsUtils {
                     break;
                 }
             } else if (item instanceof ItemArmor) {
-                Integer durability = ((ItemArmor) item).getArmorMaterial().getDurability(1);
+                int durability = ((ItemArmor) item).getArmorMaterial().getDurability(1);
                 if (level > 2 && durability > 300) {
                     break;
                 }
                 if (level <= 2 && durability <= 300) {
+                    break;
+                }
+            } else if (item instanceof ItemFishingRod) {
+                int durability = item.getMaxDamage();
+                if (level > 2 && durability > 70) {
+                    break;
+                }
+                if (level <= 2 && durability <= 70) {
+                    break;
+                }
+            } else if (item.getClass().getSimpleName().toLowerCase().contains("gun")) {
+                if (level > 2) {
                     break;
                 }
             } else {
@@ -119,35 +133,44 @@ public class ArtifactsUtils {
         result = addLore(result, from);
 
         // Add enchantments
-        for (int i = 0; i < 10; i++) {
-            if (!result.isItemEnchanted()) {
-                EnchantmentHelper.addRandomEnchantment(random, result, 10 * level);
-                if (level > 2 && result.getEnchantmentTagList().tagCount() < 2) {
-                    System.out.println("CREATED ARTIFACT WARN: not enough enchants! Adding more...");
-                    EnchantmentHelper.addRandomEnchantment(random, result, 10 * level);
-                }
-            }
-        }
-
-        // Clear duplicating enchantments
-        if (result.isItemEnchanted()) {
-            try {
-                List<Short> enchantmentIds = new ArrayList<Short>();
-                for (int j = 0; j < result.getEnchantmentTagList().tagCount(); j++) {
-                    short enchantmentId = result.getEnchantmentTagList().getCompoundTagAt(j).getShort("id");
-                    if (enchantmentIds.contains(enchantmentId)) {
-                        result.getEnchantmentTagList().removeTag(j);
-                        j--;
+        if (level > 2 || Math.random() <= 0.25) {
+            for (int i = 0; i < 10; i++) {
+                if (!result.isItemEnchanted()) {
+                    if (result.getItem() instanceof ItemHoe) {
+                        result.addEnchantment(Enchantment.efficiency, ArtifactsUtils.randomBetween(1, level));
+                    } else {
+                        EnchantmentHelper.addRandomEnchantment(random, result, 10 * level);
+                        if (level > 2 && result.getEnchantmentTagList().tagCount() < 2) {
+                            System.out.println("CREATED ARTIFACT WARN: not enough enchants! Adding more...");
+                            EnchantmentHelper.addRandomEnchantment(random, result, 10 * level);
+                        }
                     }
-                    enchantmentIds.add(enchantmentId);
                 }
-            } catch (Exception e) {
-                System.out.println("CREATED ARTIFACT ERROR: error clearing duplicating enchants!");
+            }
+
+            // Clear duplicating enchantments
+            if (result.isItemEnchanted()) {
+                try {
+                    List<Short> enchantmentIds = new ArrayList<Short>();
+                    for (int j = 0; j < result.getEnchantmentTagList().tagCount(); j++) {
+                        short enchantmentId = result.getEnchantmentTagList().getCompoundTagAt(j).getShort("id");
+                        if (enchantmentIds.contains(enchantmentId)) {
+                            result.getEnchantmentTagList().removeTag(j);
+                            j--;
+                        }
+                        enchantmentIds.add(enchantmentId);
+                    }
+                } catch (Exception e) {
+                    System.out.println("CREATED ARTIFACT ERROR: error clearing duplicating enchants!");
+                }
             }
         }
 
-        result.setItemDamage(randomBetween(0, (int) (result.getMaxDamage() * (0.4 - 0.1 * level) * 2)));
+        int maxDamage = (int) (result.getMaxDamage() * ((level < 2) ? 0.9 : ((0.4 - 0.1 * level) * 2)));
+        result.setItemDamage(randomBetween(0, maxDamage));
 
+
+        // add empty enchantment for effect
         if (!result.isItemEnchanted()) {
             try {
                 NBTTagCompound compound = result.getTagCompound();
@@ -188,6 +211,19 @@ public class ArtifactsUtils {
     }
 
     public static String getLastSybmol(String string) {
+        String[] parts = string.split(" ");
+        if (parts.length > 1) {
+            boolean fromFirstWord = false;
+            for (String part : parts) {
+                if (part.toLowerCase().equals("из")) {
+                    fromFirstWord = true;
+                }
+            }
+
+            if (fromFirstWord) {
+                return parts[0].substring(parts[0].length() - 1);
+            }
+        }
         return string.substring(string.length() - 1);
     }
 

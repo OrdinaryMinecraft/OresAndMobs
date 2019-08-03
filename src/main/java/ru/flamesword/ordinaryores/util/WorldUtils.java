@@ -13,6 +13,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.network.play.server.S07PacketRespawn;
 import net.minecraft.network.play.server.S1DPacketEntityEffect;
+import net.minecraft.network.play.server.S1FPacketSetExperience;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.*;
@@ -213,6 +214,8 @@ public class WorldUtils {
             PotionEffect potioneffect = (PotionEffect)iterator.next();
             p_72356_1_.playerNetServerHandler.sendPacket(new S1DPacketEntityEffect(p_72356_1_.getEntityId(), potioneffect));
         }
+
+        p_72356_1_.playerNetServerHandler.sendPacket(new S1FPacketSetExperience(p_72356_1_.experience, p_72356_1_.experienceTotal, p_72356_1_.experienceLevel));
         FMLCommonHandler.instance().firePlayerChangedDimensionEvent(p_72356_1_, j, p_72356_2_);
     }
 
@@ -306,9 +309,11 @@ public class WorldUtils {
             return;
         }
         entity.setDead();
+
         entity.worldObj.removeEntity(entity);
         entity.worldObj.onEntityRemoved(entity);
         entity.worldObj.unloadEntities(Arrays.asList(entity));
+
         //WorldServer worldServer = (WorldServer) entity.worldObj;
         //worldServer.getEntityTracker().removeEntityFromAllTrackingPlayers(entity);
         //WorldManager worldManager = new WorldManager(MinecraftServer.getServer(), (WorldServer) entity.worldObj);

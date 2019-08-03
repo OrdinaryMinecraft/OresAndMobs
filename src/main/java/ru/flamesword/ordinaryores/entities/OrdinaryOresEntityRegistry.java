@@ -31,6 +31,7 @@ public class OrdinaryOresEntityRegistry {
         EntityRegistry.registerGlobalEntityID(EntityZigomoreSkeleton.class, "Zigomore Skeleton", EntityRegistry.findGlobalUniqueEntityId(), Color.WHITE.getRGB(), Color.CYAN.getRGB());
         EntityRegistry.registerGlobalEntityID(EntitySentinelTree.class, "Sentinel Tree", EntityRegistry.findGlobalUniqueEntityId());
         EntityRegistry.registerGlobalEntityID(EntityBear.class, "Bear", EntityRegistry.findGlobalUniqueEntityId(), Color.decode("#563a34").getRGB(), Color.decode("#3d2421").getRGB());
+        EntityRegistry.registerGlobalEntityID(EntityEvilEye.class, "Evil Eye", EntityRegistry.findGlobalUniqueEntityId(), Color.WHITE.getRGB(), Color.RED.getRGB());
 
         //EntityRegistry.registerModEntity(EntityBear.class, "Bear", 8, OrdinaryOresBase.instance, 160, 5, true);
 

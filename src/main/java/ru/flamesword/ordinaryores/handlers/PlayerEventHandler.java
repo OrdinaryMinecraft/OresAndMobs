@@ -6,6 +6,7 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemDye;
 import net.minecraft.item.ItemStack;
@@ -107,27 +108,29 @@ public class PlayerEventHandler {
                 ItemAnimalCrate itemAnimalCrate = (ItemAnimalCrate) item.getItem();
                 if (event.action == PlayerInteractEvent.Action.RIGHT_CLICK_BLOCK) {
                     if (itemAnimalCrate.crateHasAnimal(item)) {
-                        // TODO: check for space
-                        try {
-                            Class animalClass = Class.forName(itemAnimalCrate.getAnimalClass(item));
-                            EntityAnimal animal = (EntityAnimal) animalClass.getDeclaredConstructor(World.class).newInstance(world);
-                            animal.readEntityFromNBT((NBTTagCompound) JsonToNBT.func_150315_a(itemAnimalCrate.getAnimalNBT(item).replace("\"\"", "")));
-                            animal.setPosition(x, y + 1, z);
-                            //animal.setWorld(world);
-                            world.spawnEntityInWorld(animal);
-                            itemAnimalCrate.setCrateEmpty(item);
-                        } catch (ClassNotFoundException e) {
-                            System.out.println("Can't find class: " + itemAnimalCrate.getAnimalClass(item));
-                        } catch (NBTException e) {
-                            System.out.println("Can't load entity from NBT: " + e.getMessage());
-                        } catch (IllegalAccessException e) {
-                            System.out.println("Error on load entity from NBT (IllegalAccessException): " + e.getMessage());
-                        } catch (InstantiationException e) {
-                            System.out.println("Error on load entity from NBT (InstantiationException): " + e.getMessage());
-                        } catch (NoSuchMethodException e) {
-                            System.out.println("Can't find default constructor (with World parameter): " + itemAnimalCrate.getAnimalClass(item));
-                        } catch (InvocationTargetException e) {
-                            System.out.println("Error on load entity from NBT (InvocationTargetException): " + e.getMessage());
+                        String classString = itemAnimalCrate.getAnimalClass(item);
+                        if (world.getBlock(x, y + 1, z) == Blocks.air && world.getBlock(x, y + 2, z) == Blocks.air) {
+                            try {
+                                Class animalClass = Class.forName(classString);
+                                EntityAnimal animal = (EntityAnimal) animalClass.getDeclaredConstructor(World.class).newInstance(world);
+                                animal.readEntityFromNBT((NBTTagCompound) JsonToNBT.func_150315_a(itemAnimalCrate.getAnimalNBT(item).replace("\"\"", "")));
+                                animal.setPosition(x, y + 1, z);
+                                //animal.setWorld(world);
+                                world.spawnEntityInWorld(animal);
+                                itemAnimalCrate.setCrateEmpty(item);
+                            } catch (ClassNotFoundException e) {
+                                System.out.println("Can't find class: " + classString);
+                            } catch (NBTException e) {
+                                System.out.println("Can't load entity from NBT: " + e.getMessage());
+                            } catch (IllegalAccessException e) {
+                                System.out.println("Error on load entity from NBT (IllegalAccessException): " + e.getMessage());
+                            } catch (InstantiationException e) {
+                                System.out.println("Error on load entity from NBT (InstantiationException): " + e.getMessage());
+                            } catch (NoSuchMethodException e) {
+                                System.out.println("Can't find default constructor (with World parameter): " + classString);
+                            } catch (InvocationTargetException e) {
+                                System.out.println("Error on load entity from NBT (InvocationTargetException): " + e.getMessage());
+                            }
                         }
                     }
                 }

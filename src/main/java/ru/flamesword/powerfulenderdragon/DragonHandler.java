@@ -2,6 +2,7 @@ package ru.flamesword.powerfulenderdragon;
 
 import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import ru.flamesword.ordinaryores.util.EntityUtils;
@@ -15,7 +16,7 @@ public class DragonHandler {
 		if (event.world.isRemote) {
 			return;
 		}
-		if (EntityUtils.entityIsNotNew(event.entity)) {
+		if (event.entity instanceof EntityCreature && EntityUtils.entityIsNotNew((EntityCreature) event.entity)) {
 			return;
 		}
 

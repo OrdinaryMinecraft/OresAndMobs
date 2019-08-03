@@ -15,9 +15,9 @@ import ru.flamesword.ordinaryores.entities.EntityIceElemental;
 import ru.flamesword.ordinaryores.entities.EntityUndeadSpider;
 import ru.flamesword.ordinaryores.entities.EntityUndeadSpidy;
 
-public class RenderUndeadSpiderling extends RenderLiving {
+public class RenderUndeadSpidy extends RenderLiving {
 
-	public RenderUndeadSpiderling() {
+	public RenderUndeadSpidy() {
 		super(new ModelSpider(), 0.5F);
         this.shadowSize *= 0.5F;
 	}

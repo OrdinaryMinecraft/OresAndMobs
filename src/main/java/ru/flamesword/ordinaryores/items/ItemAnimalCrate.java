@@ -3,6 +3,7 @@ package ru.flamesword.ordinaryores.items;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
@@ -11,7 +12,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.StatCollector;
-import net.minecraft.util.StringUtils;
 import ru.flamesword.ordinaryores.OrdinaryOresBase;
 import ru.flamesword.ordinaryores.util.ConfigHelper;
 
@@ -20,8 +20,10 @@ import java.util.Objects;
 
 public class ItemAnimalCrate extends Item {
 
-    private String animalName;
+    @SideOnly(Side.CLIENT)
     private IIcon iconEmpty;
+
+    @SideOnly(Side.CLIENT)
     private IIcon icon;
 
     public ItemAnimalCrate() {
@@ -32,21 +34,28 @@ public class ItemAnimalCrate extends Item {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister p_94581_1_) {
-        super.registerIcons(p_94581_1_);
+        this.setHasSubtypes(true);
+        this.setMaxDamage(0);
         this.icon = p_94581_1_.registerIcon("ordinaryores:AnimalCrate");
         this.iconEmpty = p_94581_1_.registerIcon( "ordinaryores:AnimalCrateEmpty");
     }
 
-    @Override
     @SideOnly(Side.CLIENT)
     public IIcon getIconFromDamage(int p_77617_1_) {
-        return Objects.nonNull(animalName) ? this.itemIcon :  this.iconEmpty;
+        return p_77617_1_ == 0 ? this.iconEmpty : this.icon;
     }
 
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean show) {
         if (crateHasAnimal(stack)) {
             list.add(ConfigHelper.animalCrateIndicator + " " + getAnimalName(stack));
         }
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void getSubItems(Item p_150895_1_, CreativeTabs p_150895_2_, List p_150895_3_) {
+        p_150895_3_.add(new ItemStack(p_150895_1_, 1, 0));
+        p_150895_3_.add(new ItemStack(p_150895_1_, 1, 1));
     }
 
     private NBTTagCompound getNBT(ItemStack item) {
@@ -59,27 +68,32 @@ public class ItemAnimalCrate extends Item {
     }
 
     public String getAnimalName(ItemStack item) {
-        try {
-            Class animalClass = Class.forName(getAnimalClass(item));
-            String s = (String) EntityList.classToStringMapping.get(animalClass);
-            if (s == null) {
-                s = "generic";
+        String animalName = "Error";
+        String classString = getAnimalClass(item);
+        if (classString != null) {
+            try {
+                Class animalClass = Class.forName(classString);
+                String s = (String) EntityList.classToStringMapping.get(animalClass);
+                if (s == null) {
+                    s = "generic";
+                }
+                animalName = StatCollector.translateToLocal("entity." + s + ".name");
+            } catch (ClassNotFoundException e) {
+                System.out.println("Can't find class: " + classString);
             }
-            animalName = StatCollector.translateToLocal("entity." + s + ".name");
-        } catch (ClassNotFoundException e) {
-            System.out.println("Can't find class: " + getAnimalClass(item));
-            animalName = "Error";
         }
 
         return animalName;
     }
 
     public Boolean crateHasAnimal(ItemStack item) {
+        /*
         NBTTagCompound tagCompound = getNBT(item);
         if (Objects.nonNull(tagCompound.getString("AnimalClass"))) {
             return !StringUtils.isNullOrEmpty(tagCompound.getString("AnimalClass"));
         }
-        return false;
+        */
+        return item.getItemDamage() != 0;
     }
 
     public String getAnimalClass(ItemStack item) {
@@ -115,7 +129,7 @@ public class ItemAnimalCrate extends Item {
         tagCompound.setString("AnimalNBT", animalNBT);
 
         item.setTagCompound(tagCompound);
-        this.itemIcon = this.icon;
+        this.setDamage(item, 1);
     }
 
     public void setCrateEmpty(ItemStack item) {
@@ -123,7 +137,6 @@ public class ItemAnimalCrate extends Item {
         tagCompound.removeTag("AnimalClass");
         tagCompound.removeTag("AnimalNBT");
         item.setTagCompound(tagCompound);
-        animalName = null;
-        this.itemIcon = this.iconEmpty;
+        this.setDamage(item, 0);
     }
 }

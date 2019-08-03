@@ -13,6 +13,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.NetHandlerPlayServer;
 import net.minecraft.util.StatCollector;
+import net.minecraft.util.StringUtils;
 
 public class PacketHandler {
 
@@ -62,6 +63,9 @@ public class PacketHandler {
             String localizedName = "";
             if (item != null) {
                 localizedName = StatCollector.translateToLocal(item.getUnlocalizedName() + ".name");
+            }
+            if (StringUtils.isNullOrEmpty(localizedName)) {
+                localizedName = StatCollector.translateToLocal("item.unknown.name");
             }
             FMLProxyPacket packet = PacketHandler.getOtherPacket(Side.SERVER, itemId, level, from, x, y, z, localizedName);
             ArtifactsBase.otherChannel.sendToServer(packet);
